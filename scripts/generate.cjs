@@ -35,5 +35,8 @@ for (const [name, source] of Object.entries(corpus)) {
     records.push({label, bytes: cache.length, sourceLength: code.length, acceptedByElectron: true, header: cache.subarray(0, 32).toString('hex')});
   }
 }
-fs.writeFileSync(path.resolve('evidence', `generator-${mode}.json`), JSON.stringify({versions: process.versions, flags: mode, records}, null, 2));
+const buildVariables = process.config && process.config.variables ? process.config.variables : {};
+const buildConfig = Object.fromEntries(Object.entries(buildVariables).filter(([key]) =>
+  /(?:v8|icu|openssl|node_module|shared|sandbox|pointer|snapshot|wasm|maglev|sparkplug|jitless)/i.test(key)));
+fs.writeFileSync(path.resolve('evidence', `generator-${mode}.json`), JSON.stringify({versions: process.versions, flags: mode, buildConfig, records}, null, 2));
 console.log(`Generated ${records.length} ${mode} caches using Electron ${process.versions.electron} / V8 ${process.versions.v8}`);
