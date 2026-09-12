@@ -46,6 +46,10 @@ jobs:
             tar -xzf d8/*.tar.gz -C d8
             chmod +x d8/d8
           fi
+      - name: Provide ICU data for d8
+        shell: bash
+        run: |
+          cp node_modules/electron/dist/icudtl.dat d8/icudtl.dat
       - name: Generate and test cache corpus
         run: python scripts/reproduce.py
       - name: Upload evidence
