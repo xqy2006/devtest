@@ -48,7 +48,11 @@ def main():
     if failing and shutil.which('gdb'):
         target = min(failing, key=lambda row: row['bytes'])
         fixture = EVIDENCE / 'fixtures' / f'{target["label"]}.jsc'
-        command = ['gdb', '-q', '-batch', '-ex', 'set pagination off', '-ex', 'run', '-ex', 'thread apply all bt', '--args', str(D8), '-e', f'loadjsc({json.dumps(fixture.as_posix())});']
+        # Keep the path relative and quote it with single quotes.  GDB's
+        # Windows command-line parser otherwise strips the JSON double quotes
+        # and turns a drive-letter path into invalid JavaScript.
+        relative_fixture = fixture.relative_to(ROOT).as_posix()
+        command = ['gdb', '-q', '-batch', '-ex', 'set pagination off', '-ex', 'run', '-ex', 'thread apply all bt', '--args', str(D8), '-e', f"loadjsc('{relative_fixture}');"]
         run_logged(command, EVIDENCE / 'gdb-smallest-failure.log')
     summary = dict(platform=platform.platform(), total=len(results), failures=len(failing), results=results)
     (EVIDENCE / 'summary.json').write_text(json.dumps(summary, indent=2), encoding='utf-8')
