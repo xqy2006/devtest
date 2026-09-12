@@ -1,0 +1,8 @@
+{
+  "name": "jsc2js-issue-28-probe",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "electron": "42.2.0"
+  }
+}

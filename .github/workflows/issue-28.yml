@@ -25,7 +25,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install matching Electron
-        run: npm install --no-save --no-audit --no-fund electron@42.2.0
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund
+          node node_modules/electron/install.js
+          node -p "require('electron')"
       - name: Install debugger
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y gdb libnss3 libatk-bridge2.0-0 libgtk-3-0 libasound2
