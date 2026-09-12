@@ -1,0 +1,54 @@
+name: Issue 28 Electron 42 cache reproduction
+
+on:
+  push:
+    branches: [issue-28-electron42]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-2022]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install matching Electron
+        run: npm install --no-save --no-audit --no-fund electron@42.2.0
+      - name: Install debugger
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y gdb libnss3 libatk-bridge2.0-0 libgtk-3-0 libasound2
+      - name: Download released d8
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p d8
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            gh release download 14.8.178.14 -R xqy2006/jsc2js -p '*-windows.zip' -D d8
+            unzip d8/*.zip -d d8
+          else
+            gh release download 14.8.178.14 -R xqy2006/jsc2js -p '*-linux.tar.gz' -D d8
+            tar -xzf d8/*.tar.gz -C d8
+            chmod +x d8/d8
+          fi
+      - name: Generate and test cache corpus
+        run: python scripts/reproduce.py
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue-28-${{ matrix.os }}
+          path: evidence/
+          retention-days: 14
