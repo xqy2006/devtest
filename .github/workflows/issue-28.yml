@@ -4,9 +4,16 @@ on:
   push:
     branches: [issue-28-electron42]
   workflow_dispatch:
+    inputs:
+      jsc2js_run_id:
+        description: "Optional jsc2js Actions run ID whose d8 artifact should be tested"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   reproduce:
@@ -32,19 +39,46 @@ jobs:
       - name: Install debugger
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y gdb libnss3 libatk-bridge2.0-0 libgtk-3-0 libasound2
-      - name: Download released d8
+      - name: Download branch d8 or released d8
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
+          JSC2JS_RUN_ID: ${{ inputs.jsc2js_run_id }}
         run: |
           mkdir -p d8
-          if [[ "$RUNNER_OS" == "Windows" ]]; then
-            gh release download 14.8.178.14 -R xqy2006/jsc2js -p '*-windows.zip' -D d8
-            unzip d8/*.zip -d d8
+          if [[ -n "$JSC2JS_RUN_ID" ]]; then
+            if [[ ! "$JSC2JS_RUN_ID" =~ ^[0-9]+$ ]]; then
+              echo "jsc2js_run_id must be a numeric Actions run ID" >&2
+              exit 1
+            fi
+            if [[ "$RUNNER_OS" == "Windows" ]]; then
+              artifact_name='d8-14.8.178.14-Windows'
+              binary_name='d8.exe'
+            else
+              artifact_name='d8-14.8.178.14-Linux'
+              binary_name='d8'
+            fi
+            rm -rf branch-artifact
+            gh run download "$JSC2JS_RUN_ID" -R xqy2006/jsc2js -n "$artifact_name" -D branch-artifact
+            binary_path="$(find branch-artifact -type f -name "$binary_name" -print -quit)"
+            snapshot_path="$(find branch-artifact -type f -name snapshot_blob.bin -print -quit)"
+            if [[ -z "$binary_path" || -z "$snapshot_path" ]]; then
+              echo "The requested jsc2js artifact is missing d8 or snapshot_blob.bin" >&2
+              find branch-artifact -maxdepth 5 -type f -print >&2 || true
+              exit 1
+            fi
+            cp "$binary_path" "d8/$binary_name"
+            cp "$snapshot_path" d8/snapshot_blob.bin
+            chmod +x "d8/$binary_name" 2>/dev/null || true
           else
-            gh release download 14.8.178.14 -R xqy2006/jsc2js -p '*-linux.tar.gz' -D d8
-            tar -xzf d8/*.tar.gz -C d8
-            chmod +x d8/d8
+            if [[ "$RUNNER_OS" == "Windows" ]]; then
+              gh release download 14.8.178.14 -R xqy2006/jsc2js -p '*-windows.zip' -D d8
+              unzip d8/*.zip -d d8
+            else
+              gh release download 14.8.178.14 -R xqy2006/jsc2js -p '*-linux.tar.gz' -D d8
+              tar -xzf d8/*.tar.gz -C d8
+              chmod +x d8/d8
+            fi
           fi
       - name: Provide ICU data for d8
         shell: bash
