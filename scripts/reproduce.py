@@ -54,6 +54,17 @@ def main():
         relative_fixture = fixture.relative_to(ROOT).as_posix()
         command = ['gdb', '-q', '-batch', '-ex', 'set pagination off', '-ex', 'run', '-ex', 'thread apply all bt', '--args', str(D8), '-e', f"loadjsc('{relative_fixture}');"]
         run_logged(command, EVIDENCE / 'gdb-smallest-failure.log')
+    if failing:
+        target = min(failing, key=lambda row: row['bytes'])
+        fixture = EVIDENCE / 'fixtures' / f'{target["label"]}.jsc'
+        relative_fixture = fixture.relative_to(ROOT).as_posix()
+        trace_command = [
+            str(D8),
+            '--trace-deserialization',
+            '-e',
+            f"loadjsc('{relative_fixture}');",
+        ]
+        run_logged(trace_command, EVIDENCE / 'trace-deserialization-smallest.log')
     summary = dict(platform=platform.platform(), total=len(results), failures=len(failing), results=results)
     (EVIDENCE / 'summary.json').write_text(json.dumps(summary, indent=2), encoding='utf-8')
     print(f'{len(failing)}/{len(results)} loader failures')
