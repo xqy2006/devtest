@@ -52,10 +52,10 @@ jobs:
               exit 1
             fi
             if [[ "$RUNNER_OS" == "Windows" ]]; then
-              artifact_name='d8-14.8.178.14-Windows'
+              artifact_name='d8-14.8.178.14-windows-2022'
               binary_name='d8.exe'
             else
-              artifact_name='d8-14.8.178.14-Linux'
+              artifact_name='d8-14.8.178.14-ubuntu-22.04'
               binary_name='d8'
             fi
             rm -rf branch-artifact
