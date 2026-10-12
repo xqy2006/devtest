@@ -1,0 +1,6118 @@
+[
+  {
+    "group_id": "native-000",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      0,
+      2,
+      3
+    ],
+    "row_ids": [
+      "gpt-5.4__query-01",
+      "gpt-5.4__query-02",
+      "gpt-5.4__query-03"
+    ],
+    "numeric_sha256": [
+      "0d64b78e58a284f380155e464fda5099af958855a47ce9f5fc2813ec2b7a482e",
+      "fedb797d33127b2b04276410fda2beb1c38d31346fa8b10b548306a31980e4a9",
+      "f5525ea2720d555d12231574a03718b1c7193f95f9aa0b376fab2b98af1a8fbd"
+    ]
+  },
+  {
+    "group_id": "native-001",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      1,
+      5,
+      6
+    ],
+    "row_ids": [
+      "gpt-5.4__query-04",
+      "gpt-5.4__query-05",
+      "gpt-5.4__query-06"
+    ],
+    "numeric_sha256": [
+      "5fa8aa1bd542405c9a651009bf67849f8753f2656ef9646ba324e232776bf71e",
+      "752ca463b607ef3f99a0d92118f3a1e04f94fa9f94310e1248086b744ea244c1",
+      "dce2bd1ab0f24772d07cb782f2c126487146f51eb7df59a397e2362aed646cc0"
+    ]
+  },
+  {
+    "group_id": "native-002",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      4,
+      7,
+      10
+    ],
+    "row_ids": [
+      "gpt-5.4__query-07",
+      "gpt-5.4__query-08",
+      "gpt-5.4__query-09"
+    ],
+    "numeric_sha256": [
+      "ee60901025917ee0d1061df1f44607fe9e2479f08eade020d7a3a891edfb12d6",
+      "a194ee738c5131bb7a17b67e3773f7821c75b8e290908f5c0f8a1a2eb2c78d8b",
+      "76d078486cb7144f8174d242cbf820992bfdfd32b4a2fab504f225cd3b67bf88"
+    ]
+  },
+  {
+    "group_id": "native-003",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      8,
+      9,
+      11
+    ],
+    "row_ids": [
+      "gpt-5.4__query-10",
+      "gpt-5.4__query-11",
+      "gpt-5.4__query-12"
+    ],
+    "numeric_sha256": [
+      "22497bd33d72a317d97dabb3d1207f403e4a822b67b9af37b7980bcc4c063e01",
+      "ead2250c3b021d706f60235fae98f17f3d5107e7aee941fe91fc183587ab01ff",
+      "ac2e799c0b83a2d3320b99040fea151b2342e4324a8815ea45198d8caf102219"
+    ]
+  },
+  {
+    "group_id": "native-004",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      12,
+      13,
+      15
+    ],
+    "row_ids": [
+      "gpt-5.4__query-13",
+      "gpt-5.4__query-14",
+      "gpt-5.4__query-15"
+    ],
+    "numeric_sha256": [
+      "bdcccd6d4ee6fe383fe9d56e82260f78fcecc06db3d8890cc65e78dc3d25f19e",
+      "6bf57c182ce6e60e47839e910786009d3feabf9e3140e5746ef7513562711d61",
+      "48872ced3c330cc455a299bb29659deb574335440ee0eb19b366f29439ed2475"
+    ]
+  },
+  {
+    "group_id": "native-005",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      14,
+      16,
+      17
+    ],
+    "row_ids": [
+      "gpt-5.4__query-16",
+      "gpt-5.4__query-17",
+      "gpt-5.4__query-18"
+    ],
+    "numeric_sha256": [
+      "4cb531138d0e7bae291e922b442f86fd97c6510dee2951f94f2251ca45ccaaae",
+      "7799615c520259630b2e4d0746743ced2428d09cc3cdaecc0ea1ddabc6435bbd",
+      "aa699d0f9db55e725ee1d76484ef51c0d9506e073a1fdc4386e941448c743dcc"
+    ]
+  },
+  {
+    "group_id": "native-006",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      18,
+      19,
+      21
+    ],
+    "row_ids": [
+      "gpt-5.4__query-19",
+      "gpt-5.4__query-20",
+      "gpt-5.4__query-21"
+    ],
+    "numeric_sha256": [
+      "149e45d3d3a45ef4983ffd2d64f44760b69f449f11c3fee9c182ea9f5a389699",
+      "c143e273453668d0a1a91ab335d26b33b5d0c0b57d9a603a79ccf2f510f36fd8",
+      "f14263462911b4a55cbbc20019344863bb4ccecbbcd947f68580f56e3b7dce48"
+    ]
+  },
+  {
+    "group_id": "native-007",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      20,
+      22,
+      23
+    ],
+    "row_ids": [
+      "gpt-5.4__query-22",
+      "gpt-5.4__query-24",
+      "gpt-5.4__query-23"
+    ],
+    "numeric_sha256": [
+      "5b89c21f12f3bff5d2db906ad79ab44fe7279c2328f18141e5b12f0ec27e4c61",
+      "633f6e72e83481c91a1cafb935b56084583026d3a7a94dcb0485a7b88c92c01f",
+      "8389737c6611e394e8b93647cf8e28eaaa37c0b40c00d5b6ceb79bba739f3442"
+    ]
+  },
+  {
+    "group_id": "native-008",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      24,
+      25,
+      26
+    ],
+    "row_ids": [
+      "gpt-5.4__query-25",
+      "gpt-5.4__query-26",
+      "gpt-5.4__query-27"
+    ],
+    "numeric_sha256": [
+      "f527e345b0321abbeaf0505004107aad99ebdb56777d9f7c1449fd2e16b877d6",
+      "d2d49ecda0cf3120ec4f7292ce2f22b66df2edf2a6ae24ef95dcf4db696555b8",
+      "bf988bef53b5602e58e8c66b0bfad144c723abacb11625a483682e0a65412c9a"
+    ]
+  },
+  {
+    "group_id": "native-009",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      27,
+      28,
+      29
+    ],
+    "row_ids": [
+      "gpt-5.4__query-28",
+      "gpt-5.4__query-29",
+      "gpt-5.4__query-30"
+    ],
+    "numeric_sha256": [
+      "7640ae18e7c2a1bf0dee5fa3b453d706f99c3e77aa462af383fc9891d43ab972",
+      "1399d6b9e9f0b656d47c24863b114448e5e048b5f3c37d924af6cf8b91740dde",
+      "3807ae37e8a3f18f1587adef5669b19dd05fe7a13239a7b624dc4335ba6a6bc8"
+    ]
+  },
+  {
+    "group_id": "native-010",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      30,
+      31,
+      33
+    ],
+    "row_ids": [
+      "gpt-5.4__query-33",
+      "gpt-5.4__query-31",
+      "gpt-5.4__query-32"
+    ],
+    "numeric_sha256": [
+      "9ea0423808062f9ed9489ca12f43145f0a0274c5df2d309ce10cbb7c0a721a9d",
+      "a5de901ee25684a9df822ccea2fedb5916f5c98361e573ed78304727097b87b9",
+      "c4f470e9bc5531b87ff27ad8f3ed3ac9034785a36c531224af8118c88674e8ff"
+    ]
+  },
+  {
+    "group_id": "native-011",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "gpt-5.4",
+    "role": "train_original",
+    "canonical_indices": [
+      32,
+      35,
+      37
+    ],
+    "row_ids": [
+      "gpt-5.4__query-34",
+      "gpt-5.4__query-35",
+      "gpt-5.4__query-36"
+    ],
+    "numeric_sha256": [
+      "d7eea51a6e7c3123945aba2902003afc66853c6671227c581810a6d1bee8127c",
+      "f27bb59eea0b1c898c3cbd0e75209dc4c62a5261d786b6d3938a04c1e10976c0",
+      "612ac8f99130348efd802db7a7408cde61fac7b825e799be6bda4eca8c2eaac2"
+    ]
+  },
+  {
+    "group_id": "native-012",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      34,
+      36,
+      38
+    ],
+    "row_ids": [
+      "gpt-5.5__query-01",
+      "gpt-5.5__query-02",
+      "gpt-5.5__query-03"
+    ],
+    "numeric_sha256": [
+      "f80f923b3e076e8458ddb9580602d8d6a8922a3c20943b51c20d5c4bb695bbd2",
+      "ad47763234704888a4628730954e3e784f2fbc5b18adbd143babbaec5f862315",
+      "2c283b0135c274fa61a53b5f8e81414fdefd0f6467a9df76302539025bbdc8b4"
+    ]
+  },
+  {
+    "group_id": "native-013",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      39,
+      40,
+      41
+    ],
+    "row_ids": [
+      "gpt-5.5__query-05",
+      "gpt-5.5__query-04",
+      "gpt-5.5__query-06"
+    ],
+    "numeric_sha256": [
+      "66ed6de4e9210bb05546c43ada537f83d10ad9af06f1dcffddad59fabadc364a",
+      "bdd024387d47ccd878be43a12e10a095906191697bdd9d9114e65aeb80f1eb36",
+      "ce76c20ddfc0cea1ed1805df3a966f5c5927de29ffa594877a6c133773220815"
+    ]
+  },
+  {
+    "group_id": "native-014",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      42,
+      44,
+      45
+    ],
+    "row_ids": [
+      "gpt-5.5__query-07",
+      "gpt-5.5__query-08",
+      "gpt-5.5__query-09"
+    ],
+    "numeric_sha256": [
+      "859de3f138f6dfe4574154961b8d8674a3ac3e349dcee8ff3d39539fb9434acc",
+      "d0f985d42f2e8c148e3591d22a910305bda0ae2922e3227dd456e902a4b22b9f",
+      "7ee15d1ea8211679615cf41e59c54a0d6cc7babbca56c05f74e00786c65d1224"
+    ]
+  },
+  {
+    "group_id": "native-015",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      43,
+      46,
+      47
+    ],
+    "row_ids": [
+      "gpt-5.5__query-10",
+      "gpt-5.5__query-12",
+      "gpt-5.5__query-11"
+    ],
+    "numeric_sha256": [
+      "5476329703dfe10d050d5339f8ef2f9c65db485ea4055fb2967851f67dfc3638",
+      "6a34517bcdba6b230bdc66522e337bf0e975ce13c285d4d871a15e10eb2e2672",
+      "5bf56f0706d75f5b099257575faa4503b62d8837a216e40c1a081675d3cbc051"
+    ]
+  },
+  {
+    "group_id": "native-016",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      48,
+      49,
+      53
+    ],
+    "row_ids": [
+      "gpt-5.5__query-14",
+      "gpt-5.5__query-13",
+      "gpt-5.5__query-15"
+    ],
+    "numeric_sha256": [
+      "a1bcec65b5ed2bbef987defab1230191ef008cf1b02867d3488e30bbfc83554a",
+      "749b5edc3a9a84d56bd23890fe4b4e6759fd5ce9417f7eb03c78c5dd7026afd4",
+      "988e4cd1217be602a6e80cc4133a2464bd345977538e40f03cec2ee0ebe2e551"
+    ]
+  },
+  {
+    "group_id": "native-017",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      50,
+      51,
+      52
+    ],
+    "row_ids": [
+      "gpt-5.5__query-18",
+      "gpt-5.5__query-16",
+      "gpt-5.5__query-17"
+    ],
+    "numeric_sha256": [
+      "3e281d9096a2dff59f19cd4ae423323452842bb52f5d87ff6bd80ce430a87bc3",
+      "8296bef736d0a52c6ca68b8527fcd02dbc758ed011c4e280349a8977ba4ba49a",
+      "d41f0f85211e76f26542f582f4e4e200ba389fe0524df3ec402f71f434f64b42"
+    ]
+  },
+  {
+    "group_id": "native-018",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      54,
+      55,
+      56
+    ],
+    "row_ids": [
+      "gpt-5.5__query-19",
+      "gpt-5.5__query-20",
+      "gpt-5.5__query-21"
+    ],
+    "numeric_sha256": [
+      "ef44b219aca29de26dab7cfb06125b9f9a7347ebefdec0962d7115876041fcb1",
+      "4dd33183ed018675b18d00ebe74ed6188ecbff7f9c686c6ecf4216fd8a32f4f2",
+      "48229201ea3c46bfdaf90145a20415b09f219b26cbb4203dea83b05b934d90a3"
+    ]
+  },
+  {
+    "group_id": "native-019",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      57,
+      58,
+      59
+    ],
+    "row_ids": [
+      "gpt-5.5__query-22",
+      "gpt-5.5__query-23",
+      "gpt-5.5__query-24"
+    ],
+    "numeric_sha256": [
+      "1c5a592230da91aa3819e3a6dc2da52a4e0a082434866e4c1381512bee42ec63",
+      "0d3b6714f1ab4a21a573ab772b93b65971b47851ad9b02288162ebea36df0577",
+      "0ea7f7670a2b60d8ee4a2642951fe6d65e63dda2b2ebf508209637574fd289c8"
+    ]
+  },
+  {
+    "group_id": "native-020",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      60,
+      61,
+      62
+    ],
+    "row_ids": [
+      "gpt-5.5__query-25",
+      "gpt-5.5__query-26",
+      "gpt-5.5__query-27"
+    ],
+    "numeric_sha256": [
+      "2c4d09f495a28650216e738104808d85c311d7dfc4a710615c3173bf791d263e",
+      "7c461eb9d4e707ee6d2e97bf633340bf17cb1fac2a10fb0bb2360f4c65e23551",
+      "d30cdbab96670293b3d2a632ff014b83bc82912211a1d2e744baca83ccf37254"
+    ]
+  },
+  {
+    "group_id": "native-021",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      63,
+      64,
+      65
+    ],
+    "row_ids": [
+      "gpt-5.5__query-28",
+      "gpt-5.5__query-29",
+      "gpt-5.5__query-30"
+    ],
+    "numeric_sha256": [
+      "70eac09c35f2ac3f8cf49b6a734ff9e3499646d05045022a2ad309f686268bc9",
+      "23d730d957d08bab58f9c0566805d710b803a3d6c720911abc1e83a7835282d9",
+      "64e6911147c3a88067bd6cfb85ee1ee86b7d21fd27edfcdf3c74a14ead644a00"
+    ]
+  },
+  {
+    "group_id": "native-022",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      66,
+      67,
+      68
+    ],
+    "row_ids": [
+      "gpt-5.5__query-33",
+      "gpt-5.5__query-32",
+      "gpt-5.5__query-31"
+    ],
+    "numeric_sha256": [
+      "a13a160098e17d215db13ca38f6cb4758048bc13117a199ba734d3600f1033f1",
+      "3935706af422747305a296857967020e0c6e0b35545ff3799c73cb30e5a14368",
+      "e8a3de440b20ee63451dfb982b9a3d1ba569b9280fcb5419385beae77182bd33"
+    ]
+  },
+  {
+    "group_id": "native-023",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "gpt-5.5",
+    "role": "train_original",
+    "canonical_indices": [
+      69,
+      70,
+      71
+    ],
+    "row_ids": [
+      "gpt-5.5__query-34",
+      "gpt-5.5__query-35",
+      "gpt-5.5__query-36"
+    ],
+    "numeric_sha256": [
+      "bdb0d78774700a052a652554640909649485bfbee88209e5c0397a45a7754cbd",
+      "094730002f9ffeceb79a98090ad2d7981d25433361ab948a88de9902b2d769ef",
+      "f098790522eb8de4688123f324cd3cfd6b3afc21a343330099cf0bd2b89274c9"
+    ]
+  },
+  {
+    "group_id": "native-024",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      72,
+      73,
+      77
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-01",
+      "gpt-5.6-sol__query-03",
+      "gpt-5.6-sol__query-02"
+    ],
+    "numeric_sha256": [
+      "fe73adeae11418b2178895b75e1a72b8bc8c98f70b81a1f922427b2f0a18a42f",
+      "b85f63cc67bcd1feaf885c05f3997909d5ba950752b63f37eec21f5445673fe3",
+      "2e48c031403b2f4ec181313e676e18a18c3cad057136c54160e5e0b849c8be06"
+    ]
+  },
+  {
+    "group_id": "native-025",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      74,
+      75,
+      76
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-05",
+      "gpt-5.6-sol__query-04",
+      "gpt-5.6-sol__query-06"
+    ],
+    "numeric_sha256": [
+      "e118122395ff8fa1aeb2aa0ef96e82e51922aa2fbbda445f1a09f6be0fce5a3e",
+      "cc71bac3a248b030647b23527effc8e19beb49ef9bac75ff16f3085b6a828802",
+      "7a924ded92ef849fbac6cdd5755df616c1609e26ba7fa3ab04a1671600668f62"
+    ]
+  },
+  {
+    "group_id": "native-026",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      78,
+      79,
+      80
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-07",
+      "gpt-5.6-sol__query-08",
+      "gpt-5.6-sol__query-09"
+    ],
+    "numeric_sha256": [
+      "9e7143cb303e8f49da1b5220e15aec41c1e41243e5dab487d0dc6473860a9260",
+      "9fdd877f4ac4dea0dec060439fc8d0c67a85f3a5b5e9c9d155be846af4783360",
+      "737b73f0e088c27e52ca5bb37c4099a9f7ba8630ee44dff12350915e8b09bc48"
+    ]
+  },
+  {
+    "group_id": "native-027",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      81,
+      82,
+      84
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-10",
+      "gpt-5.6-sol__query-11",
+      "gpt-5.6-sol__query-12"
+    ],
+    "numeric_sha256": [
+      "102f98c0975e14e53f8990f6f79cf2cd69f5538def9ea79f1b91581eb735bb1e",
+      "4974910cbb3abd53488cfde7dc73e92f1d235996a210798ac13386a2a4aedf58",
+      "f62230e0abd72bc47aee4bb5f02bb8df0203c421ed9b3f103f709d1be7150347"
+    ]
+  },
+  {
+    "group_id": "native-028",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      83,
+      85,
+      86
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-13",
+      "gpt-5.6-sol__query-14",
+      "gpt-5.6-sol__query-15"
+    ],
+    "numeric_sha256": [
+      "385e43a337b6818479c800353bf58814579dec098562f06365c52327da6357b2",
+      "eabc8198277fecbb1a976cb669a4cf0d2f587c68ab2067ea7dfdf764bfe34120",
+      "72cd703bdf9055faf1fb12e39342174519f96d30e0727e5a57213e402f4fad07"
+    ]
+  },
+  {
+    "group_id": "native-029",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      87,
+      88,
+      89
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-16",
+      "gpt-5.6-sol__query-17",
+      "gpt-5.6-sol__query-18"
+    ],
+    "numeric_sha256": [
+      "db58de3d4d14f688308a17f56069d28ec600b95fa3dd6b6b4b5e3c707ad147dc",
+      "8fd4e2c2241d28d352f7c08cbe8c59d0160b41abb90034e16fa3f33bdbbb6551",
+      "4e5878e6123651662e2e68de72e720dd17e70d24976bad7fe93ad99c749960dc"
+    ]
+  },
+  {
+    "group_id": "native-030",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      90,
+      91,
+      92
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-19",
+      "gpt-5.6-sol__query-20",
+      "gpt-5.6-sol__query-21"
+    ],
+    "numeric_sha256": [
+      "b3cacc22014d11c378f776aca8fb0f4cb74223e802a60d8602a0ee10bea86ef1",
+      "757fcb2c107f9d2cb19f3bbb9230ede71b8dbfb5b73ceb0830c478887e2ee505",
+      "425f558e4b53eb5c77b84904cb4133cf402cc8bd71e6052f0ed1801fd241e6de"
+    ]
+  },
+  {
+    "group_id": "native-031",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      93,
+      94,
+      95
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-23",
+      "gpt-5.6-sol__query-24",
+      "gpt-5.6-sol__query-22"
+    ],
+    "numeric_sha256": [
+      "546e875703eb3aa70c8cbe4c855bdd983428f492c7878bf18a79fac1576d7d52",
+      "7790fb23c07955d882c07ab8cef98dd4ff6c288dabdf6ab1b699d4848e464516",
+      "2deafc80e4a159371d36d222b1e2d071649dd0c339773f4e9ed3c15be2ac1778"
+    ]
+  },
+  {
+    "group_id": "native-032",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      96,
+      97,
+      102
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-25",
+      "gpt-5.6-sol__query-26",
+      "gpt-5.6-sol__query-27"
+    ],
+    "numeric_sha256": [
+      "914ab3d3be9a119d30612704c57507142a399498e13a2dc407c73c9bf4881d71",
+      "a93f3c091607620d1c96415f4ea2456a5b4e203fcee9c879183c0f2468475798",
+      "2388dd8cf849b4869b3d80528f3ba27fd5cffdc91935b65c17a2d8cb887af637"
+    ]
+  },
+  {
+    "group_id": "native-033",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      98,
+      99,
+      100
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-28",
+      "gpt-5.6-sol__query-29",
+      "gpt-5.6-sol__query-30"
+    ],
+    "numeric_sha256": [
+      "e5f47f3c861a0dad80dd805f213531d053ab5aeafe4752b75f310ed607fce2a5",
+      "064e50ce9032d12a7c5ce15c7870b465e646c3d1e6b8526add1dc3986cc2ecaa",
+      "3754ff3c3841f294e8c01fee408da48718d661d93258ece0d65b489080590a99"
+    ]
+  },
+  {
+    "group_id": "native-034",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      101,
+      103,
+      105
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-31",
+      "gpt-5.6-sol__query-32",
+      "gpt-5.6-sol__query-33"
+    ],
+    "numeric_sha256": [
+      "01f85634319b6b1c8f8780dd832611bd8d93b74cd59ef509815af876c2131edc",
+      "fb267b0b7f50fb7606388106a1ae37bc04870eddf103381ab3ebba4ae8efa202",
+      "71b515dcfd7119e60a67077fba65446d0a5ba1cd8ff32bad1d194b36597696eb"
+    ]
+  },
+  {
+    "group_id": "native-035",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "gpt-5.6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      104,
+      106,
+      108
+    ],
+    "row_ids": [
+      "gpt-5.6-sol__query-34",
+      "gpt-5.6-sol__query-35",
+      "gpt-5.6-sol__query-36"
+    ],
+    "numeric_sha256": [
+      "8363e8fd906ac1f66993e1957a1bd046bbceff2a692364a180de2e5e18cbe44c",
+      "8d58d24b34028366afe3d4ad526a7f4bb6083c83e412f6c55d03003d56d504b2",
+      "f210c00df23335cf34562e15b8efa5204f1aca2fe243f83a96a59069c791bfab"
+    ]
+  },
+  {
+    "group_id": "native-036",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      107,
+      109,
+      110
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-01",
+      "gpt-5.6-terra__query-03",
+      "gpt-5.6-terra__query-02"
+    ],
+    "numeric_sha256": [
+      "3382f248a95c726724aaa109e02fd58f37459e5ac5f360067ddfc683ee661e57",
+      "0101ecb353e355b3fd09afa189df57f1b3b2cef741368c275876046acf6d726d",
+      "c558864aa9ae4c70ec581b85dff1a4d8c255a7861bf865a3532812657964d433"
+    ]
+  },
+  {
+    "group_id": "native-037",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      111,
+      112,
+      113
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-04",
+      "gpt-5.6-terra__query-05",
+      "gpt-5.6-terra__query-06"
+    ],
+    "numeric_sha256": [
+      "28af631847455d8c826fd5ff1201ec60feadc29eb2b4722e21da1382b977b5c1",
+      "8610cc088e19cf2d6de8caa3b2246380cf368d389f3eeae09e311c2d33ad8caf",
+      "aa6b3495ff7fe5cb8cfa1c7039b5bddf1710a60cb10fc3cc6299f7003ad0ea28"
+    ]
+  },
+  {
+    "group_id": "native-038",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      114,
+      115,
+      135
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-08",
+      "gpt-5.6-terra__query-09",
+      "gpt-5.6-terra__query-07"
+    ],
+    "numeric_sha256": [
+      "4dfccb808ee0cda10c4bde2cf9eae5df2f4a2fc5dcf8094106cccdbfba3a4e4a",
+      "53ff4e977f77c315a8cb4557bb429e967c000bcf78ead5bcdba73d05ceacee8a",
+      "8a57404f9972d5b9e5f8af0dffb1fd9c2c4ed682e18458eae668651e1397c11c"
+    ]
+  },
+  {
+    "group_id": "native-039",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      116,
+      117,
+      118
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-10",
+      "gpt-5.6-terra__query-11",
+      "gpt-5.6-terra__query-12"
+    ],
+    "numeric_sha256": [
+      "3034e3305ed12a49a01f10faed022e77ac41541bb0e9398f9aef63de82cbc2eb",
+      "07aea05e4b272b510a6be17a2f785f3229e922ee2d32f1ba8e8dd1f468a76026",
+      "77cfdfabc4dac682129c9f7243eef465d409369f266c65a6c3c8446b3efc1df6"
+    ]
+  },
+  {
+    "group_id": "native-040",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      119,
+      120,
+      121
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-13",
+      "gpt-5.6-terra__query-14",
+      "gpt-5.6-terra__query-15"
+    ],
+    "numeric_sha256": [
+      "ead817816debae761fc668ee5de5a87dbad6e0ceb236178da987dce70e09ee40",
+      "134aa4aa873feda3a26249cfeaa52d461220a15958d7c168ff7273b633e4ef28",
+      "37ff4950c663a5a1af58c8ea99ba19b7dfd9b212dd4e380fcd17b3488cc426a0"
+    ]
+  },
+  {
+    "group_id": "native-041",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      122,
+      173,
+      178
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-18",
+      "gpt-5.6-terra__query-16",
+      "gpt-5.6-terra__query-17"
+    ],
+    "numeric_sha256": [
+      "2a3e7de0e1227121aa3899fbc63d9605911f5161e98ad049b4bd377ca22f5d2b",
+      "434cb15f61d9375c2f4cc0f890c3d6de578cbee44a4bad41056b70d3c0a4c1a6",
+      "f4c905ff04aeaafd6350129f9d81f8d966a71eb326f142819418dda16ae82771"
+    ]
+  },
+  {
+    "group_id": "native-042",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      123,
+      124,
+      125
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-19",
+      "gpt-5.6-terra__query-20",
+      "gpt-5.6-terra__query-21"
+    ],
+    "numeric_sha256": [
+      "151fe520a12a619100a0b093db3747c4adf60d0ed06fd718b0f6d5596f51e41d",
+      "454a9bd82053321d5c2e9d6c67e6c36b12b8576389f518141a94115dbe3a9b96",
+      "e641b4d7bb8a47c8de83bd9b1023ac923eca2d458f5577dcd0d7d98f515873e7"
+    ]
+  },
+  {
+    "group_id": "native-043",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      126,
+      127,
+      128
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-22",
+      "gpt-5.6-terra__query-23",
+      "gpt-5.6-terra__query-24"
+    ],
+    "numeric_sha256": [
+      "505666e8fd40a57c4a897d260f4566ebfb0796c2cfaa18e22538a623e48ab390",
+      "c705334dbb3bef6c56a7fd465738040aa010102d9afd783494efe58b75b9207b",
+      "f29ca6fc799faa13902995308f6c614d2c7ba916fe96095e066be16b550e8e81"
+    ]
+  },
+  {
+    "group_id": "native-044",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      129,
+      130,
+      131
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-25",
+      "gpt-5.6-terra__query-26",
+      "gpt-5.6-terra__query-27"
+    ],
+    "numeric_sha256": [
+      "bd162e87cb8d198cbe3ededfe8c40a515f014899f297b6d76a8680f30bfbc7e3",
+      "cca8331b347349eaa4e9b87e819e7b6e08d94fdf56d0b93f39682e8985d015ef",
+      "8f9bde829fdc92c243a32d4542ec54745becb3b3d0b48df0552118908d122088"
+    ]
+  },
+  {
+    "group_id": "native-045",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      132,
+      133,
+      134
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-28",
+      "gpt-5.6-terra__query-29",
+      "gpt-5.6-terra__query-30"
+    ],
+    "numeric_sha256": [
+      "ff51ab72a3ef21f6694817d753f544241f5bc008c43b7d62a0170f7b2c878d1a",
+      "1aa1a829d8e7db5092c207ec1f43714caba21555bd05e37e6e03fe8c1257ab01",
+      "39a09cf027bedccbc30a6f0efee3d9a9b9542f498c7949eecd5ea0a0e27e97a4"
+    ]
+  },
+  {
+    "group_id": "native-046",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      136,
+      137,
+      140
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-31",
+      "gpt-5.6-terra__query-32",
+      "gpt-5.6-terra__query-33"
+    ],
+    "numeric_sha256": [
+      "ef910e79e97dbd8ad67ad141a32d85c8952052c5f87a9338462486934da92f10",
+      "557c8d93d24096c877125d846986404e99742c36f041940e073291c54e6f9e4d",
+      "bd70141dda8ee9f1463134df3f39447e4404ddee5bce45f2c17251be399ac8cf"
+    ]
+  },
+  {
+    "group_id": "native-047",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "gpt-5.6-terra",
+    "role": "train_original",
+    "canonical_indices": [
+      138,
+      139,
+      141
+    ],
+    "row_ids": [
+      "gpt-5.6-terra__query-34",
+      "gpt-5.6-terra__query-35",
+      "gpt-5.6-terra__query-36"
+    ],
+    "numeric_sha256": [
+      "2f9ce4c6f7e31f2790da0c166541c64def9aadd115e3cfd392d9262df67501d0",
+      "73b6e709e6086a872b7337401ada54ad0acf0bb8478bf16fc4f5d0be58c1c4a1",
+      "2471c25e87da0924b94112c0559a22cd70309b41db5eee01d456cbfaa7461300"
+    ]
+  },
+  {
+    "group_id": "native-048",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      142,
+      174,
+      179
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-04",
+      "gpt-5.6-luna__query-06",
+      "gpt-5.6-luna__query-05"
+    ],
+    "numeric_sha256": [
+      "a6a1bc41694c2379d23747ac95aed1d7dfe2adc037c08738e25d1e93cdbd6142",
+      "a724f954ee6e9ccce25c17f890658df4d43f168c75120094ab15ef132ee47213",
+      "3fec8d0d3f82cdb1dda9a95bd68d606f93356395017b78aaa02e4b5d0ab75ce0"
+    ]
+  },
+  {
+    "group_id": "native-049",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      143,
+      144,
+      172
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-02",
+      "gpt-5.6-luna__query-03",
+      "gpt-5.6-luna__query-01"
+    ],
+    "numeric_sha256": [
+      "073db8ccc489bbb0e1fd2fd8f9b7a23fdb6a513a3317a172e837fed4a579f2b6",
+      "310e5e72d3946728b4862ea69a195161cbe9471cecd8da3a435a971152571cdd",
+      "ce50f0c7237a3249aa871992e07ccafe6007190cbe29b5e48002ba64d976389b"
+    ]
+  },
+  {
+    "group_id": "native-050",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      145,
+      146,
+      176
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-07",
+      "gpt-5.6-luna__query-08",
+      "gpt-5.6-luna__query-09"
+    ],
+    "numeric_sha256": [
+      "b4005c26a871f638d3a0320dca9adea49002d4e86be7510634dea0b8f231545c",
+      "75ea3cb67166c9432eab093a8dab533ffe9d6545dbbbeb975adae1d82dca648f",
+      "d2da75efc108d5e073212e97e7b31d52c6c0bda130ab968b3382d87b4dd008e7"
+    ]
+  },
+  {
+    "group_id": "native-051",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      147,
+      148,
+      149
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-10",
+      "gpt-5.6-luna__query-11",
+      "gpt-5.6-luna__query-12"
+    ],
+    "numeric_sha256": [
+      "e076edb3147d567918e9dfa95c33cd37912a78114a4be2303fc3279a0206e747",
+      "9b6b7c4204ba16bbf543fe979c4c116d9bf86f6b00aeaa665011b230b42478d2",
+      "9d152823394a5e8789617e75046742f7e9ecf8618eef9492b6fefa19f97b4d6b"
+    ]
+  },
+  {
+    "group_id": "native-052",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      150,
+      151,
+      152
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-13",
+      "gpt-5.6-luna__query-14",
+      "gpt-5.6-luna__query-15"
+    ],
+    "numeric_sha256": [
+      "03924c09841990dee92b3e386f0e1b0c3d5df8128db97d9d06eb8adf4ffbded9",
+      "ef8783d3e00eb2aa036e6ad31548ac5679f28c6d14d7cb2f6dde8a5a8fc69e99",
+      "fd4b1f27221e75da91b90cce0925f3b3ba2f52a0ea4b1c1f7dda0c428a63375b"
+    ]
+  },
+  {
+    "group_id": "native-053",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      153,
+      156,
+      177
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-16",
+      "gpt-5.6-luna__query-17",
+      "gpt-5.6-luna__query-18"
+    ],
+    "numeric_sha256": [
+      "0482f6f435af1c6ff04061f33b9a089c21cbcb6d2fc8604713efc2edae66dc13",
+      "5c3abfe3cd16d47872c92b641621a2f132d66d2404bfc6da38aa0706c3958df1",
+      "53176a4550cf2af06af826d824b29226c922f7136528edc8c3dcce53e358712c"
+    ]
+  },
+  {
+    "group_id": "native-054",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      154,
+      155,
+      175
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-19",
+      "gpt-5.6-luna__query-20",
+      "gpt-5.6-luna__query-21"
+    ],
+    "numeric_sha256": [
+      "24f92a5fdb091ec1db6c828fb5e3dacada793b001ec2775dea35b4e5a4cb7a4d",
+      "181fa6b942c49668a04bf5bc6d61a84b46edb6729897f5da17734ea8fc846e2a",
+      "e81a792e21842c84d7e5d048687546ab502d3031b90c8afd50166a38a3141c25"
+    ]
+  },
+  {
+    "group_id": "native-055",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      157,
+      158,
+      159
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-23",
+      "gpt-5.6-luna__query-22",
+      "gpt-5.6-luna__query-24"
+    ],
+    "numeric_sha256": [
+      "9b14b9397cde018d9d3973f19bb5fd4bb432c377fd1de1715387beb46d36cce6",
+      "27d461447f0b9e48c798bbd40828e79fabc3a7e50ecc8105be8c05ae2b622e78",
+      "915a90a81dd1d44065056969b48d97ac605c37a61b13a6f38b0de186c18cee49"
+    ]
+  },
+  {
+    "group_id": "native-056",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      160,
+      161,
+      162
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-25",
+      "gpt-5.6-luna__query-26",
+      "gpt-5.6-luna__query-27"
+    ],
+    "numeric_sha256": [
+      "d2d0510f6bc6ef1eefd2a5814292d106063de69861da4d2af09ea7f292041014",
+      "198b16034ea44b68f6c026e48d84e0f339f7fdd0f7886742a9751f63bc3ce1c8",
+      "d36aae2c59cf90633a6876f2f37c0a2f00a8fb6f8bc449ff04d222798fcf3247"
+    ]
+  },
+  {
+    "group_id": "native-057",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      163,
+      164,
+      165
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-28",
+      "gpt-5.6-luna__query-29",
+      "gpt-5.6-luna__query-30"
+    ],
+    "numeric_sha256": [
+      "3402c91c7c88cb3cf353a4f12e8f120518de8289fb223d5c9375b9eb8fb8994a",
+      "da9d0c7dfd5cb530ade6cc8660a7a5bd74ab3769ff50ec593ee0ed99bcdc354b",
+      "5c617d455902d065fffee7f689bc974832a266a56901737acd410c0a6cf71c94"
+    ]
+  },
+  {
+    "group_id": "native-058",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      166,
+      167,
+      168
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-31",
+      "gpt-5.6-luna__query-33",
+      "gpt-5.6-luna__query-32"
+    ],
+    "numeric_sha256": [
+      "7043b5989097fa1df0debb73f7f1202cae126742325c77eddb34a1abcc205b62",
+      "fddfb8c71110bf67435442587989cecdf4515b550d08c8a05cf4a314c75a4b59",
+      "2a60f74185b44dac4df190404148c4a99eb58980776639ddfa5fc7e17dc1e106"
+    ]
+  },
+  {
+    "group_id": "native-059",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "gpt-5.6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      169,
+      170,
+      171
+    ],
+    "row_ids": [
+      "gpt-5.6-luna__query-34",
+      "gpt-5.6-luna__query-35",
+      "gpt-5.6-luna__query-36"
+    ],
+    "numeric_sha256": [
+      "f7a8c93801809bbda72812e054c1ced1fcf7407ff2b9979e124ca2c8f06cf7fc",
+      "596263bfc85f8d17419d88659495abc39491ff701df8db8eb2af2409486c79cc",
+      "56297fa9e5596e856b310f3a729a49d184e7d6b471ff9753c1795ffbb2a1c5ac"
+    ]
+  },
+  {
+    "group_id": "native-060",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      180,
+      181,
+      182
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-01",
+      "gpt-6-astra__query-02",
+      "gpt-6-astra__query-03"
+    ],
+    "numeric_sha256": [
+      "f9faad07f83620d136418366df8cdda770386667f28fafa46d70ffce8125917f",
+      "f5c24f55ef25e4cb195b2aebb05a1451ae5b9d991b6e7b944088bd65a9c3a480",
+      "d826e82bc2666dd651ea90258f76c6de076cdfe5ceb5c4c141af3c70bb751b67"
+    ]
+  },
+  {
+    "group_id": "native-061",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      183,
+      184,
+      186
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-04",
+      "gpt-6-astra__query-06",
+      "gpt-6-astra__query-05"
+    ],
+    "numeric_sha256": [
+      "c7f8e92f554e3aa69077ba1a386ae19a78e95334d9aaba4a8e6b3e08640b694e",
+      "8c8dc973cf9c65b076644cbf9a5701a49b3bb1381428d008a04fd97153f1c84d",
+      "c2eeb534baa25506bf94abc06950af2c64171fc5b23d290d0c5ac4106919fc6e"
+    ]
+  },
+  {
+    "group_id": "native-062",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      185,
+      187,
+      188
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-07",
+      "gpt-6-astra__query-08",
+      "gpt-6-astra__query-09"
+    ],
+    "numeric_sha256": [
+      "339934d18417c896f7392dadac1a8438c38b769410134a7bece56c39f3afa673",
+      "77c4a84cf37cfc020cc77737418b801ce37972c98d972e71cbbd22d6bc099195",
+      "411dd72515c0a9b60f17508be6e2f55e22ad2d14df8a2f4bef418d359798c94b"
+    ]
+  },
+  {
+    "group_id": "native-063",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      189,
+      190,
+      191
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-10",
+      "gpt-6-astra__query-11",
+      "gpt-6-astra__query-12"
+    ],
+    "numeric_sha256": [
+      "ae6d23d10d7a927ea57d15c1a657f92dba130a7aa97d51fd7f33ef9b6d69afbc",
+      "fece6f0851fcc0d49925a458460e7b9ad8603a5637f8999e6f773b93c92b624c",
+      "a5e8f85626f5dd5c50e383c1fba4dbbaaacb3f336117c2cc879867abcfaf6d83"
+    ]
+  },
+  {
+    "group_id": "native-064",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      192,
+      193,
+      194
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-13",
+      "gpt-6-astra__query-14",
+      "gpt-6-astra__query-15"
+    ],
+    "numeric_sha256": [
+      "c9fff64162f3726098a337a9f3787409fccac63d4bed4b19fd0dc54cbba75c8e",
+      "337d8d5873e9153ca89847c804e60c75b1bbfe767d6b8b188b2dc3ce6ff64277",
+      "07f191fb6399960a6fcaa5aac048bdb92af1f4db2b61a9340bf82a0068ed4154"
+    ]
+  },
+  {
+    "group_id": "native-065",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      195,
+      196,
+      197
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-16",
+      "gpt-6-astra__query-17",
+      "gpt-6-astra__query-18"
+    ],
+    "numeric_sha256": [
+      "5ebd8b27e108b875895a3394cbb146889d1e6673e8af8c2801fd20948e94484d",
+      "72b76e47c4b4b3381f71c77d5783c7cb1cbd402cafc2f36abb13b1f0cefe1be0",
+      "b02c64cfbafd2f4883425c0b37f2194f9c52f8b77d00567fdf6f2595fa408b59"
+    ]
+  },
+  {
+    "group_id": "native-066",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      198,
+      199,
+      200
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-19",
+      "gpt-6-astra__query-20",
+      "gpt-6-astra__query-21"
+    ],
+    "numeric_sha256": [
+      "1f7e953a051d31982254ad842a374815e189b25d30120492b680695845aaa49f",
+      "d22535210e6e9ec6923ddc54bff04addc1329c146ec6744cf5744a6a1ef22d11",
+      "842b69ea5fd0d716a04cf725f7e01d3d137bf2a04807eb90d4bcaafa1091eedd"
+    ]
+  },
+  {
+    "group_id": "native-067",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      201,
+      202,
+      203
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-22",
+      "gpt-6-astra__query-23",
+      "gpt-6-astra__query-24"
+    ],
+    "numeric_sha256": [
+      "33bad27f7ba6ea09ad94b771f09340a42c06108fcd006191e4864c7213ff8694",
+      "b20ee202366b4f754549402f3ad07f314a5706c9280fd6d3708c9df4933f7b8f",
+      "1440cf445c7ac18a0bf7973efcbb45c6950c1b4642412830f39d7a33550bf348"
+    ]
+  },
+  {
+    "group_id": "native-068",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      204,
+      205,
+      206
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-25",
+      "gpt-6-astra__query-26",
+      "gpt-6-astra__query-27"
+    ],
+    "numeric_sha256": [
+      "459f9381bec907aa28b5aab5c72abdc05ec05277bcb34cf65ba864eb66acf751",
+      "1fc143665060138a5ee0045d0c12617b6c7e9be6d9818e11dd0526520cd17f82",
+      "beabdea481b78034372dbb933f0bc73fcd174322ac70de217d2933c1d5da7cab"
+    ]
+  },
+  {
+    "group_id": "native-069",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      207,
+      208,
+      209
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-28",
+      "gpt-6-astra__query-29",
+      "gpt-6-astra__query-30"
+    ],
+    "numeric_sha256": [
+      "d2f4cc1243334f208a4c8eb616e2e3aa4930db0a19d15324ed1f0a1a2603550c",
+      "f171b8554d131f34a5bc730a9b8d943b9bf91e328b7f0fa45d79b13f6572c1af",
+      "5ff62e1424a71eb02432273ce66eaf163991fb9ee25ddc33ccfae2e8bc0dea8c"
+    ]
+  },
+  {
+    "group_id": "native-070",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      210,
+      211,
+      212
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-31",
+      "gpt-6-astra__query-32",
+      "gpt-6-astra__query-33"
+    ],
+    "numeric_sha256": [
+      "4fcd0dd5bf41fdb0a2e5f436eb00d9a1b0ae6d4f379623d9b7403c3d42fb8e0b",
+      "ca3d8fe34a4cfa0cbacd1fa4601bc0792d2ab8f7891d2d3e269300da27991560",
+      "ea281327231214ddb8f20b4e07832f87c06f8341452263ba693233af401c7078"
+    ]
+  },
+  {
+    "group_id": "native-071",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "gpt-6-astra",
+    "role": "train_original",
+    "canonical_indices": [
+      213,
+      214,
+      215
+    ],
+    "row_ids": [
+      "gpt-6-astra__query-34",
+      "gpt-6-astra__query-35",
+      "gpt-6-astra__query-36"
+    ],
+    "numeric_sha256": [
+      "9f0853793d2e98ad0e36d90cfe16ba3c7847e2f1290536229d3d4bf0eab9d178",
+      "bcb555d37a5bf12c77b669acb23874c277ff1fd1900f691e7d7185f0cb95d07d",
+      "41f4ac85dd5e929674183a421b18084e335fd8e12e99dd44435d02a559f465b7"
+    ]
+  },
+  {
+    "group_id": "native-072",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      216,
+      218,
+      220
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-01",
+      "gpt-6-sol__query-02",
+      "gpt-6-sol__query-03"
+    ],
+    "numeric_sha256": [
+      "ee7d65cd20ba30620c5e9c05a6049c1df6112d8d2b68d447158601b66a198bac",
+      "74dcae3c7c465e05110c505c8bcf99f0e2f6b76a3c86a3f06e445d51a39b2e31",
+      "ab37da41ccb6d7df451189aa83bd643f4a350c42c2f9d00b4432d9b7c3671187"
+    ]
+  },
+  {
+    "group_id": "native-073",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      217,
+      219,
+      221
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-01",
+      "gpt-6-luna__query-02",
+      "gpt-6-luna__query-03"
+    ],
+    "numeric_sha256": [
+      "7ab2f3d272b1b545fc253a2cda34c33007cc153ac13d1b96871c9903363400a2",
+      "9b34fc28bf6b16946830d6b03d80224224afa68dd6f7fa7fdb500a73fbc17c65",
+      "2e0cf1773749b5c76cd800ef172b63546bfb9aa48007b7cece161f192a484d39"
+    ]
+  },
+  {
+    "group_id": "native-074",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      222,
+      224,
+      226
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-04",
+      "gpt-6-sol__query-05",
+      "gpt-6-sol__query-06"
+    ],
+    "numeric_sha256": [
+      "3f5b9fef856c4bb52f7524eae97a444f803ff9d44a35e94e3e7376e1ce9d6e76",
+      "990c656c0ecd27035f693e77af93fcc0a6c5eff9921c8a65e732dc8ffb23263f",
+      "1e5d3dad885586ff536927049c195cf5a5e891842fda1d0932aae76a3d3c21dc"
+    ]
+  },
+  {
+    "group_id": "native-075",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      223,
+      225,
+      227
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-04",
+      "gpt-6-luna__query-05",
+      "gpt-6-luna__query-06"
+    ],
+    "numeric_sha256": [
+      "4a28c76a650b487c7a3b1e77745514ea7916e92e423ef23624c511bfc176342f",
+      "0209ebed51356ee9354a78a4dd22ff40f506f79c515e457ce78b1dad05a16fd0",
+      "42b117052a2bf1aceeebb3374f5dc6f8ff79e5333f250014fa1e99f8e1d92209"
+    ]
+  },
+  {
+    "group_id": "native-076",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      228,
+      230,
+      232
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-07",
+      "gpt-6-sol__query-08",
+      "gpt-6-sol__query-09"
+    ],
+    "numeric_sha256": [
+      "558c0f78ebd8cd0a268f00cf7371d9c8457ef86afdd4977913f26fcff8b65b66",
+      "7f0131d47f80aff61e1b43c705a9c15333f41f4a06a63dcb6e45ff6bd0db2c75",
+      "363699b79334f30d4e279119703df29ced2d6eaf37dddf8d5e4ab8258a008c01"
+    ]
+  },
+  {
+    "group_id": "native-077",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      229,
+      231,
+      233
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-07",
+      "gpt-6-luna__query-08",
+      "gpt-6-luna__query-09"
+    ],
+    "numeric_sha256": [
+      "ddadc146780915c90a199f9e52dccde96d9bb79986bc2baa660070e39a278214",
+      "1213a56bcb20ca3ead4fc2a9e2db08d26a729b5e657b198212d2c52493239abf",
+      "55d4a45ce60afc432feb16b651df30790044834b6eac2f66bd7363201442ad34"
+    ]
+  },
+  {
+    "group_id": "native-078",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      234,
+      236,
+      238
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-10",
+      "gpt-6-sol__query-11",
+      "gpt-6-sol__query-12"
+    ],
+    "numeric_sha256": [
+      "a58814cd8cea9f851d1e91b468e87704f88a94aefc74739a7fdae83fe055593e",
+      "6b5126e4b72abe25a05017101693cbddcf9f0439b6df7bc22ab7afebd91ba0a5",
+      "a59b58e7a7f6ebfb89d83a1ea0c128b0a185f69029011c2e0bddc714356f05f8"
+    ]
+  },
+  {
+    "group_id": "native-079",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      235,
+      237,
+      239
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-10",
+      "gpt-6-luna__query-11",
+      "gpt-6-luna__query-12"
+    ],
+    "numeric_sha256": [
+      "90ec95482d0e216472e95ab4cdec346a356bd22b53b61ec68fefc159e322b95b",
+      "99a6d31d79cc5e3b5dc77a980fed4be8b326e2ec06708f75c4dc83e037de5605",
+      "c5cdee3b276eaa34bb8d5069b03db1451f8ee6bc36183d1ce591e210d6b6552b"
+    ]
+  },
+  {
+    "group_id": "native-080",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      240,
+      242,
+      244
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-13",
+      "gpt-6-sol__query-14",
+      "gpt-6-sol__query-15"
+    ],
+    "numeric_sha256": [
+      "53f086220ea0153375454d3446d1af4a35f204b2f5bc82975be6d0b9c58a0e0c",
+      "a8791890219f2a016b68552903bc893d1e39a855fa065ed37f1f4750151e6ea9",
+      "9859c416276488962ec5969f8587b7fbd2455ffc5807cc96e02e1cfe73bd0430"
+    ]
+  },
+  {
+    "group_id": "native-081",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      241,
+      243,
+      245
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-13",
+      "gpt-6-luna__query-14",
+      "gpt-6-luna__query-15"
+    ],
+    "numeric_sha256": [
+      "65511cd633eb28883fa4b597a851025b81ddd71bea1d4297f0962b14f1fd61a0",
+      "3c5122ace7e920a92c5f6969de11ad2f5aff153ba5e82c6b576446f82a060237",
+      "8616d8664565e84834013c6366b1229292e5d7922067ba552f67460a56964e66"
+    ]
+  },
+  {
+    "group_id": "native-082",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      246,
+      248,
+      250
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-16",
+      "gpt-6-sol__query-17",
+      "gpt-6-sol__query-18"
+    ],
+    "numeric_sha256": [
+      "75153b673acd4e25c63eea6c4fd95333939ccdd9cd4804092bcaab979dc4e029",
+      "b1ec1754d5895d68633c88506c9fdf93039b56675a99c9e900c2f5168e3f5ad5",
+      "2702d1f0ab3dac0f27a05378838bc9d946f5b85853e8ac496592a3416374e8f8"
+    ]
+  },
+  {
+    "group_id": "native-083",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      247,
+      249,
+      251
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-16",
+      "gpt-6-luna__query-17",
+      "gpt-6-luna__query-18"
+    ],
+    "numeric_sha256": [
+      "60cb1e89470d79738ab7ea8860f42760791123b924bc9973312c58dc97d5ff46",
+      "9dbc709542b9176d0c0cc3bf091d3575a3b16bde093af05e19b86fcbabf4238a",
+      "81f494cc0d574296a95149e029431f7306863e4e2e5d2b8a722a3f13f7d0a525"
+    ]
+  },
+  {
+    "group_id": "native-084",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      252,
+      254,
+      256
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-19",
+      "gpt-6-sol__query-20",
+      "gpt-6-sol__query-21"
+    ],
+    "numeric_sha256": [
+      "39b93513e01a73aabe04b7dd1c06003b378e584e6bf8b95fb114c7d5a51f6516",
+      "64ff027f8aca889e4f248e4599fc3304366d9aa4bda3d17d3a4c5e8829a2b2f1",
+      "36ee633ba143c246386c6cf170f4e62fdc2c5a491f77881507c4552a4d95ad8f"
+    ]
+  },
+  {
+    "group_id": "native-085",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      253,
+      255,
+      257
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-19",
+      "gpt-6-luna__query-20",
+      "gpt-6-luna__query-21"
+    ],
+    "numeric_sha256": [
+      "9610446df61a502257c11cc6dee90d418aedea22c629c4dd8b73c4d98ea036c0",
+      "cbf42ffb5d1afa32d2c8f3647a6937b596daad5754a5afc53921c9df59857fc0",
+      "74e0fefb05ffa45944c6918eff168da0360ee83029cfcb960a3e0b4dc9c2b01d"
+    ]
+  },
+  {
+    "group_id": "native-086",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      258,
+      260,
+      262
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-22",
+      "gpt-6-sol__query-23",
+      "gpt-6-sol__query-24"
+    ],
+    "numeric_sha256": [
+      "c63f413e04e654d31ad7ffa0f2fb57928e93e8d5082b8146ce8f16cfad1c6905",
+      "d2956b1a5bd2e97937850236cb37d931431d65567cc747d8488d4b9a7ef719d8",
+      "dd23eac4c60fb8ab9476d8bffde124ed140adf18e5239b9399009fcc79033104"
+    ]
+  },
+  {
+    "group_id": "native-087",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      259,
+      261,
+      263
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-22",
+      "gpt-6-luna__query-23",
+      "gpt-6-luna__query-24"
+    ],
+    "numeric_sha256": [
+      "b9e4cf875d9c9db2996cc91651b2df0be1973311c5049859b6b6c9733307eed8",
+      "35bd95497c5f9c9f1610b3994970486fe58ab5acc23d25daed75fe63b84c034c",
+      "eae16ddf5be5cbe67df9c285eac2d17f8bf1ef9e39585320f116a0e906752b56"
+    ]
+  },
+  {
+    "group_id": "native-088",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      264,
+      266,
+      268
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-25",
+      "gpt-6-sol__query-26",
+      "gpt-6-sol__query-27"
+    ],
+    "numeric_sha256": [
+      "8f2ecf0129d4c581dc885503dd7ea4c94262061a25276ec74c6f728cf45184bb",
+      "19019b611a7125e6177acb899dd3df5df79168739e459c247340c6593031cf06",
+      "1dfed15e68ddc9abc190020e163146957b5dfebb566e4d87e937be8005cd06bd"
+    ]
+  },
+  {
+    "group_id": "native-089",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      265,
+      267,
+      269
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-25",
+      "gpt-6-luna__query-26",
+      "gpt-6-luna__query-27"
+    ],
+    "numeric_sha256": [
+      "036ec56fb76be76cd868a5b0b83073e9a308c1fae1e2245a93e2f854894f5e9a",
+      "5586bd09307cfd46e1f2b2cd943e9af2e9aba1ee6668a1f35d35d8ed3abdb70e",
+      "f2f54fea31eef86cf89c5d4c4298694f4c0713b0a05748426e8d7bd4621aebca"
+    ]
+  },
+  {
+    "group_id": "native-090",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      270,
+      272,
+      274
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-28",
+      "gpt-6-sol__query-29",
+      "gpt-6-sol__query-30"
+    ],
+    "numeric_sha256": [
+      "1836e72543cd11eeb2dcc3cbeb9e05868e69d4a0e7ba3bdaff992deed6b530b7",
+      "ae5a273d8ab8ea2249cfc97b18446446b76aae63da56a1296dd765efb3c66339",
+      "87ea91be460c0bcb7b17b3ed85202272e9a8079cb33191bf3d5c93dd1f6f4670"
+    ]
+  },
+  {
+    "group_id": "native-091",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      271,
+      273,
+      275
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-28",
+      "gpt-6-luna__query-29",
+      "gpt-6-luna__query-30"
+    ],
+    "numeric_sha256": [
+      "f3013c4c3f068bb77c50e94f7c1dc863082e1b5085364dc7ef8e4c856f6ac10c",
+      "62fe41eb7cd89723dd0f1d80faa9f6b77dfeda93f56d2df0da16d635c476197f",
+      "8774ae49e0341ea308b3747a6a1fdff1f61f7e58dd2b9ac9595c40450a2c93df"
+    ]
+  },
+  {
+    "group_id": "native-092",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      276,
+      278,
+      280
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-31",
+      "gpt-6-sol__query-32",
+      "gpt-6-sol__query-33"
+    ],
+    "numeric_sha256": [
+      "8a15503b959d904f0f6e79bca8611c0bb7b4239d531b8dba45215d39a87ed3a4",
+      "0f8caaef4403c959a6fa3c193c5d136e673dda36521677bbb3e5defbfa64a628",
+      "8f8d86a3452396e67ca590c64861941132c98a20460d329da2acdfc337774c52"
+    ]
+  },
+  {
+    "group_id": "native-093",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      277,
+      279,
+      281
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-31",
+      "gpt-6-luna__query-32",
+      "gpt-6-luna__query-33"
+    ],
+    "numeric_sha256": [
+      "c7950f17d4e24d37a73e1f2aa01c4e619118444228a9110e4912639bf5f5fdf7",
+      "04d3836408751ce1063d109444b243431e0309ea236897fd1cff71c1b38f0722",
+      "3a9f2d8d6b73ccb274aafc0e370a0dfe807e30122ceee20b6c3227dd062a84ae"
+    ]
+  },
+  {
+    "group_id": "native-094",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "gpt-6-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      282,
+      284,
+      286
+    ],
+    "row_ids": [
+      "gpt-6-sol__query-34",
+      "gpt-6-sol__query-35",
+      "gpt-6-sol__query-36"
+    ],
+    "numeric_sha256": [
+      "6eb16c8e7681c71df729a8dd75a2676c0545e2022d97d1b705463ed60d5e509c",
+      "73baa700ca7438c1e4aab53f428a9fac148f9fbb0ae4e3291481c6024e469d64",
+      "f246c25d61d8d4eac04f54205680cc44464466a2efb79149b1559cab06db0621"
+    ]
+  },
+  {
+    "group_id": "native-095",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "gpt-6-luna",
+    "role": "train_original",
+    "canonical_indices": [
+      283,
+      285,
+      287
+    ],
+    "row_ids": [
+      "gpt-6-luna__query-34",
+      "gpt-6-luna__query-35",
+      "gpt-6-luna__query-36"
+    ],
+    "numeric_sha256": [
+      "fd619fbac6048893beb3379989c3d3a580dc9134bbc141689c224bf82d9b38b4",
+      "555829c17f2828b3a393ba794d4bb048159447f798eaf79dcb2ebce70d02c427",
+      "d3b82a5765bcf2bd4c9f762258d1cb15c1e3af9d23b8b00b52324749b801c708"
+    ]
+  },
+  {
+    "group_id": "native-096",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      288,
+      289,
+      290
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-01",
+      "gpt-6.1-sol__query-02",
+      "gpt-6.1-sol__query-03"
+    ],
+    "numeric_sha256": [
+      "c1d01b7a4ed61be4d47c3e58087933087fe5e9fb274bb937a9232233bb1211f4",
+      "4e9f5d9dd6d211484a1add6ecbfa45d418d9d21104388c2fa78c180c09e26f04",
+      "9b4864a772ad83dff1eb055275f108d7b71bd7e132a1749538008800a688b39e"
+    ]
+  },
+  {
+    "group_id": "native-097",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      291,
+      292,
+      293
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-04",
+      "gpt-6.1-sol__query-05",
+      "gpt-6.1-sol__query-06"
+    ],
+    "numeric_sha256": [
+      "7ce088f211de7e0ca2112ef01883199a4565ff317db7d7a01a301f6e9a3fd2ae",
+      "d4d564665136d6cd2f589c225a0a172fdc3378c938bf6cd78bb86aa024488899",
+      "7234091251bf818373c1c1e68e861a2cca76a01dd0369c875cc9c07c6762e786"
+    ]
+  },
+  {
+    "group_id": "native-098",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      294,
+      295,
+      296
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-07",
+      "gpt-6.1-sol__query-08",
+      "gpt-6.1-sol__query-09"
+    ],
+    "numeric_sha256": [
+      "d8bfa4ef7847d94613111d530726fba0a774f7326d5c52889074decd582258df",
+      "b5eccaed25d89e17704f24e9ba608de0495600f98146504c5d76e38bb3a9fcbf",
+      "7499351a2b33800cc82133732b13731bc050700de3041edad701e954c332ec6d"
+    ]
+  },
+  {
+    "group_id": "native-099",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      297,
+      298,
+      299
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-10",
+      "gpt-6.1-sol__query-11",
+      "gpt-6.1-sol__query-12"
+    ],
+    "numeric_sha256": [
+      "55757ff66f2d3de30036a8001cd58002fd0eab900a1cd1323c8d9bcaa2c82b24",
+      "0277cd6951d78af767ee1fe3dfd04517fff582db317c6080791305e59a4465f6",
+      "dab78d74cbb12f1e737a50dd6aec431a103661ad7b2e5d4f2f07456c734f7417"
+    ]
+  },
+  {
+    "group_id": "native-100",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      300,
+      301,
+      302
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-13",
+      "gpt-6.1-sol__query-14",
+      "gpt-6.1-sol__query-15"
+    ],
+    "numeric_sha256": [
+      "832e9d24b01c0fa0f9e96bce51e9109f38b13aaf66552f7ad24dea9083bf1b3f",
+      "d06fab36d7137fc366b15fa0764e7ee4fc64af0c1af677f783547bb98431806b",
+      "ef7371859ef7898c7e466c58ab7c18fbfbd7cb36458229f4581ab1b3ac2d4ad7"
+    ]
+  },
+  {
+    "group_id": "native-101",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      303,
+      304,
+      305
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-16",
+      "gpt-6.1-sol__query-17",
+      "gpt-6.1-sol__query-18"
+    ],
+    "numeric_sha256": [
+      "969f8060b9b2ef4e8c5bf5b286d639ba6ada2e62e3a354da1f87db2be58c2048",
+      "f472797dbd9d348cabe2d9d4d9eb47e8b52755d63ed5fa653a80820600b103c3",
+      "a74df1d8e086c6db89292a566712ffda947337be2b66720aa88c86c381f6b50d"
+    ]
+  },
+  {
+    "group_id": "native-102",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      306,
+      307,
+      308
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-19",
+      "gpt-6.1-sol__query-20",
+      "gpt-6.1-sol__query-21"
+    ],
+    "numeric_sha256": [
+      "42457d2ac4c23a46db80250fec4d8bb29ae8d7c135d60475eb678323cddccc0e",
+      "6e728d68fbad9882f44d1dfa9dfdb52adccef0f6cbb779da1f2fa77790431a61",
+      "6ebc94104cfd6c2e7802144fd3c36fa26bb0e75ce58c36af4a0c7b70415576b7"
+    ]
+  },
+  {
+    "group_id": "native-103",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      309,
+      310,
+      311
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-22",
+      "gpt-6.1-sol__query-23",
+      "gpt-6.1-sol__query-24"
+    ],
+    "numeric_sha256": [
+      "772456e34b8cdd60ccf81f9937eac80ef9fd4e58794e26668081969e875dcb03",
+      "d1852c53063d7ad591582ed52e1a6be2a3878bf100c4771660a49c662197343c",
+      "253674be9870bb0540fac453da9cec64ce3f87079977a74490332823c2e9f4ee"
+    ]
+  },
+  {
+    "group_id": "native-104",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      312,
+      313,
+      314
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-25",
+      "gpt-6.1-sol__query-26",
+      "gpt-6.1-sol__query-27"
+    ],
+    "numeric_sha256": [
+      "8df77fb2d769ef2667134a323f5dc8ce0cc6a66457c72f6cc3a0a9de24cfccfe",
+      "b65e7ad9aa079f95af846cd420b71d6db466928132d732c93d418b8aa057441d",
+      "4f9722a587e08b6622ed124b9075c1db1693239434664e9f84c53b8351355936"
+    ]
+  },
+  {
+    "group_id": "native-105",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      315,
+      316,
+      317
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-28",
+      "gpt-6.1-sol__query-29",
+      "gpt-6.1-sol__query-30"
+    ],
+    "numeric_sha256": [
+      "90d26f032d26402b5c2a28badfb093c0e27f9821749a278eaceaf05cbbe2872d",
+      "a5b27497ce125f9479917a65306acf81d3c1ee6bd4274ebd27bb99620b3b8462",
+      "3ddd9d279bcc0301bac839bb013c0cb481da77edc475e7e55475dfe09a1e0784"
+    ]
+  },
+  {
+    "group_id": "native-106",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      318,
+      319,
+      320
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-31",
+      "gpt-6.1-sol__query-32",
+      "gpt-6.1-sol__query-33"
+    ],
+    "numeric_sha256": [
+      "92a9302562e171028f784d67cbc378018090be1d37fe38892b50eefb7d4a5152",
+      "82c366f086d536ffc00d75f684549e92404c42f6b401de467dd63018c454bc19",
+      "288963afe11296142a25102a7a0eb01e8c0cc558887dd88fd4318d31b00ceb16"
+    ]
+  },
+  {
+    "group_id": "native-107",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "gpt-6.1-sol",
+    "role": "train_original",
+    "canonical_indices": [
+      321,
+      322,
+      323
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__query-34",
+      "gpt-6.1-sol__query-35",
+      "gpt-6.1-sol__query-36"
+    ],
+    "numeric_sha256": [
+      "49b0984cbb7c81be53265eecb5670e15b6222ddea53a34aab69aac7641d92fe3",
+      "9218e05a5e32efe41921e4dec0c4f01e75c04b057ee6825d1b749052c058e34e",
+      "6320bb891e05c2fdcdd84f856a4019e9ab19e90d583029d800ccc08a363de49b"
+    ]
+  },
+  {
+    "group_id": "native-108",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      324,
+      334,
+      335
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-08",
+      "claude-haiku-4-5-20251001__query-07",
+      "claude-haiku-4-5-20251001__query-09"
+    ],
+    "numeric_sha256": [
+      "39589e9e5c97005bb69ada77465a4a01fbf9941d12befbbe46adc75597ca3029",
+      "c603c839eb059ad6650930869f9b4830ba633a863ccfad1d18ed341be10681cc",
+      "dfb9344636a204cdefc07a4ee58863983c898ed9de0fd92093da118890361a9d"
+    ]
+  },
+  {
+    "group_id": "native-109",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      325,
+      332,
+      333
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-01",
+      "claude-haiku-4-5-20251001__query-02",
+      "claude-haiku-4-5-20251001__query-03"
+    ],
+    "numeric_sha256": [
+      "e289e1e271931089b57069c4f805e72a07eaaa58a595999374d5da0d2441f21e",
+      "2fbf08770c90217979ac05c69bfac6e90e90a3af6f7be47c7abe70cccd737517",
+      "95d666731c6fc32f731208c00798fafc06e42ac587c31967b1d4a7bab1431464"
+    ]
+  },
+  {
+    "group_id": "native-110",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      326,
+      327,
+      339
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-05",
+      "claude-haiku-4-5-20251001__query-06",
+      "claude-haiku-4-5-20251001__query-04"
+    ],
+    "numeric_sha256": [
+      "f7e2f9499beb07be707fffad32ca68f08550f1e9c17ed8dce24f17323da5114b",
+      "0916e40b212f829721979dca68a3ba285fe89cfdbbce5fc11b5a9dc6407cf05f",
+      "bab50200bc74901b41b4bf589a453733f6cc693242a946703f228dbe0a3a388a"
+    ]
+  },
+  {
+    "group_id": "native-111",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      328,
+      330,
+      336
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-10",
+      "claude-haiku-4-5-20251001__query-11",
+      "claude-haiku-4-5-20251001__query-12"
+    ],
+    "numeric_sha256": [
+      "2b20c20f96e556eeffbd9b9733da547781927cd12653dd9ccdbce4534a595f52",
+      "2f5f70fd732233347e9c67639fbd085b9517f42748134879850203bf44a6216e",
+      "9eac562c2a3f728ae4d8f15292aaae10941de3c8d28b4a2b5e184a0c8dfcf9ad"
+    ]
+  },
+  {
+    "group_id": "native-112",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      329,
+      331,
+      337
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-13",
+      "claude-haiku-4-5-20251001__query-15",
+      "claude-haiku-4-5-20251001__query-14"
+    ],
+    "numeric_sha256": [
+      "f15511c689b44c8adbeaed846ad734895abb9187b61728a984a047d11fc6ebf3",
+      "c1ac55a299b2aa0b6dad6b8ebc7a3788363535d0a0358a37fb3745c1648f7964",
+      "85ed07118b585c2d6459a10a6f93ca9594a16e06b2b0b41cebd143090d6fabd5"
+    ]
+  },
+  {
+    "group_id": "native-113",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      338,
+      341,
+      353
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-16",
+      "claude-haiku-4-5-20251001__query-18",
+      "claude-haiku-4-5-20251001__query-17"
+    ],
+    "numeric_sha256": [
+      "3dfb33ab750967c23f08abdc39c914617643f1d5e5ba27e3b02f1fbf5ee968da",
+      "6c736d7f5183ddd8ba4c0cdc253715066b32091f3985925191d4b875fecd399c",
+      "12afa64e20a9be29382f051d48a8d8c261afdbefd46d7906459e3a4b5615e08b"
+    ]
+  },
+  {
+    "group_id": "native-114",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      340,
+      343,
+      348
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-22",
+      "claude-haiku-4-5-20251001__query-24",
+      "claude-haiku-4-5-20251001__query-23"
+    ],
+    "numeric_sha256": [
+      "4a5affc63c1d3f7564b814eccc9689ca06dc7170201dc5d0fc1f99463f31861e",
+      "8d1a81d6cdd0e8f749588ddff20b2b5cf30fbe91c0c4c705256ad5174ebfca0c",
+      "af58fe510481a8836f88c6f22803269a1e2e5cccbe6acc91890391cfa4c06301"
+    ]
+  },
+  {
+    "group_id": "native-115",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      342,
+      344,
+      345
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-20",
+      "claude-haiku-4-5-20251001__query-19",
+      "claude-haiku-4-5-20251001__query-21"
+    ],
+    "numeric_sha256": [
+      "f6b7df85de504b654a08af4f274b1634d5e665de2e8c23810907cda32d96faa7",
+      "d3dd5956836f63c2acaf550e71362d125d65e047d6527566eda1d1dc9dff6a2c",
+      "54fef361b6d6a8cdaa9ec09094f2c37cc9729e67d22074d6496098096779fe0e"
+    ]
+  },
+  {
+    "group_id": "native-116",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      346,
+      347,
+      352
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-25",
+      "claude-haiku-4-5-20251001__query-26",
+      "claude-haiku-4-5-20251001__query-27"
+    ],
+    "numeric_sha256": [
+      "884e91113c09e6104b284027b423e17ea69eb9feae8dfa4c8e0292fd381acd35",
+      "cc54473486dd670c16954d2433b4b1c159b60646cc7de28373c262ee21e16f8d",
+      "62d3d23a8a9d397b41b72212a5943ce0c63c32f9e987d71e1c59a9674c0fd1b9"
+    ]
+  },
+  {
+    "group_id": "native-117",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      349,
+      350,
+      355
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-28",
+      "claude-haiku-4-5-20251001__query-29",
+      "claude-haiku-4-5-20251001__query-30"
+    ],
+    "numeric_sha256": [
+      "dc66c39177230f4474758c3b2f6ad17be69c439bab890c607986105f1c2bea42",
+      "27525c9fd304ca5db4ae11f4ce718a2761f1fe7b60811d07ba2048730ab48cb5",
+      "776cd58481787d18b259dfb8afee620e588e37da669be730c02f87e8ca027576"
+    ]
+  },
+  {
+    "group_id": "native-118",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      351,
+      354,
+      358
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-31",
+      "claude-haiku-4-5-20251001__query-32",
+      "claude-haiku-4-5-20251001__query-33"
+    ],
+    "numeric_sha256": [
+      "9f5cc137b17a2328760865b43673cc1ff7d30575742b0f879f2c18da158d2ffe",
+      "aab391284ce14f4469ffcdcff0a7aedc1f4ab42daa352f3b439bc2d51d70fe05",
+      "e7ab9f60401799c5ec6a5f88e064ecda43f144d70cf86e21793e10837abc1f82"
+    ]
+  },
+  {
+    "group_id": "native-119",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "claude-haiku-4-5-20251001",
+    "role": "train_original",
+    "canonical_indices": [
+      356,
+      357,
+      359
+    ],
+    "row_ids": [
+      "claude-haiku-4-5-20251001__query-34",
+      "claude-haiku-4-5-20251001__query-36",
+      "claude-haiku-4-5-20251001__query-35"
+    ],
+    "numeric_sha256": [
+      "bfe0bf2f81f18cc03ecd5e98b611c826d6601f818d2f88ae14e06ac845852e24",
+      "7bf375bbf613ecfddea71b67cf7538fe0121ead43af4b5cff9cdda0be46b20ea",
+      "0826168199dd82e85962700931389f18230c8fd642989c70fc54b578c6dc0348"
+    ]
+  },
+  {
+    "group_id": "native-120",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      360,
+      361,
+      364
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-01",
+      "claude-sonnet-4-6__query-02",
+      "claude-sonnet-4-6__query-03"
+    ],
+    "numeric_sha256": [
+      "1c4074447b9a9a94f1058abbfd043f6921024d27dd4649d1926f3dc67d6acbf8",
+      "417275ffc4ab4d78fc8de7f97eeb22447cad38c0afc7a8391b5d2301c423fce1",
+      "4d6a8569ed590444030966a771767fa780cc694bc4787df23f21574973c859c1"
+    ]
+  },
+  {
+    "group_id": "native-121",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      362,
+      365,
+      369
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-04",
+      "claude-sonnet-4-6__query-05",
+      "claude-sonnet-4-6__query-06"
+    ],
+    "numeric_sha256": [
+      "9043940ac487678c6054d914f111be459c64d9c0e33642784a33dd5b76ae4744",
+      "a346873115d3657829f05e8abe2bfd54be28f7c54a94ce2e4ef4def69906d882",
+      "abd9b6027d763df96dbf90bc79aaea92d15558bc1974055659ed5d312856586f"
+    ]
+  },
+  {
+    "group_id": "native-122",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      363,
+      366,
+      367
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-07",
+      "claude-sonnet-4-6__query-08",
+      "claude-sonnet-4-6__query-09"
+    ],
+    "numeric_sha256": [
+      "fa92b5351b2e5653be22284c52b5f6bb503d4e2a3ff7e53d4e2e914960bab01b",
+      "b5c304a87be9ab94240a84ea2666658efc0b8ad3da1e6367c8dc4527cd6dac19",
+      "5646929daf0824d9ec5ca024330b8bd351c50073cfe26746b85b922857f64f50"
+    ]
+  },
+  {
+    "group_id": "native-123",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      368,
+      370,
+      373
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-10",
+      "claude-sonnet-4-6__query-11",
+      "claude-sonnet-4-6__query-12"
+    ],
+    "numeric_sha256": [
+      "4049b6544c6781ee471c3f5628f7aebf934f07a9aba885f01039ecab8e7f565f",
+      "84dc6bafd7e6e651fb37ce5c8e39948c20d6dbf7b47254378ea2316b069856a9",
+      "18e68dced1e63c248882a369ac4f8ff49f788751d873620ff6460778968458ec"
+    ]
+  },
+  {
+    "group_id": "native-124",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      371,
+      372,
+      374
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-13",
+      "claude-sonnet-4-6__query-14",
+      "claude-sonnet-4-6__query-15"
+    ],
+    "numeric_sha256": [
+      "3a17734612574db5469a0a25ec5a58471769fe1624fa9950374f086eb280c951",
+      "21d9c4a4a3c1187d13b6bb9bac10a7ff5e93354b45410c66874fd854d9348373",
+      "0841fb88385a1ffafa1ab281a1084b00bec4a89ffb98d77f8d9ca9dbd1d40ae6"
+    ]
+  },
+  {
+    "group_id": "native-125",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      375,
+      376,
+      381
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-19",
+      "claude-sonnet-4-6__query-21",
+      "claude-sonnet-4-6__query-20"
+    ],
+    "numeric_sha256": [
+      "8a9246ff4427d4937753ef3a1689064d815155222c03826d82acb7a0f610c69c",
+      "8a7f86fbe902f71f00d4ea6a6fe5e5e2fd019a2f8a51bbe07a23de42cea03ca3",
+      "d6ef173513a556d74e3b093b6e8336873ee4002e9491f014544737994a54e472"
+    ]
+  },
+  {
+    "group_id": "native-126",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      377,
+      378,
+      383
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-22",
+      "claude-sonnet-4-6__query-23",
+      "claude-sonnet-4-6__query-24"
+    ],
+    "numeric_sha256": [
+      "5cfa787d5e2627e941932ad03a9e1a7d3547288af201fb40420ff9a240ba35de",
+      "810a90e85341865dce9b77c0ba7ae3c6cd0b110178a80068351af7c413bc08e0",
+      "10db10202a31694eecef3f1215279d444361f6224856b6c028a91690e4069e95"
+    ]
+  },
+  {
+    "group_id": "native-127",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      379,
+      380,
+      395
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-17",
+      "claude-sonnet-4-6__query-16",
+      "claude-sonnet-4-6__query-18"
+    ],
+    "numeric_sha256": [
+      "04235c284ee41c06143094cbcb2fe4f24a2e73f22156e636dae8da6b19315b9f",
+      "f0fc64154507a18a13e439c35b60da53c51ed1bc408f507e521aa0f010123bf7",
+      "285a1a790f8266ee2e212e3b09ab93dc9923c927ffe676d791f4c8ba2f694d67"
+    ]
+  },
+  {
+    "group_id": "native-128",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      382,
+      384,
+      413
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-28",
+      "claude-sonnet-4-6__query-29",
+      "claude-sonnet-4-6__query-30"
+    ],
+    "numeric_sha256": [
+      "98323e21367456a9effabf9a0d97532376300761c1c6ad993cdbd2fe40961bcd",
+      "a70d51664740d7d850db26e56909c4ab310ba96c3701b77db0c9494bcf11752f",
+      "f22fcffc251da15693f856239b846bb12c836f92942f3424dbf1c2f9b11f4577"
+    ]
+  },
+  {
+    "group_id": "native-129",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      385,
+      386,
+      393
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-01",
+      "claude-sonnet-5__query-02",
+      "claude-sonnet-5__query-03"
+    ],
+    "numeric_sha256": [
+      "81c9ee129b654dae3334170a15c5dbf5c44fe181341041e66b1ea0b8e4ad53a4",
+      "cd9126d5f132e4ee9211c40bff5285ff1814654c53f8cd508c74d491b5f9a55c",
+      "5f2597457b1f54b973675357b1bb6f64747423ee29cbf5ec61eeec850ac40ac0"
+    ]
+  },
+  {
+    "group_id": "native-130",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      387,
+      389,
+      414
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-32",
+      "claude-sonnet-4-6__query-31",
+      "claude-sonnet-4-6__query-33"
+    ],
+    "numeric_sha256": [
+      "7cc6e52c97052d73657b1de25f7a651e9287cf4f508c62475e128563f65fae5a",
+      "522d2459edc9d7120aa09f7ddf2ea5dbadf6446204f871eea9b6c35cd1bb12e2",
+      "d49a5586e70516d94862ab5c67b85d0b26bb67382671381e2f2c82a0ed001a40"
+    ]
+  },
+  {
+    "group_id": "native-131",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      388,
+      390,
+      394
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-05",
+      "claude-sonnet-5__query-04",
+      "claude-sonnet-5__query-06"
+    ],
+    "numeric_sha256": [
+      "9cbd4c356dd06f59455ee5c3c75ddae875962d902a2b6034581772edc4aa1bcd",
+      "02004e18effbd58fc928042dd6d4eddc70439086368b63d9047473371b1b3512",
+      "7879a56dd17c446495e5c0968feda3e9dd7259fdf0c72421ca4981d48a6b78a0"
+    ]
+  },
+  {
+    "group_id": "native-132",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      391,
+      416,
+      417
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-36",
+      "claude-sonnet-4-6__query-34",
+      "claude-sonnet-4-6__query-35"
+    ],
+    "numeric_sha256": [
+      "b9d42379678692fa6a71ebc20602836bb761a3ccf1caef0e0195596a680b70dc",
+      "aa2b17eee9c30c1cf0603f7b19ef275f748b2070c6a995d7ad6e8bbf0b1ecc54",
+      "a16a7dc4d60f0701df5216db4a3e0abd1f1172d76cedccb0f1a687548da2dc15"
+    ]
+  },
+  {
+    "group_id": "native-133",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      392,
+      415,
+      419
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-07",
+      "claude-sonnet-5__query-08",
+      "claude-sonnet-5__query-09"
+    ],
+    "numeric_sha256": [
+      "8aec010d6da44561c99eedd07c19d5c2a573f073ac6f88abb112cf6e91431fb9",
+      "1a4b5562b66959957b4c757f3e8d4e7b4d15d7474406f9c8df417a2fc67f48c2",
+      "ef9e93c9ae9a768a760ab6cdf27d0bd5247be48c820ca48816e0fb850a20986f"
+    ]
+  },
+  {
+    "group_id": "native-134",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      396,
+      398,
+      401
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-17",
+      "claude-sonnet-5__query-16",
+      "claude-sonnet-5__query-18"
+    ],
+    "numeric_sha256": [
+      "050c7056f5172bd0cb53a4b6f42b82d832773c555a07ccea92712eac8f565ad0",
+      "1ac88276e9cecbc792a3ff1b9bb823544404f6f1b0375970516b783866d49f8d",
+      "80920ee915b86a2cb9340a2409bacca16070753240517e48d1acd8dbbc676c86"
+    ]
+  },
+  {
+    "group_id": "native-135",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      397,
+      402,
+      411
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-14",
+      "claude-sonnet-5__query-15",
+      "claude-sonnet-5__query-13"
+    ],
+    "numeric_sha256": [
+      "fc99b92992909d0a5895e80684e4007455965a41c1d0afd609f08b933a63f657",
+      "6b27a3f7a84f7bf09758f5923ce62be1816b316948b7740da378fb4a3592ba3e",
+      "d5b5cb2ed481647ba978365ac0a00d8b7dcd2ac5e6e823966e7109920afd7715"
+    ]
+  },
+  {
+    "group_id": "native-136",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      399,
+      400,
+      421
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-11",
+      "claude-sonnet-5__query-12",
+      "claude-sonnet-5__query-10"
+    ],
+    "numeric_sha256": [
+      "b1bc5a7117062331f0da9396b3e4aa8d36e60f416b7ef1c4d7cd7276803d4072",
+      "740ebe469f2cf6e14fea4026d90ae0ecf8d7cb553c33385d9a0c7592b14a8b29",
+      "4788ec7d5d2958b1ae7287202bd63ba4c04d73eb967d52a7b269603f11a94bcd"
+    ]
+  },
+  {
+    "group_id": "native-137",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      403,
+      406,
+      420
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-22",
+      "claude-sonnet-5__query-24",
+      "claude-sonnet-5__query-23"
+    ],
+    "numeric_sha256": [
+      "452c68d2d8b6aaea6e47c428b623f0f8feb927052cb7ea55ad474b76677980f0",
+      "c02e2993d639276eb43d93b1afef7c437798a04faa51a4cbf21ec28632a00a26",
+      "ac3ffcff6fe0b7dde06ef9a2939acc607f80509bf434b9d4b1a4c376c8deb797"
+    ]
+  },
+  {
+    "group_id": "native-138",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      404,
+      422,
+      430
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-26",
+      "claude-sonnet-5__query-25",
+      "claude-sonnet-5__query-27"
+    ],
+    "numeric_sha256": [
+      "3a82453f4b3a9fe4036b55fa30667e2cee3d0edf5c7450e2a43be6336d04713d",
+      "dd4c88a30896c6cd24bb1e6bf238b2ae12a2e07616120b3b6c1876f61b30d7e5",
+      "df6ea730e3742588bc5ea37db246e9a80bf750c0dcd9120bcc517a75bc2f5887"
+    ]
+  },
+  {
+    "group_id": "native-139",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      405,
+      407,
+      424
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-21",
+      "claude-sonnet-5__query-20",
+      "claude-sonnet-5__query-19"
+    ],
+    "numeric_sha256": [
+      "acfb112e4ab056e51bbf39bb31da89bd703d8eb010113c07bb9bad0ae65ac577",
+      "24872cfc4462611bd20bcb94ade27613b312cda0136d3a04ab674c46ce66e3e7",
+      "3cfea2bdbf0eb6b856ca2cba43d0b60f1bcd121951739f89b817f94c308c53d9"
+    ]
+  },
+  {
+    "group_id": "native-140",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      408,
+      436,
+      437
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-34",
+      "claude-sonnet-5__query-35",
+      "claude-sonnet-5__query-36"
+    ],
+    "numeric_sha256": [
+      "f023413ea1623b009300d7012124c4bf90c69e406e82bed37782ea6cbb03d746",
+      "0d3f6d3897d0bb0867565ecab5498a7880d00e3a9701c1633345283d2f97336d",
+      "fa6dff87cc99b7545330ce3398aabfa4490ba0d45a4782ac4491144ea2432f6b"
+    ]
+  },
+  {
+    "group_id": "native-141",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      409,
+      410,
+      425
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-28",
+      "claude-sonnet-5__query-30",
+      "claude-sonnet-5__query-29"
+    ],
+    "numeric_sha256": [
+      "3c8ce5a77052b51d5a5e63b46813c80fe1e657b3c7303d6f8c0c454911b60dd0",
+      "3e635ca50eba813ad8f2df551cea7420431f96e24b5e8809df2abb54da10003b",
+      "2429eba4caaf1b7144935a61a4497de3b9425d4d7a636c32e445c08d48b49b5b"
+    ]
+  },
+  {
+    "group_id": "native-142",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "claude-sonnet-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      412,
+      418,
+      423
+    ],
+    "row_ids": [
+      "claude-sonnet-4-6__query-25",
+      "claude-sonnet-4-6__query-26",
+      "claude-sonnet-4-6__query-27"
+    ],
+    "numeric_sha256": [
+      "de709a191892aeb0ea550911954c541dda9543949c61b99efa89e8bd9377f8b4",
+      "1fd4093ba66dfa100df7706d9b746cf2284402238980200dc8d61cd9098120f4",
+      "78d5bf21f749d968007b389580de26ac7c90d3c4b7372987e7a3f1c39ada47e7"
+    ]
+  },
+  {
+    "group_id": "native-143",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      426,
+      427,
+      428
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-01",
+      "claude-opus-4-6__query-02",
+      "claude-opus-4-6__query-03"
+    ],
+    "numeric_sha256": [
+      "11e5d3fcf5067a1965050966e55acbf7ce26c157356c25c385f06630c1ea19a9",
+      "4dc8f7b8075a6acec611a78e8699ae851683eed135ff5b764d1f62d6796760cb",
+      "c1edb481f7cb1b14237b35c29fb6a231c32a399e2b97885c0eb4ba7e4cf36f65"
+    ]
+  },
+  {
+    "group_id": "native-144",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      429,
+      432,
+      434
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-04",
+      "claude-opus-4-6__query-06",
+      "claude-opus-4-6__query-05"
+    ],
+    "numeric_sha256": [
+      "359951ef3d485386775a20cc7d441522a9ddc7e268e6b48bff10f4ff6c3fab25",
+      "03329cb5bebd20347d9c16ea7c4d8e8a3b078afd3f2cfcc1feeb5c1614a3fa55",
+      "4d1b576f0b2ef441ea49535bdce8fe82564bfd84eab21951c247519d3663e4eb"
+    ]
+  },
+  {
+    "group_id": "native-145",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      431,
+      435,
+      439
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-07",
+      "claude-opus-4-6__query-08",
+      "claude-opus-4-6__query-09"
+    ],
+    "numeric_sha256": [
+      "3590017b55cb27e6881b48457e4ecf0f0eab6d656d90e1d51cc42a9eaf0fa3c6",
+      "d39adbd2c9cb6e19da733f24dc779503da6123f47e26c25b1745e5580cee3a39",
+      "793fd1c78ac55306c0a7de54223d9bd2d6250cacef53c4bee094a3724c941cc5"
+    ]
+  },
+  {
+    "group_id": "native-146",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "claude-sonnet-5",
+    "role": "train_original",
+    "canonical_indices": [
+      433,
+      574,
+      575
+    ],
+    "row_ids": [
+      "claude-sonnet-5__query-32",
+      "claude-sonnet-5__query-31",
+      "claude-sonnet-5__query-33"
+    ],
+    "numeric_sha256": [
+      "719a1e7ac5e456edfd4e5d3ab614b5d84d84426e8373e8aeaf6432913beea621",
+      "7e890da31b7cf2d646481a7d3077f173d6de25434eb0a2461d18ee26ca455f7a",
+      "7fcf2bc3fb3e8e8d9f1ecf6ed548863449b856b1d821e9ca7f43598cf0234411"
+    ]
+  },
+  {
+    "group_id": "native-147",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      438,
+      440,
+      441
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-10",
+      "claude-opus-4-6__query-11",
+      "claude-opus-4-6__query-12"
+    ],
+    "numeric_sha256": [
+      "fff380c4c5026c71fd6114880787eb16d492e32ce840f914caa89398b9f1ebe9",
+      "e4bbbd7b088398ca65ae78b8d3e47ec2ec81a4c661977e808ba83572fd8f6c53",
+      "fc074a721ca42841093030526b4cb053938f6860c66940df85fac3423d37f92c"
+    ]
+  },
+  {
+    "group_id": "native-148",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      442,
+      443,
+      444
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-14",
+      "claude-opus-4-6__query-13",
+      "claude-opus-4-6__query-15"
+    ],
+    "numeric_sha256": [
+      "03f3f141224509da2a8c6e98248f7849acbfa731b5c18bbf8ced63bac6fd8fd3",
+      "a57675742c2a1bc42ea9d915258da319664e6df721e82a8ea6c2900b93fb615b",
+      "3797a2eff3bb36281d4f93b6943142de93c5cce3a752f14dfa57a4ec2034c469"
+    ]
+  },
+  {
+    "group_id": "native-149",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      445,
+      446,
+      451
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-17",
+      "claude-opus-4-6__query-18",
+      "claude-opus-4-6__query-16"
+    ],
+    "numeric_sha256": [
+      "e2de8b544237df0962a7b616ee6fae2eb01406f8e4abfef644feaaae48343723",
+      "b53371c8f32435a119404548be8ad8f0fd90ac411cc510a560a9686d69f33bfa",
+      "6847a83eb3c3bf5ec2c0d9f5d67857440077556e190241a8410df6208602892d"
+    ]
+  },
+  {
+    "group_id": "native-150",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      447,
+      448,
+      449
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-19",
+      "claude-opus-4-6__query-20",
+      "claude-opus-4-6__query-21"
+    ],
+    "numeric_sha256": [
+      "cce129e1c68dcba0f98d584f49e71c016b1fc5a20f3316a8d1409d57ca1bf012",
+      "b974679a213a5bd54a3d28c58bb8c67c9215aef7c588d7130a532eb9425f8d0c",
+      "58af6b5caf6b524a39b2cc31dd60f1ef5413f1096c6d75be61f2fb50959b6d95"
+    ]
+  },
+  {
+    "group_id": "native-151",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      450,
+      452,
+      453
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-22",
+      "claude-opus-4-6__query-23",
+      "claude-opus-4-6__query-24"
+    ],
+    "numeric_sha256": [
+      "e0062ff5a49b2d79a5594c792c22ebc6d096fbc472f9abda81f731fdc24454c4",
+      "4c4e630d6a9c4a1598effb4f4c36e1c1106a75cd12e60aba2de9901992125f5a",
+      "d8f05527f777b32bcc256b5315939e4dfcbe2e90666ec00e6af78f4a9d297025"
+    ]
+  },
+  {
+    "group_id": "native-152",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      454,
+      455,
+      463
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-28",
+      "claude-opus-4-6__query-29",
+      "claude-opus-4-6__query-30"
+    ],
+    "numeric_sha256": [
+      "fec7a66d13305ef0a3ece55d3827cd9f48e9e9d724f6aa9ef7d2b626bcf00293",
+      "8477ec8f972c86e2a896e76296f69b2bba1a6d6def0d411fcecde60515426cfd",
+      "e55563cdf4c7f1d475b82c25fc08443827ab48b5320ab3eb074b5fb97e44ac06"
+    ]
+  },
+  {
+    "group_id": "native-153",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      456,
+      458,
+      464
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-27",
+      "claude-opus-4-6__query-26",
+      "claude-opus-4-6__query-25"
+    ],
+    "numeric_sha256": [
+      "f71b548268e2de2d020c8c8be7b38842bcf622c37d636ce0940e85652250f62f",
+      "9ac5210c23d3db881201d81084899738272912006b29af55e64451efa4e588b3",
+      "2d8874ba3bad9c1d8be92aef325cdc48d6db96b8d8fd0385f0318460dcb480f6"
+    ]
+  },
+  {
+    "group_id": "native-154",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      457,
+      459,
+      461
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-31",
+      "claude-opus-4-6__query-32",
+      "claude-opus-4-6__query-33"
+    ],
+    "numeric_sha256": [
+      "70dae5ff43555059649845813df50ad834377a1c7d67b0baa5ec2f01a26273f7",
+      "5ea52d1ffec98a624a76809a921a22722486fb3544fe053372a0cd6d582f9db0",
+      "3cb0ccb00af7d5d3240f1650eee44d32365c6924a41ca3f3b2ad58d5c64cc219"
+    ]
+  },
+  {
+    "group_id": "native-155",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      460,
+      466,
+      470
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-01",
+      "claude-opus-4-7__query-02",
+      "claude-opus-4-7__query-03"
+    ],
+    "numeric_sha256": [
+      "21d32510bfe69bac4a95d2a7fccc2dc6d9053e707e63cc4a98861407c5a36ec6",
+      "78538f3ac57248e34da95f647b53fa346eb73dbda325ecd5798937a7552db709",
+      "537c25b1bc8195095149b76964f7fbcfee9b51f74255424af01a134c4e480b0a"
+    ]
+  },
+  {
+    "group_id": "native-156",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "claude-opus-4-6",
+    "role": "train_original",
+    "canonical_indices": [
+      462,
+      465,
+      467
+    ],
+    "row_ids": [
+      "claude-opus-4-6__query-34",
+      "claude-opus-4-6__query-35",
+      "claude-opus-4-6__query-36"
+    ],
+    "numeric_sha256": [
+      "8cf9bac24c718759d83a962dcde716e86cd2bc36ff31034c52477b34f3436b99",
+      "ede26aff0866cff13b7e25fa3a0a509127ad56d7ae76e367b20aa0b26cc3bf75",
+      "873ec85b9498c9e79c626e43e9b64cf24b7b8e9ea526b40955f2bc3c4aa932a1"
+    ]
+  },
+  {
+    "group_id": "native-157",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      468,
+      471,
+      472
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-04",
+      "claude-opus-4-7__query-05",
+      "claude-opus-4-7__query-06"
+    ],
+    "numeric_sha256": [
+      "25bad80bde428974b37f54033907a0ffda7cefa0b435489b2d14f1a1f3caaeb3",
+      "8ad9429a14c83a8e4ed0a26f74c42552b7e70a0348044b57bcc3189d892e7538",
+      "9362b66263401cec79f1d3cfb0b9d3d540949d87a02214da3c355efab719adba"
+    ]
+  },
+  {
+    "group_id": "native-158",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      469,
+      473,
+      474
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-07",
+      "claude-opus-4-7__query-08",
+      "claude-opus-4-7__query-09"
+    ],
+    "numeric_sha256": [
+      "1dd7a25385ab3577976338179a1df6192ca281f4a6689f3dda71f12720c020b1",
+      "a57663fdc19360c359af546af5f29ad756b5e9161c7e53c11cf0486210617931",
+      "c3a2deb5fcec0b351670996426bc98c471a001e086ec13b2959ac17406f28812"
+    ]
+  },
+  {
+    "group_id": "native-159",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      475,
+      476,
+      477
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-10",
+      "claude-opus-4-7__query-12",
+      "claude-opus-4-7__query-11"
+    ],
+    "numeric_sha256": [
+      "9e1205f97c71b6d5cb2536819e8a3b2a06762cf8a4abfadb39602aaf0aa864e9",
+      "3072706baa8f080967e4545d463070d1a78477f22eaa59070b772cdae2d220e1",
+      "ae7ea26b26bbf7d01e13ecbdbc54addfbd91cbc0a3e14b26ce7cd5c5eb99f583"
+    ]
+  },
+  {
+    "group_id": "native-160",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      478,
+      479,
+      481
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-13",
+      "claude-opus-4-7__query-14",
+      "claude-opus-4-7__query-15"
+    ],
+    "numeric_sha256": [
+      "736a100ff7454cf0557e390459aa6e44db7068a68d98800008523f866c2c800b",
+      "7036ae4a73a566ffc1059029ee2c550776ff55af1313efab38ebaf411e341126",
+      "bb2cc5ddc966123383318a6ba6525e1d649d8317a5f00fe5faca44c48ead2dc6"
+    ]
+  },
+  {
+    "group_id": "native-161",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      480,
+      483,
+      484
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-16",
+      "claude-opus-4-7__query-17",
+      "claude-opus-4-7__query-18"
+    ],
+    "numeric_sha256": [
+      "6be3da7aaf8bedce7543f02a9d4e08e2fb0e32da687c733d5bd54ce97835f39d",
+      "cd97a4b0d676698b27dc48712790a89d770391ceb21d50faf6193e15a16aac8a",
+      "d85927d622c21f0e4d9a9436d3a09d0bcd0ee417fd08cd90923ee3b3ea597cc2"
+    ]
+  },
+  {
+    "group_id": "native-162",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      482,
+      485,
+      486
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-19",
+      "claude-opus-4-7__query-21",
+      "claude-opus-4-7__query-20"
+    ],
+    "numeric_sha256": [
+      "849ad207099326c2722d866816983506e32979318e5d3dd498ef139de6e583d8",
+      "7b1b4776389c28d7e9e1768b6ab84c9d4aa3579f287bfb736d87c43f104b7005",
+      "9df896013739a39a96735e2d528c1dd25ff392779fd3a1af6fb6d0ffb3aaf303"
+    ]
+  },
+  {
+    "group_id": "native-163",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      487,
+      488,
+      489
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-22",
+      "claude-opus-4-7__query-23",
+      "claude-opus-4-7__query-24"
+    ],
+    "numeric_sha256": [
+      "d62f0f6b639a68eaaee5ad8615eadd503f06a094e6f7e5a09249e5bf4754134e",
+      "43fc0298c1f5e2b656ee318b9835cdd2e5094b5b4c0f363ed4d85643b0b364fe",
+      "bcbea96042f0ab6a0722fc36fa4062b64904c0d108239ae1a0d1bcc015b65a55"
+    ]
+  },
+  {
+    "group_id": "native-164",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      490,
+      492,
+      495
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-26",
+      "claude-opus-4-7__query-27",
+      "claude-opus-4-7__query-25"
+    ],
+    "numeric_sha256": [
+      "fd9384318dd217ad414dc11db7b8395ea75e9a09bc821161f94241cc83f037c0",
+      "910e8c3702a917438cd06ec43f3bc3be5f35765225c74911e7d6e059e18e99ce",
+      "f87eab582777f715f4575366c157d4bc98513309aea7a50d289ed05829fff3a3"
+    ]
+  },
+  {
+    "group_id": "native-165",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      491,
+      493,
+      494
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-28",
+      "claude-opus-4-7__query-29",
+      "claude-opus-4-7__query-30"
+    ],
+    "numeric_sha256": [
+      "a424ba5b947353a6733ecdd95de93aa05a67c61b0f1284536c819c9036196163",
+      "8c4bd300c1e2f9a0eb8af02cc3032ad5bfa641cec979497cf217251c6070e146",
+      "aa1aaf934e0ff2441418e432b54507b27f2b218e1386912b02f0de441b707bc9"
+    ]
+  },
+  {
+    "group_id": "native-166",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      496,
+      497,
+      501
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-31",
+      "claude-opus-4-7__query-32",
+      "claude-opus-4-7__query-33"
+    ],
+    "numeric_sha256": [
+      "d5500343706f2001bdc04cedb536f2e22f4cc845c40583f3a9ff77de96dc8ca8",
+      "c0f9f3e1bb46dae014e9859ac22f141725aad15008ca3274699a6eacf7418e78",
+      "d597ce4d41b88289c4405802f15bf00eebe40dec4881878a4a7870219c3c58c3"
+    ]
+  },
+  {
+    "group_id": "native-167",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      498,
+      506,
+      507
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-04",
+      "claude-opus-4-8__query-06",
+      "claude-opus-4-8__query-05"
+    ],
+    "numeric_sha256": [
+      "2816e8b991521d1ca2f02cee51b2fddfd67d4eb9479eb38cdf48b28691eda527",
+      "d5d1205e8dc709124e9682feb9350edb704b1ff67b9dad4e126a51d44a0b4fcc",
+      "0c6d9cbc58982de0ddd8b7620595b06d19d399d339743544e58e293a4533580a"
+    ]
+  },
+  {
+    "group_id": "native-168",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      499,
+      500,
+      502
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-01",
+      "claude-opus-4-8__query-02",
+      "claude-opus-4-8__query-03"
+    ],
+    "numeric_sha256": [
+      "ad8c3e8902522fb9ace3dd75e6e5ed21efbf544d0941af3b23b19f215eb209f9",
+      "12a61b9ef4bbc43deb5c83567435b9e095f9bb62beb6aa404d03eaa4107bcfed",
+      "d637f62f2356e0d5ded9e71a8079ba6c984aafb6dbd9e19c9e85721173afaea0"
+    ]
+  },
+  {
+    "group_id": "native-169",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "claude-opus-4-7",
+    "role": "train_original",
+    "canonical_indices": [
+      503,
+      504,
+      505
+    ],
+    "row_ids": [
+      "claude-opus-4-7__query-34",
+      "claude-opus-4-7__query-36",
+      "claude-opus-4-7__query-35"
+    ],
+    "numeric_sha256": [
+      "490ab768072560ef27795a1f3032a5e55fd83291dc7a6e03613fbc42a054c98b",
+      "b8ab72c79a4c82d6320a696eec4e11b1cacec97c5b9f645390e6d0acafb3f11e",
+      "49ce54b464461afa4bc029d3a92f3807fae3c3ea38af75153105425f332530a6"
+    ]
+  },
+  {
+    "group_id": "native-170",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      508,
+      509,
+      510
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-07",
+      "claude-opus-4-8__query-08",
+      "claude-opus-4-8__query-09"
+    ],
+    "numeric_sha256": [
+      "34edc934741ed574dbe43d6984bb774e100413ae4c8ad3c576e77b6da4536f62",
+      "8f23ac7a56bdc741a0ed28354862db70e8cee9b5334a67cb26e324eb867cb421",
+      "0fc0756fd0952a8e9aaf9b00cebd364733942a6523363bdc7e46e39851e394fd"
+    ]
+  },
+  {
+    "group_id": "native-171",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      511,
+      512,
+      513
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-10",
+      "claude-opus-4-8__query-11",
+      "claude-opus-4-8__query-12"
+    ],
+    "numeric_sha256": [
+      "8b1ac1784f02c8fdacff77756ada8d4b1e298434f4e50a5991dc4492200d3766",
+      "756beab41039da62a5a02beb832695c29a5acb200f214c0511e97f436f67d4c3",
+      "63d366b5d9899be5275c914ecfa73f7a59e21b8cf54edc9cbaa786e78bb7e5e8"
+    ]
+  },
+  {
+    "group_id": "native-172",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      514,
+      516,
+      519
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-16",
+      "claude-opus-4-8__query-17",
+      "claude-opus-4-8__query-18"
+    ],
+    "numeric_sha256": [
+      "1161f210a7ff264d2b1d9ea8aac8a351223dd961b70171a399014d5d4dcca029",
+      "1c8065ce9592373087c09c37d62da523a2511123ac195b8c22ca2502a83dce66",
+      "46e769f142b162951236b7111bc732c67960e5d57fe9c82ca32108f6fc13adfa"
+    ]
+  },
+  {
+    "group_id": "native-173",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      515,
+      517,
+      518
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-15",
+      "claude-opus-4-8__query-14",
+      "claude-opus-4-8__query-13"
+    ],
+    "numeric_sha256": [
+      "0de3bde1776115f3219eec343268f230101b14392c3fda27689d839294c0cddf",
+      "1745b1d477895805ccf97ef091cd49867913d84bcf6d40f7fcc309c3be8409a8",
+      "d46d6d7c8f2b8ac4b13d30f68cdf66d1da0ffc1bd3b47b1329f7b394edaceb22"
+    ]
+  },
+  {
+    "group_id": "native-174",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      520,
+      522,
+      523
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-19",
+      "claude-opus-4-8__query-20",
+      "claude-opus-4-8__query-21"
+    ],
+    "numeric_sha256": [
+      "3c2d33ed666ea1a54b22739f7ce1ff494c7d22bc879ddd717aca4111b0553f15",
+      "25c2249d910d7f67c212989f85d1e0e848f2d305cfc90468d9fbc7b920317e29",
+      "fb4629f5387b20458880ccb4eeb0ebda0f7f7cf416c3605b723f2cbfea840293"
+    ]
+  },
+  {
+    "group_id": "native-175",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      521,
+      524,
+      526
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-22",
+      "claude-opus-4-8__query-23",
+      "claude-opus-4-8__query-24"
+    ],
+    "numeric_sha256": [
+      "92130c4fa01d97c990eeb598e2fe4632635b58642107c4f97cad49ac686bf487",
+      "754bee4511928f0deb066a44b40a65be5c22b6244c4fa94a1bfa023c26073431",
+      "f837f5c80ffa509f37307d0318c99432e9d6ed1820a33bdcbae4da8e6fd8c573"
+    ]
+  },
+  {
+    "group_id": "native-176",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      525,
+      527,
+      530
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-25",
+      "claude-opus-4-8__query-26",
+      "claude-opus-4-8__query-27"
+    ],
+    "numeric_sha256": [
+      "c7551e7f65412a4c4d18aa26bd4dc9483536f5871a0878b616003bd4d40ec562",
+      "bcde6420b551c8ef700af9888318d1da4d82ddd6949daf02974f0c7f76c97777",
+      "8c3ad50632880491df49f897d558374c596b1a787aebf0593a5da3f984fd305d"
+    ]
+  },
+  {
+    "group_id": "native-177",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      528,
+      531,
+      544
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-28",
+      "claude-opus-4-8__query-30",
+      "claude-opus-4-8__query-29"
+    ],
+    "numeric_sha256": [
+      "e4fa17d1543c4b229ea526329fcce53ef4483d6637f36fe86a4c2c1d49d5eaa6",
+      "eec183732363c5bfc29506c3f3a755e8b11961330ca6131784bc77d51e70e620",
+      "25d9f04bcc1b1e049a5ee7bef0b9a129aef54e648c69b39482e7e2f30e4216f5"
+    ]
+  },
+  {
+    "group_id": "native-178",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      529,
+      533,
+      534
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-31",
+      "claude-opus-4-8__query-32",
+      "claude-opus-4-8__query-33"
+    ],
+    "numeric_sha256": [
+      "4dcbc52e64fd3c1f7e6f63d351ce7c8a8fb9266c44d85435a7d4eda18036c552",
+      "01ff06be347038437a02245ce7bd55bc3ea225f17469876f9e31f977a9c3eb95",
+      "a961ca9e66a72960ee41dee0a7b81a18420d72ab5ed7545ecbe96c14af137d91"
+    ]
+  },
+  {
+    "group_id": "native-179",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "claude-opus-4-8",
+    "role": "train_original",
+    "canonical_indices": [
+      532,
+      535,
+      536
+    ],
+    "row_ids": [
+      "claude-opus-4-8__query-34",
+      "claude-opus-4-8__query-35",
+      "claude-opus-4-8__query-36"
+    ],
+    "numeric_sha256": [
+      "89c8d68f4dc3030c763ed7cb5979d9eeb1bfdfd3b7db5974c1f2cf296d8002ef",
+      "f226fccbaa109cba28e0f54034c72e5eeb914f9f35e1e30f9bd96c230c5180d2",
+      "249f718a6b3357150bdb1677c21ea90ba3b90204db1169d79fb52b3ee3e23538"
+    ]
+  },
+  {
+    "group_id": "native-180",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      537,
+      538,
+      541
+    ],
+    "row_ids": [
+      "claude-opus-5__query-02",
+      "claude-opus-5__query-01",
+      "claude-opus-5__query-03"
+    ],
+    "numeric_sha256": [
+      "68d6221593ac05ba174bc04cf9f1e406677731b92a4434bd36fa8118437006d1",
+      "3e15fa52d498cf9bc05c6be3b1d4a239603a100c384db911c6f1a826fb723890",
+      "acfae3bd15ac4e6a7696be2f7a84f7c94bb8d1341d6b2f489e3c79972139314c"
+    ]
+  },
+  {
+    "group_id": "native-181",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      539,
+      540,
+      542
+    ],
+    "row_ids": [
+      "claude-opus-5__query-04",
+      "claude-opus-5__query-05",
+      "claude-opus-5__query-06"
+    ],
+    "numeric_sha256": [
+      "b8940b62002542153a55dbdd07de6e16f26ee0542e1857c292101bb645b28657",
+      "afe23dd6bd73aefcf1a84c57e6f0b4f844284c519664b49711c04ba404d0a233",
+      "75e4062f16a56a7fcfc7324f6f67f0500c19c0fed370c1563c07a11739a527e5"
+    ]
+  },
+  {
+    "group_id": "native-182",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      543,
+      545,
+      546
+    ],
+    "row_ids": [
+      "claude-opus-5__query-07",
+      "claude-opus-5__query-08",
+      "claude-opus-5__query-09"
+    ],
+    "numeric_sha256": [
+      "53eb63bddf0b168637019c9d111b604e05752c2129d30c73fac830c6cb47e537",
+      "04eaee143d1e0795cc182b7132e55b8a09331d1337cd677ad621495c033832d0",
+      "438197c8c3a39f83192be579b1721eff92b33b8a233a7265abe1a8c8fc3cbaad"
+    ]
+  },
+  {
+    "group_id": "native-183",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      547,
+      548,
+      551
+    ],
+    "row_ids": [
+      "claude-opus-5__query-10",
+      "claude-opus-5__query-11",
+      "claude-opus-5__query-12"
+    ],
+    "numeric_sha256": [
+      "7807e9585335301139c2b1aaa79ca830119af66e4df8034986996d92f6565582",
+      "296587eb78426edb3dd1673071f3517ec3c039ee3ef178e78c9a8feea00e9e81",
+      "184d0fe42acc84b89282d04c0dea30c88d5f30370844eb9eb7aa5a8e220514f0"
+    ]
+  },
+  {
+    "group_id": "native-184",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      549,
+      552,
+      556
+    ],
+    "row_ids": [
+      "claude-opus-5__query-16",
+      "claude-opus-5__query-17",
+      "claude-opus-5__query-18"
+    ],
+    "numeric_sha256": [
+      "2c58b638c0c42c65a198cd9156a45431055f5831308cb7b29ca544ad923596f6",
+      "b5645bd8fdcc4d38a1bf6d8e034e73fb7bbc0a3c022b8dd08e4c5c20cae706a0",
+      "a0b3ca1a70b8aabbdc91bb022a1a894634f0ccbb5d56ea194878b956d95fcc6a"
+    ]
+  },
+  {
+    "group_id": "native-185",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      550,
+      553,
+      554
+    ],
+    "row_ids": [
+      "claude-opus-5__query-13",
+      "claude-opus-5__query-14",
+      "claude-opus-5__query-15"
+    ],
+    "numeric_sha256": [
+      "fdd163617b4ce8e603028ee3a152b9a9f55ce0b7d56f142dd84c3530ea20680f",
+      "d94575111e39b2cbe37ff94ed4637fe1eb81968e978aa0263facaade40d46787",
+      "38f8345f40030763af6be80bd6e72a4ab509838d429ac560c47f4763a7811147"
+    ]
+  },
+  {
+    "group_id": "native-186",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      555,
+      557,
+      558
+    ],
+    "row_ids": [
+      "claude-opus-5__query-19",
+      "claude-opus-5__query-20",
+      "claude-opus-5__query-21"
+    ],
+    "numeric_sha256": [
+      "8c6cff8fa8ffec2ba71fecf9cd30dc19a95a2d26cc633b47793a1afb9fc8a61c",
+      "07f61fa5b6d822ffec2794371b040ee2760315a89a1009a26f548f5071147826",
+      "f0d67c4b1a26e9328a31612962a49f9cf4fea2c01464db5238be0c764e915995"
+    ]
+  },
+  {
+    "group_id": "native-187",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      559,
+      560,
+      561
+    ],
+    "row_ids": [
+      "claude-opus-5__query-22",
+      "claude-opus-5__query-24",
+      "claude-opus-5__query-23"
+    ],
+    "numeric_sha256": [
+      "c03f66718c4633b6a6a53fb75f6fedce96f4a3f308467ae8d582829a987d7371",
+      "417cea925b06dfdd830b89d2999959440d2d4135e300310285101607e1fad6e1",
+      "e0d591f0d1e3492bca7ac47ca7a2be50f3cb677ed9e73d1a24dc5ce081dcbeb3"
+    ]
+  },
+  {
+    "group_id": "native-188",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      562,
+      563,
+      565
+    ],
+    "row_ids": [
+      "claude-opus-5__query-26",
+      "claude-opus-5__query-25",
+      "claude-opus-5__query-27"
+    ],
+    "numeric_sha256": [
+      "54a42f3b9626baf55358ca59acd77bd0b8e8f343cc48d904599d38867de01cdb",
+      "8642a1ec942e073dc296d1a6c5501217e3d113a6089f177e06ff84eab6a2f046",
+      "08bb8d5aa7ac0cfff1afed1b41a0954b6d72e15efd817e724e72e1a62c892518"
+    ]
+  },
+  {
+    "group_id": "native-189",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      564,
+      566,
+      568
+    ],
+    "row_ids": [
+      "claude-opus-5__query-28",
+      "claude-opus-5__query-30",
+      "claude-opus-5__query-29"
+    ],
+    "numeric_sha256": [
+      "3a9a2918d7452b0d22199bff32da6c0cc75a0cb36368601c1c2125dffb75db67",
+      "c033c1f9d97b840cf0f7ac354954f83cc8c77a735cc8dbc05992cfe84b778aaa",
+      "fcc697fcaa420df5f577eeba7d2da7c03a96639c8b0f1c73975fd0094d304021"
+    ]
+  },
+  {
+    "group_id": "native-190",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      567,
+      569,
+      571
+    ],
+    "row_ids": [
+      "claude-opus-5__query-31",
+      "claude-opus-5__query-32",
+      "claude-opus-5__query-33"
+    ],
+    "numeric_sha256": [
+      "2f4d31f40fbc1815018c4925c4794286515141f6366affd7c4d738db9fdc6527",
+      "f9a485bb097045b5c38050971e0913feb8099b0022f2848937d5283ea8e9c797",
+      "6f14ebc5f17a330c866eb2b402eb9f357eaeff95ce0a0f1b29864b634d12abe9"
+    ]
+  },
+  {
+    "group_id": "native-191",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "claude-opus-5",
+    "role": "train_original",
+    "canonical_indices": [
+      570,
+      572,
+      573
+    ],
+    "row_ids": [
+      "claude-opus-5__query-34",
+      "claude-opus-5__query-36",
+      "claude-opus-5__query-35"
+    ],
+    "numeric_sha256": [
+      "8f0d284401ea0807048fc1a18b891f029ca2e9712a898d892f0370ce78079e24",
+      "2af79d637cdaff471c7c52d9d1341ac77521ef32889bdf274eb027cf65f837b1",
+      "37cfc304e47f74138efbdb6413e515acfb674cbb4cadc7c42b9dc187803e57b7"
+    ]
+  },
+  {
+    "group_id": "native-192",
+    "cohort": "original",
+    "condition_id": "environment-01",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      576,
+      577,
+      578
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-01",
+      "claude-opus-5-5__query-02",
+      "claude-opus-5-5__query-03"
+    ],
+    "numeric_sha256": [
+      "ba7ed7635d0b0382d6a9a0b5b5975a4c85561b8043da34291ba09c668d36c632",
+      "2a2002f7636baa301df2aef25a458155f0d680d5c8fe4365a7d72caae60520d4",
+      "61ff7741869fd33b7b4e1ee1834cb758d0840fbdd0316f5fa68c088508cebff2"
+    ]
+  },
+  {
+    "group_id": "native-193",
+    "cohort": "original",
+    "condition_id": "environment-02",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      579,
+      580,
+      581
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-04",
+      "claude-opus-5-5__query-05",
+      "claude-opus-5-5__query-06"
+    ],
+    "numeric_sha256": [
+      "d8017db58e1c702071c4db2d2a2a04fc2f6d8835001eee7098d9d7c70838640d",
+      "f411ee10f000d604673d1f6838fabdf16b9a48128bc6a6e2f051f48e4db69dd0",
+      "a60dc94bc6c4cffa148340115f20836f6a2b44102873a7994af838f3a41f855a"
+    ]
+  },
+  {
+    "group_id": "native-194",
+    "cohort": "original",
+    "condition_id": "environment-03",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      582,
+      583,
+      584
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-07",
+      "claude-opus-5-5__query-08",
+      "claude-opus-5-5__query-09"
+    ],
+    "numeric_sha256": [
+      "26396c58e7f67fdbe233a89de1fdff81362a8fb2788d0fa48a8a9cf3aa44b97d",
+      "33e3cb558c7fbe87c9ccd08442745eee799d56f2509a18a7b01ccd3ff044b9e4",
+      "385c4327c4ca1c04450e7e5b2f32aa9ad166537de08cc224a71525806cddb056"
+    ]
+  },
+  {
+    "group_id": "native-195",
+    "cohort": "original",
+    "condition_id": "environment-04",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      585,
+      586,
+      587
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-10",
+      "claude-opus-5-5__query-11",
+      "claude-opus-5-5__query-12"
+    ],
+    "numeric_sha256": [
+      "e240102a602c8112c43d587239bec743d95be2e4872b58eb074bf53403551bbf",
+      "e1c0ad06654a420cfbc8fc881e1d887c32a3d0724039524d1303afd1c297cfd6",
+      "c05cd6eed8c186f83f1d6daea6ef12f3cb85fe157cd671b38d4cf4a968995e47"
+    ]
+  },
+  {
+    "group_id": "native-196",
+    "cohort": "original",
+    "condition_id": "environment-05",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      588,
+      589,
+      590
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-13",
+      "claude-opus-5-5__query-14",
+      "claude-opus-5-5__query-15"
+    ],
+    "numeric_sha256": [
+      "e2eaf32e997a62b2d6cede82391dde5518151249a7e7ab66959acf9f58d80195",
+      "7224294e24a11f0f58b1bdf90a1c26614d8bdcd00f886377b5892f8f4f2f90be",
+      "8b9cec7377bd50bfe57de2f6604659d353bad47459415c237f28c851cac659a0"
+    ]
+  },
+  {
+    "group_id": "native-197",
+    "cohort": "original",
+    "condition_id": "environment-06",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      591,
+      592,
+      593
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-16",
+      "claude-opus-5-5__query-17",
+      "claude-opus-5-5__query-18"
+    ],
+    "numeric_sha256": [
+      "7471d14664a46a03613e343c32f9d1f32668698d7b143c7a4e03cfeb80e6d38d",
+      "ad686fd43071cbb19c41d787ce4b9866707987f1342eb1d7763a3c2251fd34f8",
+      "90e1afcc5d4f9b59f80cc01fcf779aa4271de34caaaf847fc1945774c5edd6b8"
+    ]
+  },
+  {
+    "group_id": "native-198",
+    "cohort": "original",
+    "condition_id": "environment-07",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      594,
+      595,
+      596
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-19",
+      "claude-opus-5-5__query-20",
+      "claude-opus-5-5__query-21"
+    ],
+    "numeric_sha256": [
+      "4b244c374294141bd74bfc591cb82aeddf623f83891e5fad585a12f3654624f7",
+      "1aa9379bc07003e1c8df5f76b77e390aa20da3394bf36a36b1a08dd11c491d82",
+      "0c8d9855af26ea79f7d0682135272442f7af871dfdabde139f1a827ca3dded64"
+    ]
+  },
+  {
+    "group_id": "native-199",
+    "cohort": "original",
+    "condition_id": "environment-08",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      597,
+      598,
+      599
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-22",
+      "claude-opus-5-5__query-23",
+      "claude-opus-5-5__query-24"
+    ],
+    "numeric_sha256": [
+      "46b4c7e8e89397364086c483b64d8357089a0065c7bed41b6f03ed672648d240",
+      "f8ab1a5db87ca0b83ce964c1f0d416cb0ed4f2ee5862bb9d82a58bdc4fc0954d",
+      "03f8904ac023ded10c50fed63b5ec2a045089b1a73aae18c24eba0b96a88b8b0"
+    ]
+  },
+  {
+    "group_id": "native-200",
+    "cohort": "original",
+    "condition_id": "environment-09",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      600,
+      601,
+      602
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-25",
+      "claude-opus-5-5__query-26",
+      "claude-opus-5-5__query-27"
+    ],
+    "numeric_sha256": [
+      "3d337495afbc78ce5db6f9e6621c595663fa32842e3c89fc172a0afe7a38b3d5",
+      "37406a5f49cbf0ccc5cae4a08e4375a99fe867f23040d27d7c67329f125793d8",
+      "8ff1af9ac3284256abb78d66efa55c083e60f0d11bed3d00c1a1a4d947efbe8d"
+    ]
+  },
+  {
+    "group_id": "native-201",
+    "cohort": "original",
+    "condition_id": "environment-10",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      603,
+      604,
+      605
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-28",
+      "claude-opus-5-5__query-29",
+      "claude-opus-5-5__query-30"
+    ],
+    "numeric_sha256": [
+      "774d35020153d39c7b324a1068a6f68014d1e7f576c271150a9c11f3c55d6f8f",
+      "9232a48f9f1920689d60ec681530794d426b21a2e4b3e0e79bfa3d6da63a6561",
+      "1a648492ee05d484527a56a82d2ff566a8c4ba7f1153904fdff14320b63a53a7"
+    ]
+  },
+  {
+    "group_id": "native-202",
+    "cohort": "original",
+    "condition_id": "environment-11",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      606,
+      607,
+      608
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-31",
+      "claude-opus-5-5__query-32",
+      "claude-opus-5-5__query-33"
+    ],
+    "numeric_sha256": [
+      "79f4fa3591d573ba489f6d54e3b0da5f4d541eb6f7df6860ada9a14b3cd5292e",
+      "e65a540cd5f16d6ed79202c4ddfb342e4ad06bc31c60546641229b9e0290d3c7",
+      "07ca3aab6c9a1e2a86281bb955b4a0bd0dec46533529366222c85aa060ef5ab1"
+    ]
+  },
+  {
+    "group_id": "native-203",
+    "cohort": "original",
+    "condition_id": "environment-12",
+    "source": "claude-opus-5-5",
+    "role": "train_original",
+    "canonical_indices": [
+      609,
+      610,
+      611
+    ],
+    "row_ids": [
+      "claude-opus-5-5__query-34",
+      "claude-opus-5-5__query-35",
+      "claude-opus-5-5__query-36"
+    ],
+    "numeric_sha256": [
+      "37232f7ac6340508eaad7a3782e23f9877d333ec3b56d0257e25873ba2310cff",
+      "f51eb88022002f977de2e5844e3b40908920d544ebe513e518d719ffe175a9be",
+      "85395b772665c02141d20ec0b01aa5006eb98340df29d919caad9a2ee62fd864"
+    ]
+  },
+  {
+    "group_id": "native-204",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-01",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      612,
+      613,
+      614
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-01",
+      "gpt-6.1-sol__holdout-query-02",
+      "gpt-6.1-sol__holdout-query-03"
+    ],
+    "numeric_sha256": [
+      "8cdc0451233691028370aea0cfbca21f775876fa8451f418dae65cda11bda2d1",
+      "e90a262b6e8cb539df54cbae3e7d0a765e1349dd3940d790b3c7c8b4495745b9",
+      "076a564ac3b0e39ed3ed0f22be5dc5ff1fbacbb89d5b4ca6813d6b75397fe94a"
+    ]
+  },
+  {
+    "group_id": "native-205",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-02",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      615,
+      616,
+      617
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-04",
+      "gpt-6.1-sol__holdout-query-05",
+      "gpt-6.1-sol__holdout-query-06"
+    ],
+    "numeric_sha256": [
+      "d87d4c772fdcd82119151d0ffdda5c49559ba7bca74defa496dd7e0f20c5ba78",
+      "06664b2536ecaa763f5d435ca52ef957e90db3f7e7e6bdcb32be9bca7a89e47a",
+      "d2246de5dcf7c8c7cb2de1764bc28667c5e5508c47fbe6d1cb61e36db1813960"
+    ]
+  },
+  {
+    "group_id": "native-206",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-03",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      618,
+      619,
+      620
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-07",
+      "gpt-6.1-sol__holdout-query-08",
+      "gpt-6.1-sol__holdout-query-09"
+    ],
+    "numeric_sha256": [
+      "a02b6871046eaa8485dfea1ec99274f736b4d97ccaae0f2b3bfabc00cb1a7611",
+      "ce8c1c0742a49dc8eedb345e6bb29dbe2509abdac923af1e62c3b8e5846df877",
+      "e4105076b640b62f3bce7aba4071b0c471b107d9902bbc4ef55a13b750b2f09e"
+    ]
+  },
+  {
+    "group_id": "native-207",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-04",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      621,
+      622,
+      623
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-10",
+      "gpt-6.1-sol__holdout-query-11",
+      "gpt-6.1-sol__holdout-query-12"
+    ],
+    "numeric_sha256": [
+      "aec501ba958ed5f262fc3795aa9f568521bfedf202d2cee49c161841218cf268",
+      "867cd717949764b23a374b8e881a684b1f10e843f0b93883bcf46f2df523de6a",
+      "fa946c810ddf44cdb195a19f0be9da1e161e653acaee07cb0c24e01b285e938e"
+    ]
+  },
+  {
+    "group_id": "native-208",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-05",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      624,
+      625,
+      626
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-13",
+      "gpt-6.1-sol__holdout-query-14",
+      "gpt-6.1-sol__holdout-query-15"
+    ],
+    "numeric_sha256": [
+      "5a4ba89342ce6056682fef60d11050450c47d602d205186875795f312e232987",
+      "a2d0a3f80d1519174201edde7c04a90ead251ec0ec8c8916062cf360e301460f",
+      "3fdecc57c10e8890d627da7ca46a5604076ebc22f5f076884567d8a071c42adc"
+    ]
+  },
+  {
+    "group_id": "native-209",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-06",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      627,
+      628,
+      629
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-16",
+      "gpt-6.1-sol__holdout-query-17",
+      "gpt-6.1-sol__holdout-query-18"
+    ],
+    "numeric_sha256": [
+      "67db1428648e705b89b7d951e1ca95151eb667fd8049bd04671fdaa484ff22e6",
+      "9f93ecbb336d8227354ab3967536410101124fe66a451f2bc896287fbc276ec7",
+      "0fcb1bc25204e4d4f7500fa8f0187b2a6796a131cfa2e4937f3bf447ce6988d9"
+    ]
+  },
+  {
+    "group_id": "native-210",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-07",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      630,
+      631,
+      632
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-19",
+      "gpt-6.1-sol__holdout-query-20",
+      "gpt-6.1-sol__holdout-query-21"
+    ],
+    "numeric_sha256": [
+      "0d1ded4bb59e699f31699ae233448cb1b760bd2eac1e70ba887cd08febb94669",
+      "89eadb63bf14aad73d2c3bc739694c55206dd9bb8f2c90d4447f86fc15df2f97",
+      "2fc4ff593910374ceb6c6dd420018af386e73a4fe1cd21b49404e41da0435e59"
+    ]
+  },
+  {
+    "group_id": "native-211",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-08",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      633,
+      635,
+      646
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-22",
+      "gpt-6.1-sol__holdout-query-24",
+      "gpt-6.1-sol__holdout-query-23"
+    ],
+    "numeric_sha256": [
+      "409226738d311a689690ed4133a90cd3afbdf141c1903eca062190a9db779f35",
+      "6ec56b03d6d99384866d0c9e4938482f2da42c68c6d377d34c94d4382fe82d6e",
+      "0856a5ac8303acfb72b1d21986ad8045ba6418173e80f78d9e8ca5b1c3681882"
+    ]
+  },
+  {
+    "group_id": "native-212",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-09",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      634,
+      636,
+      637
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-25",
+      "gpt-6.1-sol__holdout-query-26",
+      "gpt-6.1-sol__holdout-query-27"
+    ],
+    "numeric_sha256": [
+      "40677537ace9d0489c937140f95dab152eec8179fc9e3c119c85f5fe14d77bae",
+      "ad8890b6f05d3929b5354e84596d58e0ed6d4ab1deb192764f38608e506d58f6",
+      "7987302b07a5bdf9ab23cf46f4c64daf5b2772d45f45ff2ba23e4d32259d2611"
+    ]
+  },
+  {
+    "group_id": "native-213",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-10",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      638,
+      639,
+      641
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-28",
+      "gpt-6.1-sol__holdout-query-29",
+      "gpt-6.1-sol__holdout-query-30"
+    ],
+    "numeric_sha256": [
+      "12f240080c3dcf095d7ae327e1eb5a59c97043decd86e18c3637125e5a46538c",
+      "a80c356fd189bcfd7e401003419d1b7b99270b5b59458629239e4722380699b8",
+      "ea3386d4e6133d747ed1a2a1ef920943d58621ed7795fac0c410c748de134b77"
+    ]
+  },
+  {
+    "group_id": "native-214",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-11",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      640,
+      642,
+      643
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-31",
+      "gpt-6.1-sol__holdout-query-32",
+      "gpt-6.1-sol__holdout-query-33"
+    ],
+    "numeric_sha256": [
+      "33ce55f293352480f9ed113a11712e2b246d8e62ec2f6859f2cbae8d7fa579d5",
+      "1afbe2263fe3e92c4782baae2f86fc4dfbc7d6f56249953f51f5cc3b71d640e0",
+      "31347cc2a045673593e0d28e5e25c204d67a10a6067a4d4fe38771e570d2bfd9"
+    ]
+  },
+  {
+    "group_id": "native-215",
+    "cohort": "repurposed-sol-held",
+    "condition_id": "environment-12",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      644,
+      645,
+      647
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__holdout-query-34",
+      "gpt-6.1-sol__holdout-query-35",
+      "gpt-6.1-sol__holdout-query-36"
+    ],
+    "numeric_sha256": [
+      "0c5f5449a32c85145b9d346c1d6c267b297f2ada081d8e40371d1fe59c4d0000",
+      "0c28d415f29f468932b1048a2253cde9cde35b3be1da75dcb420c2c6e2ff0227",
+      "8f70389139200f5a8a88a67aab98eb4bdbc29124db6f97abca9d5d0b1b94a6a9"
+    ]
+  },
+  {
+    "group_id": "native-216",
+    "cohort": "repurposed-paired-sol",
+    "condition_id": "environment-01",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      648,
+      649,
+      650
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__fresh-balanced-query-01",
+      "gpt-6.1-sol__fresh-balanced-query-02",
+      "gpt-6.1-sol__fresh-balanced-query-03"
+    ],
+    "numeric_sha256": [
+      "f3b51216c56ecb2e456cf7d42e5e26d244cf9ebf11f7952dd2566d9a6e3cd7b6",
+      "55675213278015b41d73429312a333fe078a70f9f1e14ffe8e749feb1ad64331",
+      "5244a48eadb978b81791595870766058ccb954472cc1e546a24c7306de446d0b"
+    ]
+  },
+  {
+    "group_id": "native-217",
+    "cohort": "repurposed-paired-sol",
+    "condition_id": "environment-03",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      651,
+      652,
+      653
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__fresh-balanced-query-07",
+      "gpt-6.1-sol__fresh-balanced-query-08",
+      "gpt-6.1-sol__fresh-balanced-query-09"
+    ],
+    "numeric_sha256": [
+      "372645917d419af27f43922ea8324561b965678456d13f9ec8e4f2e6543c13ed",
+      "8e707469d585d969a3ed5ce0513638479524255bfa51f9b78989ad235a909baf",
+      "33470812ae16069be6de70db43b883f918d263d7277b6f6a8a945679f712f4ff"
+    ]
+  },
+  {
+    "group_id": "native-218",
+    "cohort": "repurposed-paired-sol",
+    "condition_id": "environment-04",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      654,
+      655,
+      656
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__fresh-balanced-query-10",
+      "gpt-6.1-sol__fresh-balanced-query-11",
+      "gpt-6.1-sol__fresh-balanced-query-12"
+    ],
+    "numeric_sha256": [
+      "6c5368e039aeaa8538eda9e6d9325b6e19908b9ec6876f3bf2ea1795e0930c08",
+      "abceef1e4af83fabea3675cefe28fcd725329f8ab78a135eacfbd3e0bfb09422",
+      "9cd78304d073220bd2daa2f240134684c6fef4f140ca17a6c20226424e1db29d"
+    ]
+  },
+  {
+    "group_id": "native-219",
+    "cohort": "repurposed-paired-sol",
+    "condition_id": "environment-06",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      657,
+      658,
+      664
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__fresh-balanced-query-17",
+      "gpt-6.1-sol__fresh-balanced-query-18",
+      "gpt-6.1-sol__fresh-balanced-query-16"
+    ],
+    "numeric_sha256": [
+      "6fa12fff5d6b25c7f5ab0a2a9ea08fe09e72b3216e727293b3309e601be23b0c",
+      "ba451e4abc6371146d5fa89af742201a9b78fbd70231a3333a4a85d6fea37164",
+      "38809155aeace0c709aebd99ade846f81403e1b071e94c108aced7d832cac95e"
+    ]
+  },
+  {
+    "group_id": "native-220",
+    "cohort": "repurposed-paired-sol",
+    "condition_id": "environment-08",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      659,
+      660,
+      661
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__fresh-balanced-query-22",
+      "gpt-6.1-sol__fresh-balanced-query-23",
+      "gpt-6.1-sol__fresh-balanced-query-24"
+    ],
+    "numeric_sha256": [
+      "ad878c594ecae23dce874ebb8f32c22df8a8e373c586d3c07939d42393608161",
+      "2753739ef412e6a5b41c447bf1fcf03c8dd3e1ab21e4253cbd269772ab400da4",
+      "c17ed9e742969ba89878a74a4099feef67ddcf88b7b5b6d51d856ced15013f3c"
+    ]
+  },
+  {
+    "group_id": "native-221",
+    "cohort": "repurposed-paired-sol",
+    "condition_id": "environment-12",
+    "source": "gpt-6.1-sol",
+    "role": "old_outside",
+    "canonical_indices": [
+      662,
+      663,
+      665
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__fresh-balanced-query-34",
+      "gpt-6.1-sol__fresh-balanced-query-36",
+      "gpt-6.1-sol__fresh-balanced-query-35"
+    ],
+    "numeric_sha256": [
+      "1a1d3704957af1f55d006191bd1197aed992975d6fd96ecac256968be5280448",
+      "a32fceb502ac1098212bbe6cd185ff9a2b50763a82d5244b600a591fbd75be9b",
+      "ede16f27c7754d7dc7d080b7ef34ea7ab254a133cf532b851f895984de05d467"
+    ]
+  },
+  {
+    "group_id": "native-222",
+    "cohort": "historical-astra-sep27",
+    "condition_id": "fresh-1",
+    "source": "gpt-6-astra",
+    "role": "old_outside",
+    "canonical_indices": [
+      666,
+      667,
+      668
+    ],
+    "row_ids": [
+      "gpt-6-astra__fresh-1-1",
+      "gpt-6-astra__fresh-1-2",
+      "gpt-6-astra__fresh-1-3"
+    ],
+    "numeric_sha256": [
+      "7092ed947f63c3d20d342604cc40395fa757cbb97462dbdd3adc14fcdcf48a75",
+      "f3381da9d4a1faed2fa0b65bd6141439a6a7dc2e647881a8f0bc7f88b62b4742",
+      "da98a4b7e3f3753b4152531c8adffbbd0dfbfbdea4c6dfbd8ad8b5b9585c69a6"
+    ]
+  },
+  {
+    "group_id": "native-223",
+    "cohort": "historical-astra-sep27",
+    "condition_id": "fresh-2",
+    "source": "gpt-6-astra",
+    "role": "old_outside",
+    "canonical_indices": [
+      669,
+      670,
+      671
+    ],
+    "row_ids": [
+      "gpt-6-astra__fresh-2-1",
+      "gpt-6-astra__fresh-2-2",
+      "gpt-6-astra__fresh-2-3"
+    ],
+    "numeric_sha256": [
+      "443982f4772700d6f58623bcce124aac9d5a1132b38181e4c89d0f968568bc38",
+      "d552c37ee57630db106f8922c0388191b964721d80ed75c005aaf4d59422e556",
+      "c2ce008ec91a768ce95d4f3a6689b157365fda11d8479eed00f7a18c4e080997"
+    ]
+  },
+  {
+    "group_id": "native-224",
+    "cohort": "paired-astra-sep30",
+    "condition_id": "environment-01",
+    "source": "gpt-6-astra",
+    "role": "old_outside",
+    "canonical_indices": [
+      672,
+      673,
+      674
+    ],
+    "row_ids": [
+      "gpt-6-astra__fresh-balanced-query-01",
+      "gpt-6-astra__fresh-balanced-query-02",
+      "gpt-6-astra__fresh-balanced-query-03"
+    ],
+    "numeric_sha256": [
+      "6f042d1c38559eadb3bc1e1c5d1498e999b03712124896f412d725feeb484287",
+      "b9d16c79cd3e12c8331a7c02db1fd191702418763f9c5076afaaf5e9baa78216",
+      "789f3fc794ced500ac97463f7ba16ac3e944e52158a14fe974bf6374fb91a0d1"
+    ]
+  },
+  {
+    "group_id": "native-225",
+    "cohort": "paired-astra-sep30",
+    "condition_id": "environment-03",
+    "source": "gpt-6-astra",
+    "role": "old_outside",
+    "canonical_indices": [
+      675,
+      676,
+      677
+    ],
+    "row_ids": [
+      "gpt-6-astra__fresh-balanced-query-07",
+      "gpt-6-astra__fresh-balanced-query-08",
+      "gpt-6-astra__fresh-balanced-query-09"
+    ],
+    "numeric_sha256": [
+      "b2b3844161d6095a1409f1c1248e01b417b7f7d39ddfe64012fa8b07690e89a3",
+      "713097935e6843a3df250cad75e4abb38ad9258cae97617e30021785208786ea",
+      "3f4bfbaddb490688dbf4ab50cb0ae0801138700f4a112504d0aaf85e64ba4cfc"
+    ]
+  },
+  {
+    "group_id": "native-226",
+    "cohort": "paired-astra-sep30",
+    "condition_id": "environment-04",
+    "source": "gpt-6-astra",
+    "role": "old_outside",
+    "canonical_indices": [
+      678,
+      679,
+      680
+    ],
+    "row_ids": [
+      "gpt-6-astra__fresh-balanced-query-10",
+      "gpt-6-astra__fresh-balanced-query-11",
+      "gpt-6-astra__fresh-balanced-query-12"
+    ],
+    "numeric_sha256": [
+      "9719fda49003a4b0c47943f034494f31d94ae988bfd69548ee26199e68b4800b",
+      "0611bab1d6f1811bdd7e92d981a308f8a63b9c9385e0be26edad5b3e16c9c7b7",
+      "e42429f0acd177679127fbadfd0fa222451689598f54057ef093c50265325892"
+    ]
+  },
+  {
+    "group_id": "native-227",
+    "cohort": "paired-astra-sep30",
+    "condition_id": "environment-06",
+    "source": "gpt-6-astra",
+    "role": "old_outside",
+    "canonical_indices": [
+      681,
+      682,
+      683
+    ],
+    "row_ids": [
+      "gpt-6-astra__fresh-balanced-query-16",
+      "gpt-6-astra__fresh-balanced-query-17",
+      "gpt-6-astra__fresh-balanced-query-18"
+    ],
+    "numeric_sha256": [
+      "a308bd62b54c3cffcdfb603ec87777d2a5de119ed81b083af40a223e2a406502",
+      "6864fd3f540dbc91269a2a2759aec2db86bb3bf48cfc892984dc4269b56ff0d1",
+      "1bae349ca9f1c802a94c269a736069d36213d8c36fffa910bd6caeeba892ac31"
+    ]
+  },
+  {
+    "group_id": "native-228",
+    "cohort": "paired-astra-sep30",
+    "condition_id": "environment-08",
+    "source": "gpt-6-astra",
+    "role": "old_outside",
+    "canonical_indices": [
+      684,
+      685,
+      686
+    ],
+    "row_ids": [
+      "gpt-6-astra__fresh-balanced-query-22",
+      "gpt-6-astra__fresh-balanced-query-23",
+      "gpt-6-astra__fresh-balanced-query-24"
+    ],
+    "numeric_sha256": [
+      "c5f64e20a2d7978ffa71dfaf2b1af52da161f239c502f0bdd483a212926381ab",
+      "87c754da84f61971464e23c802a06a9414c64b0663eb1d48fc86fdcf6b4f8230",
+      "c16d75681c45672d6923310382aefdffb068db364fd7757d1bd4ceec2396dd91"
+    ]
+  },
+  {
+    "group_id": "native-229",
+    "cohort": "paired-astra-sep30",
+    "condition_id": "environment-12",
+    "source": "gpt-6-astra",
+    "role": "old_outside",
+    "canonical_indices": [
+      687,
+      688,
+      689
+    ],
+    "row_ids": [
+      "gpt-6-astra__fresh-balanced-query-34",
+      "gpt-6-astra__fresh-balanced-query-35",
+      "gpt-6-astra__fresh-balanced-query-36"
+    ],
+    "numeric_sha256": [
+      "241246b03ee6404a89b3115dd578bda0e57b97ce3a91473eb7f28489c1657f7d",
+      "e08189f7001da54a8239c9cbf7d61ece500f80fa4ab7b4e10ba2270394d8d683",
+      "d1c3acb42e5477202971375088aee64f7ffb9ffc8a0d84dff9bb45c84fe3cb7e"
+    ]
+  },
+  {
+    "group_id": "native-230",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-01",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      690,
+      692,
+      694
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-01",
+      "gpt-6-astra__training-expansion-r1-query-02",
+      "gpt-6-astra__training-expansion-r1-query-03"
+    ],
+    "numeric_sha256": [
+      "a30ca59eaf10c1a2a7ea12008971d57b74cb2df1020d3fdee6d91def26893c0e",
+      "8d62670e81289a5d0bf2f848faa84c21f280b4156e336d500de9bdec0d3841d5",
+      "7dc6019aa3fd7506a4c69675eeb9e82f67785fa3924f5f85eec38c229ecc2462"
+    ]
+  },
+  {
+    "group_id": "native-231",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-01",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      691,
+      693,
+      695
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-01",
+      "gpt-6.1-sol__training-expansion-r1-query-02",
+      "gpt-6.1-sol__training-expansion-r1-query-03"
+    ],
+    "numeric_sha256": [
+      "d55bb0d1e5355f1dd6f9c9a102cf4a66a07b65bc4c7f0b9da10ab2d122f3efc4",
+      "36023467af64f44fc5114123b51639a2fe05133829a750053bd3531f61ac6bb8",
+      "21d6ce5aabd95d298fbbaf53a3d2671efbc2872a7c3b378d82ec235aedd04c38"
+    ]
+  },
+  {
+    "group_id": "native-232",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-02",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      696,
+      698,
+      700
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-04",
+      "gpt-6-astra__training-expansion-r1-query-05",
+      "gpt-6-astra__training-expansion-r1-query-06"
+    ],
+    "numeric_sha256": [
+      "638ad5835c1443542e23e714ef3b39e023c4ef0d9f878ddb4a31022560c11166",
+      "aa0fb6991bf9ecd9285de478b75dc89a03ac7d1a8154c6a476b0ae798631b967",
+      "8b8f9d8d7ee616426f1f777e1c6f7b2c2482dce794f4ff6ab650336da741d9a9"
+    ]
+  },
+  {
+    "group_id": "native-233",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-02",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      697,
+      699,
+      701
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-04",
+      "gpt-6.1-sol__training-expansion-r1-query-05",
+      "gpt-6.1-sol__training-expansion-r1-query-06"
+    ],
+    "numeric_sha256": [
+      "4d695adc6849a332bb603f79f8f90375be86a3293c1d322812f29f33c1516479",
+      "f46c918b248a7578de140dfcac80caca3a1db31fd695c514b823396f8b528e75",
+      "de5370092dd2e9269d10e21f8da55eb2dc797006d21c2c3cc48a990611c4526b"
+    ]
+  },
+  {
+    "group_id": "native-234",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-03",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      702,
+      704,
+      706
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-07",
+      "gpt-6-astra__training-expansion-r1-query-08",
+      "gpt-6-astra__training-expansion-r1-query-09"
+    ],
+    "numeric_sha256": [
+      "849220181f0daacbc19e535e061c3736e672e23e3832c6e72d8d4ce34e11c677",
+      "ee37cdad82a421f0e2d73f62a9601f6839c74e0e93cabe9de0bf6507a2103c75",
+      "d4dd6041e00ad212c692a10434f042ff413f9845c1222cbe50aebc632bc313ba"
+    ]
+  },
+  {
+    "group_id": "native-235",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-03",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      703,
+      705,
+      707
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-07",
+      "gpt-6.1-sol__training-expansion-r1-query-08",
+      "gpt-6.1-sol__training-expansion-r1-query-09"
+    ],
+    "numeric_sha256": [
+      "c5672c71c488b35b4eff43c0e68a69d7e5f12f445bd32a5d821ba153b29978c3",
+      "02742748bd697c4bd42aaddb993213d2aaa1897712dee134545404188e8c4774",
+      "05d8bac40ff9cd0058e63e7f4ff4454a8af51cdd6ee9b71ea930b25231b60235"
+    ]
+  },
+  {
+    "group_id": "native-236",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-04",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      708,
+      710,
+      712
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-10",
+      "gpt-6-astra__training-expansion-r1-query-11",
+      "gpt-6-astra__training-expansion-r1-query-12"
+    ],
+    "numeric_sha256": [
+      "130fd8b9de53aad8f5cddb67868ad749b5cb0b32a4c1df147be21cf00025d563",
+      "4cc5cb2c9b62991ea18bcc43a214254633fca080027f45627f6c2a3ce4c9b12c",
+      "5bd8267a2e721f2a40ad87f123cacf5c88e8aac24fe1701196313706e98d1f11"
+    ]
+  },
+  {
+    "group_id": "native-237",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-04",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      709,
+      711,
+      713
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-10",
+      "gpt-6.1-sol__training-expansion-r1-query-11",
+      "gpt-6.1-sol__training-expansion-r1-query-12"
+    ],
+    "numeric_sha256": [
+      "d932d337408152d9943dbc23e7e4529a1c1071bdd92ce84a17ec0ecb528d6dda",
+      "52cfc7d50c40c7ce395d52210c433deaba7a54b603c91c386f6c5e5cf3b1cccb",
+      "45d0d16844409e694ff0b45751cde3f433de2e44278c0904764521fa9e5d5fbb"
+    ]
+  },
+  {
+    "group_id": "native-238",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-05",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      714,
+      716,
+      718
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-13",
+      "gpt-6-astra__training-expansion-r1-query-14",
+      "gpt-6-astra__training-expansion-r1-query-15"
+    ],
+    "numeric_sha256": [
+      "db2fe38cfc74267970ea28284d4ae828db180fecd75e38da4edef83dbdfe50e7",
+      "cd408613eb3b194a623b63a96fb736381476d22d9f36a4ded552e2f96f3f7b9f",
+      "1351da17ee3c30bef8aacd0660221eb688dbe440522985b05a787f52f3c05aae"
+    ]
+  },
+  {
+    "group_id": "native-239",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-05",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      715,
+      717,
+      719
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-13",
+      "gpt-6.1-sol__training-expansion-r1-query-14",
+      "gpt-6.1-sol__training-expansion-r1-query-15"
+    ],
+    "numeric_sha256": [
+      "f08066ee7906e455069eda76a8da6000dff9e37138b0d5a86d908daa3912f643",
+      "fb1dd07a00017465cbe3db14c482c94af043743d516f22471b80e0ac1aef922d",
+      "94d22018bc0156c17d9172026dbc7f64ff84585e57442c634ed59c7dd7d2de40"
+    ]
+  },
+  {
+    "group_id": "native-240",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-06",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      720,
+      722,
+      724
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-16",
+      "gpt-6-astra__training-expansion-r1-query-17",
+      "gpt-6-astra__training-expansion-r1-query-18"
+    ],
+    "numeric_sha256": [
+      "79fc85b40a2e8cac269457e98bd00f5fa50be4fb6da2e548a5f786695ac9def5",
+      "57018cc6fc354c78cdcf7dba8c26c3e597d00c1727e3c72a0f16a88b6ed88029",
+      "7d6b0b5387a9a27628ca69522af1f6e47264dd9668eed4a25c282c502d96caf3"
+    ]
+  },
+  {
+    "group_id": "native-241",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-06",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      721,
+      723,
+      725
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-16",
+      "gpt-6.1-sol__training-expansion-r1-query-17",
+      "gpt-6.1-sol__training-expansion-r1-query-18"
+    ],
+    "numeric_sha256": [
+      "74098cd838c1a3af96e6a1360e5f657592a025738733f88f4f94da8b5a1cac5a",
+      "0bbd5f9b5ef5ea859ec2239b471cc2dee411afac13841dbdf59d3704044d2937",
+      "ac3527a5456c389077fbeb43449f069526584ce89febbff7705376569f454fb3"
+    ]
+  },
+  {
+    "group_id": "native-242",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-07",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      726,
+      728,
+      730
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-19",
+      "gpt-6-astra__training-expansion-r1-query-20",
+      "gpt-6-astra__training-expansion-r1-query-21"
+    ],
+    "numeric_sha256": [
+      "4ca9419efda956d7000cd612a1695b92084e5a519c50c74e6ba70676df9eebc3",
+      "d45dd6ebc859b1d926ee8938c54cfacc77ff41a8f8c07100c9870464311cdf19",
+      "9a97509e75c4d71a12a1adfa4d5f358dd630791569f58c96d87ab8a4a93aa9e3"
+    ]
+  },
+  {
+    "group_id": "native-243",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-07",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      727,
+      729,
+      731
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-19",
+      "gpt-6.1-sol__training-expansion-r1-query-20",
+      "gpt-6.1-sol__training-expansion-r1-query-21"
+    ],
+    "numeric_sha256": [
+      "a761ad5661af8ce1eec03c849c3dfbe2616466ab993583f555a5ccff722e3d34",
+      "4e945ce9f58291bce6539be4b6af90d77654faa13f6faeb00167961245b6d666",
+      "bd450876e14cdc4429dd636557c8462dc0b04d96522c9af9da609e56d4ce335c"
+    ]
+  },
+  {
+    "group_id": "native-244",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-08",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      732,
+      734,
+      736
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-22",
+      "gpt-6-astra__training-expansion-r1-query-23",
+      "gpt-6-astra__training-expansion-r1-query-24"
+    ],
+    "numeric_sha256": [
+      "f04906144f342f0d173d14e78328e47f99c4fb793a4f2dd0c7f5377003871bf0",
+      "15e50f5f0568e8e21ebd346bcd7be788c1c7143f348059f03d2c0d07acc0e39c",
+      "5eeefb3a145545eef12c95a44033d81c381a06ca7953dc9b6736a6bca56c2d91"
+    ]
+  },
+  {
+    "group_id": "native-245",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-08",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      733,
+      735,
+      737
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-22",
+      "gpt-6.1-sol__training-expansion-r1-query-23",
+      "gpt-6.1-sol__training-expansion-r1-query-24"
+    ],
+    "numeric_sha256": [
+      "0e080efdaf105c7af7a3cb22cb4d90ba9f8ac38185f930af6434bd0c25f37019",
+      "5d09160cbf466f4294ac844aa6569e768faf5f7c36068f56385fba18f72ea1e5",
+      "7cf92b41646782d53c6d7734e8e6850c8320197f7079a6207b35b9427e332829"
+    ]
+  },
+  {
+    "group_id": "native-246",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-09",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      738,
+      740,
+      742
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-25",
+      "gpt-6-astra__training-expansion-r1-query-26",
+      "gpt-6-astra__training-expansion-r1-query-27"
+    ],
+    "numeric_sha256": [
+      "3fd2e6b227dad3285bae6d072263ee2e1b271146ec50a5aa57467b6298af70b0",
+      "b717d0923656b282c75353410b757c16fcd92337d742e6e28f361c7ab717c6f4",
+      "20e98567176f6a9050c6fc66c3179edf60eefd981f447aaf26874433d7e9b1e2"
+    ]
+  },
+  {
+    "group_id": "native-247",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-09",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      739,
+      741,
+      743
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-25",
+      "gpt-6.1-sol__training-expansion-r1-query-26",
+      "gpt-6.1-sol__training-expansion-r1-query-27"
+    ],
+    "numeric_sha256": [
+      "fc8654a94dc0331d9e75cc985840a186f7233f07a9419450bda9656d438c19cc",
+      "bdb6aedeab1fecd505cf5b963c52ffaf115138bb19e5801ab26750d15560f9c8",
+      "246f2f591114d3a2850cdc8484437345bbb419044d1d648f0b692937261c6c9e"
+    ]
+  },
+  {
+    "group_id": "native-248",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-10",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      744,
+      746,
+      748
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-28",
+      "gpt-6-astra__training-expansion-r1-query-29",
+      "gpt-6-astra__training-expansion-r1-query-30"
+    ],
+    "numeric_sha256": [
+      "e935e429d0a11d709966331157fc7316fc6ccafa6fc4a219665c4d173617b81d",
+      "a8f66534ee30b0438a119a7e8e5841e4cdc2b81696f412826cd122c01ed79968",
+      "6df0c7b5acd8612ee7c09012851a9b0fd2246b1c3905a22c16ff7ad3fa2673c7"
+    ]
+  },
+  {
+    "group_id": "native-249",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-10",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      745,
+      747,
+      749
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-28",
+      "gpt-6.1-sol__training-expansion-r1-query-29",
+      "gpt-6.1-sol__training-expansion-r1-query-30"
+    ],
+    "numeric_sha256": [
+      "7d785eb49b74bfb4f3c95abdcf51fe12ff79aa6bcd7b3dcd633d08486c0e283c",
+      "ff68c8348134d497e9d2ac07de2754748bbdf3b859917ef1ea8ff40ed3d82107",
+      "9981a28fb3598dc7311c4de752123331adac006d21dec5b8d073fc28ed57054d"
+    ]
+  },
+  {
+    "group_id": "native-250",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-11",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      750,
+      752,
+      754
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-31",
+      "gpt-6-astra__training-expansion-r1-query-32",
+      "gpt-6-astra__training-expansion-r1-query-33"
+    ],
+    "numeric_sha256": [
+      "0e7e6f76c3d71132537a57a36826cac7b17d2bc68a8b43877ac4172baa972606",
+      "e370b745e943cff27e1175db9d393f1e7847b1d65a9230c75b2645997bea9c7f",
+      "5ba159fc66c2403ece1f2e46f3f426bd017083d2a85fd2a42ef835ed344e5fb6"
+    ]
+  },
+  {
+    "group_id": "native-251",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-11",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      751,
+      753,
+      755
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-31",
+      "gpt-6.1-sol__training-expansion-r1-query-32",
+      "gpt-6.1-sol__training-expansion-r1-query-33"
+    ],
+    "numeric_sha256": [
+      "93b394c9ab2346a16244d13faed571a09bd4e7cdf8fcc253b8be8c0646456af6",
+      "7ec166f42f1b294e84d33558e97a5125ad877ef24f773077e254f429aad073f5",
+      "a767d08a05c63b0e3c66c3c9ef60449fee9f03ce1a9dcb8a7b41434f4d025b11"
+    ]
+  },
+  {
+    "group_id": "native-252",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-12",
+    "source": "gpt-6-astra",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      756,
+      758,
+      760
+    ],
+    "row_ids": [
+      "gpt-6-astra__training-expansion-r1-query-34",
+      "gpt-6-astra__training-expansion-r1-query-35",
+      "gpt-6-astra__training-expansion-r1-query-36"
+    ],
+    "numeric_sha256": [
+      "0b6f24291599eb9d99ea8900bb42d4ca0a4b4160d5239a407cc7aa9e4e2ac107",
+      "716a65439742b47e9b0fdb8f251465a3dbb5932194ff2a7775761a68563c0d1b",
+      "cd5aa62b4de7f4806e71c091b818af588e228c4968eb989f4f812051c12b54f0"
+    ]
+  },
+  {
+    "group_id": "native-253",
+    "cohort": "training-expansion-r1",
+    "condition_id": "environment-12",
+    "source": "gpt-6.1-sol",
+    "role": "train_supplemental",
+    "canonical_indices": [
+      757,
+      759,
+      761
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__training-expansion-r1-query-34",
+      "gpt-6.1-sol__training-expansion-r1-query-35",
+      "gpt-6.1-sol__training-expansion-r1-query-36"
+    ],
+    "numeric_sha256": [
+      "c37d50386eeb4ef6dde489ee48958bf3ca1f6338d67840c2e1a4a99439cf7e50",
+      "708e662e3ee85ac4187f7ec06a1da65b19addbef4df7acfd72d570b1e0906048",
+      "fc3e6ed2712bda59d75c390a18fa3cbeaab03ed141431474eadfbfe3ab067e5c"
+    ]
+  },
+  {
+    "group_id": "native-254",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-01",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      762,
+      765,
+      766
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-01",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-02",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-03"
+    ],
+    "numeric_sha256": [
+      "cd5f1f46bf051d5cffd0e1b7ed042523384ce4eece59840de0fa44ccf75286be",
+      "097d90439c0b7d23d49133c760689c35db780d0126c8a42d34549d300895af2e",
+      "6c875a19baf73b2ec9f0f8b10073a548b060ade9be4ea57541008c829a50c71f"
+    ]
+  },
+  {
+    "group_id": "native-255",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-01",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      763,
+      764,
+      767
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-01",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-02",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-03"
+    ],
+    "numeric_sha256": [
+      "bbaa28c9c3bbbd09ab6922a2b78a51c96d5d8b80a2cea42684d2f6855b09f138",
+      "21a680f03d1ad4580647bd48329a10e647b5c048158066c844b74c32bd62d365",
+      "a69f266699907ecdd6575b3172476d80a5efb08b9b389753ffdd99aa8f64bf6f"
+    ]
+  },
+  {
+    "group_id": "native-256",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-02",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      768,
+      771,
+      772
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-04",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-05",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-06"
+    ],
+    "numeric_sha256": [
+      "24722caafefd2d6a24e817e0728c49158d9aa445bc7635d4c748bb868fc26122",
+      "ced0db219c27f920ec7fce0bc1d2db1cbf35c436b7b71c98c447ee4da6cf704a",
+      "4361b49dad28aed9a889169c944129e0530710618b95da8628d08e23844cc399"
+    ]
+  },
+  {
+    "group_id": "native-257",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-02",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      769,
+      770,
+      773
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-04",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-05",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-06"
+    ],
+    "numeric_sha256": [
+      "1ba51017f931ef7c58b7a3eb2b9c8ebbab111e700422aa27fb509420599ed7a6",
+      "ca9eeaae92a286c22f6969c4a5d9ce54cc7abea1c39faff0a80469319a350edc",
+      "b656558260e9af3fecf9c95f84b7de582886f462d162998d97af3f0211ece9f3"
+    ]
+  },
+  {
+    "group_id": "native-258",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-03",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      774,
+      777,
+      778
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-07",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-08",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-09"
+    ],
+    "numeric_sha256": [
+      "eefe417057175779da47d36c67b041d25caf90e9a6e9388877dafcd0d09a57df",
+      "fc1ae40b2bc46a325cfd463da1340536e801f3dee51fbc841a9f1dc89ad0905f",
+      "83a33fc1c20af2e0421c724f823592daafddd1587a79ea3d2c092c792b49911c"
+    ]
+  },
+  {
+    "group_id": "native-259",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-03",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      775,
+      776,
+      779
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-07",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-08",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-09"
+    ],
+    "numeric_sha256": [
+      "058614bc14564db2bf0ae3f9fe0181217a124029c14562478ae6c69aa2141e35",
+      "cb5d7c6fc8ffdf7d204de16e8af06ba6b24432c43f441c4db92497a61c44b031",
+      "ac6553568a22bea5223f45912f01ed303ae7a77143c6e03f05c0e2843604ca46"
+    ]
+  },
+  {
+    "group_id": "native-260",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-04",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      780,
+      783,
+      784
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-10",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-11",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-12"
+    ],
+    "numeric_sha256": [
+      "282b9ae7269ee42793657b71ba3938e6608304aa697a4b8f348543437f6f3e6a",
+      "621c0d2992c25382a8355caffe15351e4a358610cbd26cee6219d6c139772fd4",
+      "42776e9aab96bef4f2f609bf0e45514e5ee5fa1140dd66f812936d19c65b9dae"
+    ]
+  },
+  {
+    "group_id": "native-261",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-04",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      781,
+      782,
+      785
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-10",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-11",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-12"
+    ],
+    "numeric_sha256": [
+      "94b2a54f38afacd7fdef89cc1b16a74678b83157f3587b7d6c979805b088ed99",
+      "45bba4a51a4c61286311d11c4bb6b757979df10c06500a0770981d055a2299dc",
+      "c95230d493562dfa156645a072331aba652d1346a15ed9b716790f707b62678d"
+    ]
+  },
+  {
+    "group_id": "native-262",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-05",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      786,
+      789,
+      790
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-13",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-14",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-15"
+    ],
+    "numeric_sha256": [
+      "c106655951fe6b02aaeadf4f06c95ebc31461545137edb5cd95def39a1c33e05",
+      "a4a4269f319ca1b2701d3020abe251c786fe883b00fc9748accab4e7f15e4541",
+      "32a835acda1aa084f5d6bc99a44220af30447a1258412171e2955d6d2cd31cff"
+    ]
+  },
+  {
+    "group_id": "native-263",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-05",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      787,
+      788,
+      791
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-13",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-14",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-15"
+    ],
+    "numeric_sha256": [
+      "b21edfa5d77ee1cc425762331e750589af5961af01f0fb9f6a80acc8d9e74a13",
+      "a0b8fc811a81f6edeabe6cc9b36bf2171b9a55884d67ee1f14b566be0b1ec9e5",
+      "53f4c37a91cba358d4be9f5ecaa5267851384bc8de2143f867afbd22030e891a"
+    ]
+  },
+  {
+    "group_id": "native-264",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-06",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      792,
+      795,
+      796
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-16",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-17",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-18"
+    ],
+    "numeric_sha256": [
+      "60a59fd46e181876d4a5dd170c0d519c7f3fad27284333ca23dc5dd68167cb49",
+      "a4adb806b706c65bc8ac837ede5b9a84d4868d8c2969291c2e612d26ffb82a18",
+      "3817c53773e0138ae68ab10e7329beec431e7e764451f34fbeb87a550622699d"
+    ]
+  },
+  {
+    "group_id": "native-265",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-06",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      793,
+      794,
+      797
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-16",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-17",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-18"
+    ],
+    "numeric_sha256": [
+      "193990eb69ef6f739b82cb5935d3aec54ed132e0e574deb04419d32541bf7a7b",
+      "f4486ecbb6ace667fb1625f487ee8b965a0e53be1ea6cd9dc16845d8536dadfe",
+      "4ca1aa210901de46f7fbacbec619f11678bb6898b502ceddc425f530286e6dd9"
+    ]
+  },
+  {
+    "group_id": "native-266",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-07",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      798,
+      801,
+      802
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-19",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-20",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-21"
+    ],
+    "numeric_sha256": [
+      "b7c3d95d053fe0d4f000ac46ebaf8ddf202e3b77d6526954c78317cf1b36414b",
+      "4ec32d9b219d5fb2f9f401b66da584b0e6c1edc509eef3dfec19ebdd01d2aa43",
+      "e5ec57ef3fb4c5a36e8041fc44ef7bfd6de47eae872b940f9bb83479322b0a34"
+    ]
+  },
+  {
+    "group_id": "native-267",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-07",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      799,
+      800,
+      803
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-19",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-20",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-21"
+    ],
+    "numeric_sha256": [
+      "97265997b2edb0299f7abddc8b233f00b98ee6dff3c98e90e8b798ad4a79e3b6",
+      "c501d412f9fab4e97c6dcedfd577b3ff17452a8670b220d0658ef36a187ce2e1",
+      "c758d43f19c40bbb8161314f640fd77179e9a34adeeac1fd3620acb32797c1bb"
+    ]
+  },
+  {
+    "group_id": "native-268",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-08",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      804,
+      807,
+      808
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-22",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-23",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-24"
+    ],
+    "numeric_sha256": [
+      "fd58e9c34dba5c4804f299d071efb4f4d2bd8911714a012e8e3d8f72f898faba",
+      "a51c624c95c6043d40e9d3ddda73f52e57a29c88c360df29ddfe8405aa582428",
+      "3e570d099291d7ec46a4b0dff5426b8f195e31edf5a955f4b41341de6f02f0af"
+    ]
+  },
+  {
+    "group_id": "native-269",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-08",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      805,
+      806,
+      809
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-22",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-23",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-24"
+    ],
+    "numeric_sha256": [
+      "688286c68859bbc873e65aead19bc08aebc9f4c21dc60380c0f7fe44c0e3d873",
+      "de138fd49ce3c7ab81eeec47290ccb1a5302ee3aff35e7af1bffe60270cec55a",
+      "049636d50396ff1a038e5ed6011e177ef4b60cef23323134d047a3e1df9d50f7"
+    ]
+  },
+  {
+    "group_id": "native-270",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-09",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      810,
+      813,
+      814
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-25",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-26",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-27"
+    ],
+    "numeric_sha256": [
+      "07ec4a70bb6332eed2f9539246b4e96449dd93178af1ccff9d8c5f6ef97c2677",
+      "29337cdac8ce6435dcbf9abcfa05e92538d036f49f4a00d22753bf2521a57d38",
+      "31dedba1c8bb16e2c896e87a9c2198c2874a47a26e813b09c474eeab4062b28f"
+    ]
+  },
+  {
+    "group_id": "native-271",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-09",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      811,
+      812,
+      815
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-25",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-26",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-27"
+    ],
+    "numeric_sha256": [
+      "e0c8b8beb570978428597e753fd2d5fdf2c41ad0dd270d6addf847889fe50694",
+      "d0281138fd35a52550ec19a394dadb252532e0baa07a241f5720c2c315d1ffa3",
+      "81786e869f2e4504e583a4dca7ca7735b62d6e219b368c6843f82ad4340cdfb6"
+    ]
+  },
+  {
+    "group_id": "native-272",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-10",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      816,
+      819,
+      820
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-28",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-29",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-30"
+    ],
+    "numeric_sha256": [
+      "0dc808d17ae3374818dcfee1c29e721e33e3ec49467f18a80f4c613f354ad8cf",
+      "6e95c0bb70448c46776bfee11c072a95ef23145135ea067805bcda637b1f8584",
+      "d5545c27e02eccfa88b9c3a64361f5aa90279785c20fab3126ef02810d861b3b"
+    ]
+  },
+  {
+    "group_id": "native-273",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-10",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      817,
+      818,
+      821
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-28",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-29",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-30"
+    ],
+    "numeric_sha256": [
+      "c9acee7e84c208429849be6e47b01a224ab50abbd2ac0308830ee4ccaf158c2d",
+      "db2fed82f2205e3c3edeaff144fcd8a82e67023a6a311533d10219640b3d68da",
+      "9b918345c5d0f6b2bf172018dd33ba6b195585ea7ceb7b3c908c97b66303172d"
+    ]
+  },
+  {
+    "group_id": "native-274",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-11",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      822,
+      825,
+      826
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-31",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-32",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-33"
+    ],
+    "numeric_sha256": [
+      "da036be21cd133ccae3be6986ab2bf1c238c6d79584838125817275c38add344",
+      "553627132a3401fb82853d0b9366fe03eeb211e616a0473930780dedea593b47",
+      "069382f2a89dcc0bdf66ec96ad10cd8bf67ab33b69dd92f47a75969c8f46bc5c"
+    ]
+  },
+  {
+    "group_id": "native-275",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-11",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      823,
+      824,
+      827
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-31",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-32",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-33"
+    ],
+    "numeric_sha256": [
+      "e396abedc23fef1045bbcfdbe280bd479a7f194b0d7cae3b9399ce5dfb1b7a64",
+      "db92e0a24613bd5b927c8962dbf2dc96ea584af340b877cf5c2b68232699050b",
+      "fd352048a1ed538156d2644b127377b909155876c49e868318e5a0e140c78650"
+    ]
+  },
+  {
+    "group_id": "native-276",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-12",
+    "source": "gpt-6.1-sol",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      828,
+      831,
+      832
+    ],
+    "row_ids": [
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-34",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-35",
+      "gpt-6.1-sol__outside-confirmation-20261003-holdout-query-36"
+    ],
+    "numeric_sha256": [
+      "19c6025d0b74dcfe08499c47a9bc3534e6510c716c54e07fa1db302568bbc04d",
+      "41e77d685af62e6b2672bda39f2837e95a75c1b370cf79463b0cba42e35d67af",
+      "7644ad1883cc7e81a02fefe110950c8784b50edf5c9176f8a950296e96d609b3"
+    ]
+  },
+  {
+    "group_id": "native-277",
+    "cohort": "outside-confirmation-20261003",
+    "condition_id": "environment-12",
+    "source": "gpt-6-astra",
+    "role": "fresh_outside",
+    "canonical_indices": [
+      829,
+      830,
+      833
+    ],
+    "row_ids": [
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-34",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-35",
+      "gpt-6-astra__outside-confirmation-20261003-holdout-query-36"
+    ],
+    "numeric_sha256": [
+      "1f5ad1acca33f96e6a9197ae9c2770bae7a7315f2d43c949f539ff4d1d910270",
+      "faecbee62bcd5a52d60337e3d564b9007e06c39a8ecc2293edb83755646dac66",
+      "31db4644dc199acc4b699d44c7c05be5fa3ae74dfec147b0417d6a22b0bf13ac"
+    ]
+  }
+]

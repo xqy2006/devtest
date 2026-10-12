@@ -1,0 +1,80 @@
+name: modeltrace-pair
+# One push of the RUN file = one run: a quick smoke pass of every experiment, then all
+# experiments in parallel, then one merged artifact (all-results).
+on:
+  push:
+    branches: [modeltrace-pair]
+    paths: [RUN]
+  workflow_dispatch:
+concurrency:
+  group: modeltrace-pair
+  cancel-in-progress: false
+env:
+  PYTHONUNBUFFERED: "1"
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
+      - name: smoke pass (tiny sizes)
+        env:
+          SMOKE: "1"
+        run: |
+          for e in v4_matched:100 v4_matched_lib:100 window_sum families perm ref_curve:2 score_variants; do
+            python research/runner_pair.py "$e"
+          done
+          python -m py_compile research/pilot_long_eval.py
+  run:
+    needs: smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      matrix:
+        exp: [prereg_adapt, "v4_matched:218", "v4_matched:500", "v4_matched:1000", "v4_matched_lib:1000",
+              window_sum, families, perm, "ref_curve:3", "ref_curve:6", "ref_curve:9", score_variants]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
+      - name: experiment ${{ matrix.exp }}
+        timeout-minutes: 340
+        shell: bash
+        run: |
+          mkdir -p results
+          tag=$(echo "${{ matrix.exp }}" | tr ':' '_')
+          if [ "${{ matrix.exp }}" = prereg_adapt ]; then
+            python research/pilot_long_eval.py data/pilot_4router_1000 --adapt 2>&1 | tee results/prereg_adapt.log
+            cp research/out_pilot_long.json results/prereg_adapt.json
+          else
+            python research/runner_pair.py "${{ matrix.exp }}" 2>&1 | tee "results/$tag.log"
+          fi
+      - name: upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: res-${{ strategy.job-index }}
+          path: results/
+          if-no-files-found: warn
+  collect:
+    needs: run
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: all
+          pattern: res-*
+          merge-multiple: true
+      - run: ls -la all
+      - uses: actions/upload-artifact@v4
+        with:
+          name: all-results
+          path: all/

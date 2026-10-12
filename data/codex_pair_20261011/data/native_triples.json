@@ -1,0 +1,1725 @@
+[
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e01__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-01",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e01__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-01",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e06__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-06",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e06__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-06",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e08__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-08",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e08__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-08",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e10__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-10",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e10__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-10",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e09__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-09",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e09__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-09",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r04-v2"
+    ],
+    "complete": false
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e04__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-04",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e04__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-04",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e09__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-09",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e09__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-09",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e07__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-07",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e07__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-07",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e01__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-01",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e01__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-01",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e08__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-08",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e08__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-08",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r04-v2"
+    ],
+    "complete": false
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e06__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-06",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e06__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-06",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e02__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-02",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e02__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-02",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e10__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-10",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e10__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-10",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e05__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-05",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e05__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-05",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e05__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-05",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e05__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-05",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e03__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-03",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e03__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-03",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e02__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-02",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e02__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-02",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e11__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-11",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e11__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-11",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e06__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-06",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e06__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-06",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r02-v2"
+    ],
+    "complete": false
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e06__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-06",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e06-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e06__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-06",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e06-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e11__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-11",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e11__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-11",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e07__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-07",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e07__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-07",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e07__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-07",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e07__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-07",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e12__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-12",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e12__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-12",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e12__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-12",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e12__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-12",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e11__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-11",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e11__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-11",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e08__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-08",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e08__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-08",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e07__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-07",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e07-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e07__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-07",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e07-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e12__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-12",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e12__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-12",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e03__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-03",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e03__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-03",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e10__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-10",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e10__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-10",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e02__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-02",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e02__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-02",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e03__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-03",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r02-v3"
+    ],
+    "complete": false
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e03__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-03",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e02__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-02",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e02-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e02__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-02",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e02-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e10__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-10",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e10-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e10__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-10",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e10-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e04__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-04",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e04__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-04",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e05__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-05",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e05__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-05",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e09__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-09",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e09__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-09",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e05__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-05",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e05-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e05__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-05",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e05-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e01__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-01",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e01__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-01",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e04__r02",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-04",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e04__r02",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-04",
+    "repeat": 2,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r02-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r02-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r02-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r02-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e12__r01",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-12",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e12-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e12__r01",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-12",
+    "repeat": 1,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r01-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r01-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r01-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e12-r01-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e08__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-08",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e08-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e08__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-08",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e08-r03-v3"
+    ],
+    "complete": false
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e09__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-09",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e09-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e09__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-09",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e09-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e03__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-03",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e03-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e03__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-03",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e03-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e11__r03",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-11",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e11-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e11__r03",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-11",
+    "repeat": 3,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r03-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r03-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r03-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e11-r03-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e04__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-04",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e04-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e04__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-04",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e04-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6-astra__e01__r04",
+    "source": "gpt-6-astra",
+    "condition_id": "environment-01",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6-astra__openrouter-e01-r04-v3"
+    ],
+    "complete": true
+  },
+  {
+    "group_id": "codex-reference-expansion-20261011__gpt-6.1-sol__e01__r04",
+    "source": "gpt-6.1-sol",
+    "condition_id": "environment-01",
+    "repeat": 4,
+    "role": "train_supplemental",
+    "row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r04-v3"
+    ],
+    "accepted_row_ids": [
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r04-v1",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r04-v2",
+      "codex-reference-expansion-20261011__gpt-6.1-sol__openrouter-e01-r04-v3"
+    ],
+    "complete": true
+  }
+]
