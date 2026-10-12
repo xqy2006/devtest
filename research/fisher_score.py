@@ -119,8 +119,10 @@ def _onehot(idx, n):
     return sparse.csr_matrix((np.ones(len(idx)), (idx, np.arange(len(idx)))), shape=(n, len(idx)))
 
 
-def fit_base(st: Steps, mask=None, lam=1.0, maxiter=60):
+def fit_base(st: Steps, mask=None, lam=1.0, maxiter=60, center=None):
     """Shared conditional log-linear model by L-BFGS on the steps of the masked rows.
+    center (optional): the L2 penalty pulls towards this parameter vector instead of zero, and
+    the optimisation starts there (label-specific models shrunk towards the shared one).
     Groups that depend on the context only through x_{t-1} (or x_{t-2}, previous jump class,
     position bucket) are evaluated as per-context tables; expected counts are aggregated per
     context with sparse one-hot products."""
@@ -169,10 +171,12 @@ def fit_base(st: Steps, mask=None, lam=1.0, maxiter=60):
             np.bincount(PBT.ravel(), Apb.ravel(), GROUPS["pb"]),
             gcv,
         ])
-        nll += 0.5 * lam * theta @ theta
-        return nll, exp - obs + lam * theta
+        dev = theta - c0
+        nll += 0.5 * lam * dev @ dev
+        return nll, exp - obs + lam * dev
 
-    res = minimize(f, np.zeros(DIM), jac=True, method="L-BFGS-B", options={"maxiter": maxiter})
+    c0 = np.zeros(DIM) if center is None else np.asarray(center, float)
+    res = minimize(f, c0.copy(), jac=True, method="L-BFGS-B", options={"maxiter": maxiter})
     return res.x
 
 
@@ -195,6 +199,18 @@ def score_vectors(st: Steps, theta, raw=False):
             U -= np.bincount((rows[:, None] * DIM + g).ravel(), weights=P.ravel(),
                              minlength=st.n_rows * DIM).reshape(st.n_rows, DIM)
     return U / np.maximum(st.T, 1)[:, None]
+
+
+def row_loglik(st: Steps, theta):
+    """Per-response total log-likelihood sum_t log p_theta(x_t | h_t)."""
+    ll = np.zeros(st.n_rows)
+    for s in _chunks(len(st.row)):
+        ids = st.ids(s)
+        L = sum(theta[g] for g in ids)
+        m = L.max(1)
+        lse = m + np.log(np.exp(L - m[:, None]).sum(1))
+        np.add.at(ll, st.row[s], L[np.arange(L.shape[0]), st.tgt[s] - 1] - lse)
+    return ll
 
 
 def group_weights():

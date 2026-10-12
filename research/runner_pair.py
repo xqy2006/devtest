@@ -26,6 +26,12 @@ Experiments (argument after the colon):
   ref_curve:k       v4 cluster model at t=1000 with references from k random other environments
   score_variants    Fisher-score LDA at t=1000 with different score groups (base model fitted on
                     the references only, label-free)
+  llr:variant       label-conditional next-number models theta_c = theta0 + delta_c (theta0 the
+                    shared label-free model, delta_c shrunk by an L2 penalty lam2) and the
+                    log-likelihood ratio sum_t log p_Sol(x_t|h_t) - log p_Astra(x_t|h_t);
+                    variant pilot (pilot references, t = 218 / 1000), lib (pilot references +
+                    library Astra/Sol rows, t = 1000), frozen (library rows only, applied to the
+                    pilot cut at t = 218 / 500 / 1000 / full)
 
 Usage: python research/runner_pair.py <experiment>[:<arg>]
 """
@@ -354,13 +360,63 @@ def exp_score_variants():
     sv["loeo_t=1000"] = {k: metrics(v, y, groups, mask) for k, v in D.items()}
 
 
+LLR_LAMS = (3.0, 10.0, 30.0, 100.0)
+
+
+def llr_models(st, mask, yrows):
+    """Shared model and the two label models (one per lam2) on the masked rows of st."""
+    theta0 = FS.fit_base(st, mask, lam=G.SCORE_LAMBDA, maxiter=G.SCORE_MAXITER)
+    out = {}
+    for lam2 in LLR_LAMS[:1] if SMOKE else LLR_LAMS:
+        th = [FS.fit_base(st, mask & (yrows == c), lam=lam2, maxiter=G.SCORE_MAXITER, center=theta0) for c in (0, 1)]
+        out[lam2] = th
+    return theta0, out
+
+
+def exp_llr(variant):
+    sv = Saver(f"llr:{variant}")
+    rows, y, env, split, groups = load_pilot()
+    lib = library_pair_rows() if variant in ("lib", "frozen") else []
+    ylib = np.array([r["source"] == S for r in lib], int)
+    if variant == "frozen":
+        st = FS.Steps([r["numbers"] for r in lib])
+        _, models = llr_models(st, np.ones(len(lib), bool), ylib)
+        del st
+        log("library models fitted")
+        for t in (218, 500, 1000, None):
+            sq = FS.Steps([r["numbers"][:t] if t else r["numbers"] for r in rows])
+            sv[f"t={t or 'full'}"] = {str(l): metrics(FS.row_loglik(sq, th[1]) - FS.row_loglik(sq, th[0]), y, groups) for l, th in models.items()}
+        return
+    for t in ((218, 1000) if variant == "pilot" else (1000,)):
+        seqs = [r["numbers"][:t] for r in rows]
+        st = FS.Steps(seqs + [r["numbers"] for r in lib])
+        sq = FS.Steps(seqs)
+        yrows = np.concatenate([y, ylib])
+        for proto, fl in folds(env, split).items():
+            D = {l: np.zeros(len(y)) for l in LLR_LAMS}
+            for j, (ref, te) in enumerate(fl):
+                mask = np.zeros(len(yrows), bool)
+                mask[ref] = True
+                mask[len(y):] = True
+                _, models = llr_models(st, mask, yrows)
+                for l, th in models.items():
+                    D[l][te] = (FS.row_loglik(sq, th[1]) - FS.row_loglik(sq, th[0]))[te]
+                log(f"t={t} {proto} fold {j + 1}/{len(fl)}")
+            m = np.zeros(len(y), bool)
+            m[np.concatenate([te for _, te in fl])] = True
+            sv[f"t={t}|{proto}"] = {str(l): metrics(D[l], y, groups, m) for l in D if (D[l] != 0).any()}
+            sv[f"t={t}|{proto}|decisions"] = {str(l): [round(float(v), 3) for v in D[l]] for l in D if (D[l] != 0).any()}
+        del st, sq
+
+
 def main():
     name, _, arg = sys.argv[1].partition(":")
     log(f"experiment {sys.argv[1]} (smoke={SMOKE})")
     {"v4_matched": lambda: exp_v4_matched(int(arg)),
      "v4_matched_lib": lambda: exp_v4_matched(int(arg), with_lib=True),
      "window_sum": exp_window_sum, "families": exp_families, "perm": exp_perm,
-     "ref_curve": lambda: exp_ref_curve(int(arg)), "score_variants": exp_score_variants}[name]()
+     "ref_curve": lambda: exp_ref_curve(int(arg)), "score_variants": exp_score_variants,
+     "llr": lambda: exp_llr(arg)}[name]()
     log("done")
 
 

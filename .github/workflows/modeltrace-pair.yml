@@ -25,10 +25,11 @@ jobs:
         env:
           SMOKE: "1"
         run: |
-          for e in v4_matched:100 v4_matched_lib:100 window_sum families perm ref_curve:2 score_variants; do
+          for e in llr:pilot llr:lib llr:frozen; do
             python research/runner_pair.py "$e"
           done
-          python -m py_compile research/pilot_long_eval.py
+          python research/stack_pair.py fold 0
+          python research/stack_pair.py merge results
   run:
     needs: smoke
     runs-on: ubuntu-latest
@@ -36,8 +37,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: [prereg_adapt, "v4_matched:218", "v4_matched:500", "v4_matched:1000", "v4_matched_lib:1000",
-              window_sum, families, perm, "ref_curve:3", "ref_curve:6", "ref_curve:9", score_variants]
+        exp: ["llr:pilot", "llr:lib", "llr:frozen", "stack:0", "stack:1", "stack:2", "stack:3", "stack:4", "stack:5",
+              "stack:6", "stack:7", "stack:8", "stack:9", "stack:10", "stack:11", "stack:12", "stack:13"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -53,6 +54,8 @@ jobs:
           if [ "${{ matrix.exp }}" = prereg_adapt ]; then
             python research/pilot_long_eval.py data/pilot_4router_1000 --adapt 2>&1 | tee results/prereg_adapt.log
             cp research/out_pilot_long.json results/prereg_adapt.json
+          elif [[ "${{ matrix.exp }}" == stack:* ]]; then
+            python research/stack_pair.py fold "${tag#stack_}" 2>&1 | tee "results/$tag.log"
           else
             python research/runner_pair.py "${{ matrix.exp }}" 2>&1 | tee "results/$tag.log"
           fi
@@ -68,12 +71,22 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r requirements.txt
       - uses: actions/download-artifact@v4
         with:
           path: all
           pattern: res-*
           merge-multiple: true
-      - run: ls -la all
+      - name: merge stacked folds
+        run: |
+          mkdir -p results && cp all/stack_fold_*.json results/ 2>/dev/null || true
+          python research/stack_pair.py merge results 2>&1 | tee all/stack.log || true
+          cp results/stack.json all/ 2>/dev/null || true
+          ls -la all
       - uses: actions/upload-artifact@v4
         with:
           name: all-results
