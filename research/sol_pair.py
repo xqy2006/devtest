@@ -47,7 +47,7 @@ import numpy as np
 from sklearn.covariance import ledoit_wolf
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from research.curve_pair import CLEAN_T, NAMES, Context, lda_fit_clean, summarize  # noqa: E402
+from research.curve_pair import CLEAN_T, NAMES, Context, lda_fit_clean, run_loeo, summarize  # noqa: E402
 from research.pilot_length_matched import LDA, env_basis  # noqa: E402
 from research.runner_pair import (FS, G, MEMBERS, PILOT, SMOKE, Saver, auc, cluster_decisions,  # noqa: E402
                                   folds, library_pair_rows, log)
@@ -413,6 +413,37 @@ def exp_fix(variant, with_loeo):
                       "summary": report(f"fix:{variant}", D, ctx, ("loeo",))}
 
 
+def exp_curve(kind, n, draw, variant):
+    """Reference-count curve of one fix variant (LOEO). kind env: the references are all rows of n
+    random other environments; kind rep: n random rows per label from each of the 11 other
+    environments. Same random draws as curve_pair.py ref / rep, so the subsets match run 4."""
+    sv = Saver(f"sol_curve:{kind}:{n}:{draw}:{variant}")
+    ctx = Context(CLEAN_T, True)
+    meta = row_meta(ctx.rows)
+    fit, _, sg = variant.partition("@")
+    if sg:
+        ctx.sg = tuple(sg.split("."))
+    ctx.fit_override = make_fit(fit, ctx, meta["minute"])
+    if kind == "env":
+        rng = np.random.default_rng(1000 + 100 * n + draw)
+
+        def pick(e, ref):
+            others = np.array(sorted(set(ctx.env[ref])))
+            return ref[np.isin(ctx.env[ref], rng.choice(others, min(n, len(others)), replace=False))]
+    else:
+        rng = np.random.default_rng(2000 + 100 * n + draw)
+
+        def pick(e, ref):
+            keep = []
+            for ee in sorted(set(ctx.env[ref])):
+                for c in (0, 1):
+                    cell = ref[(ctx.env[ref] == ee) & (ctx.y[ref] == c)]
+                    keep.extend(rng.choice(cell, min(n, len(cell)), replace=False))
+            return np.sort(np.array(keep))
+    run_loeo(ctx, pick, sv, "loeo")
+    sv["summary"] = report(f"curve:{kind}:{n}:{draw}", sv.data["loeo"]["decisions"], ctx, ("loeo",))
+
+
 def run_one(spec):
     log(f"experiment {spec} (smoke={SMOKE})")
     if spec == "why":
@@ -421,6 +452,9 @@ def run_one(spec):
         v = spec[4:]
         with_loeo = v.endswith(":loeo")
         exp_fix(v[:-5] if with_loeo else v, with_loeo)
+    elif spec.startswith("curve:"):  # curve:<env|rep>:<n>:<draw>:<variant>
+        _, kind, n, draw, variant = spec.split(":", 4)
+        exp_curve(kind, int(n), int(draw), variant)
     else:
         raise ValueError(spec)
     log(f"done {spec}")

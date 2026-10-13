@@ -44,6 +44,7 @@ from pathlib import Path
 import numpy as np
 from scipy.special import logsumexp
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.covariance import LedoitWolf
 from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -66,6 +67,19 @@ V = 355
 SCORE_GROUPS = ("val", "dg", "pb")  # score-vector groups used by the score evidence
 SCORE_LAMBDA = 1.0                  # L2 penalty of the shared next-number model
 SCORE_MAXITER = 80                  # L-BFGS iterations of the shared next-number model
+# Covariance of the two linear discriminants (distribution, score). "auto" (v4): sklearn shrinkage,
+# which standardizes every column inside the Ledoit-Wolf estimate, so the family / group weights
+# have no effect on the covariance. "weighted": Ledoit-Wolf towards a scaled identity in the
+# family-weighted space, so large families are shrunk more. On the N=1000 pilot this reduced the
+# GPT-6.1 Sol -> GPT-6 Astra bias across collection batches (research/REPORT.md 19.6-19.7).
+LDA_COV = "auto"
+LDA_COV_PARTS = ("dense", "score")
+
+
+def _lda(part):
+    if LDA_COV == "weighted" and part in LDA_COV_PARTS:
+        return LinearDiscriminantAnalysis(solver="lsqr", covariance_estimator=LedoitWolf())
+    return LinearDiscriminantAnalysis(solver="lsqr", shrinkage="auto")
 
 
 def response_features(numbers, families=LOCAL_FAMILIES):
@@ -139,7 +153,7 @@ def fit_local(rows, model_ids, members, families=LOCAL_FAMILIES, nuisance_rank=N
         _, singular, right = np.linalg.svd(np.array(offsets), full_matrices=False)
         basis = right[:min(nuisance_rank, int(np.sum(singular > singular[0] * 1e-8)))]
         Z = Z - (Z @ basis.T) @ basis
-    lda = LinearDiscriminantAnalysis(solver="lsqr", shrinkage="auto").fit(Z, y)
+    lda = _lda("dense").fit(Z, y)
     coef = np.atleast_2d(lda.coef_)
     intercept = np.atleast_1d(lda.intercept_)
     if len(lda.classes_) == 2:  # sklearn binary form: log-odds of the second class
@@ -251,7 +265,7 @@ def fit_score_local(U, y, env, groups=SCORE_GROUPS, nuisance_rank=NUISANCE_RANK)
         _, singular, right = np.linalg.svd(np.array(offsets), full_matrices=False)
         basis = right[:min(nuisance_rank, int(np.sum(singular > singular[0] * 1e-8)))]
         Z = Z - (Z @ basis.T) @ basis
-    lda = LinearDiscriminantAnalysis(solver="lsqr", shrinkage="auto").fit(Z, y)
+    lda = _lda("score").fit(Z, y)
     coef = np.atleast_2d(lda.coef_)
     intercept = np.atleast_1d(lda.intercept_)
     if len(lda.classes_) == 2:
