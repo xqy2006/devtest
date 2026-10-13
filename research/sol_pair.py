@@ -10,6 +10,9 @@ Experiments:
              statistics only.
   tilt:<v>   (run 9) refit on 15 random 75% subsets of the reference split: does the one-sided error
              flip with the reference subset (a random tilt of the boundary) or stay on Sol?
+  batch:<v>  (run 10) references = one split of 6 random environments; the same fit scores the other 6
+             environments from the same split and from the other split (20 random halves): a batch
+             effect is a consistent difference between the two query sets.
   why        diagnosis, nothing here is used to score a query.
              (a) the frozen library cluster model (no pilot rows at all) on four 250-number windows:
                  does it see test-split Sol responses as more Astra-like than development-split Sol
@@ -581,6 +584,56 @@ def exp_tilt(variant, reps=15, frac=0.75):
         print(f"TILT-SUMMARY {variant:14} {tag} {json.dumps(s)}", flush=True)
 
 
+def exp_batch(variant, halves=20):
+    """Batch effect or sample effect? The references are the rows of 6 random environments from one
+    split; the same model scores the other 6 environments twice, once from the same split and once
+    from the other split. Only the batch differs between the two query sets (same environments, same
+    prompts, same model fit). A batch effect shows as a consistent difference of the query midpoint
+    offset (and of Sol - Astra recall) between the two query sets."""
+    sv = Saver(f"sol_batch:{variant}")
+    ctx = Context(CLEAN_T, True)
+    meta = row_meta(ctx.rows)
+    ctx.fit_override = make_fit(variant, ctx, meta["minute"])
+    y, env, split = ctx.y, ctx.env, ctx.split
+    envs = np.array(sorted(set(env)))
+    rng = np.random.default_rng(11)
+    out = []
+
+    def stats(d, yt):
+        ma, ms = float(np.median(d[yt == 0])), float(np.median(d[yt == 1]))
+        return {"offset": ((ma + ms) / 2) / ((ms - ma) / 2 + 1e-9), "s_minus_a": float(np.mean(d[yt == 1] > 0) - np.mean(d[yt == 0] <= 0)),
+                "auc": auc(d, yt), "mean_astra": float(np.mean(d[yt == 0])), "mean_sol": float(np.mean(d[yt == 1]))}
+    for h in range(halves):
+        e1 = rng.choice(envs, len(envs) // 2, replace=False)
+        in1 = np.isin(env, e1)
+        for rs in ("development", "test"):
+            os_ = "test" if rs == "development" else "development"
+            ref = np.flatnonzero(in1 & (split == rs))
+            same, other = np.flatnonzero(~in1 & (split == rs)), np.flatnonzero(~in1 & (split == os_))
+            te = np.concatenate([same, other])
+            d = np.zeros(len(y))
+            d[te] = ctx.fold(ref, te)["dense+score+win0lib"]
+            a, b = stats(d[same], y[same]), stats(d[other], y[other])
+            rec = {"half": h, "ref_split": rs[:4], "same": a, "other": b}
+            out.append(rec)
+            sv["halves"] = out
+            print(f"BATCH {variant:14} half {h:2} refs {rs[:4]} | same split: offset {a['offset']:+.2f} S-A {a['s_minus_a']:+.3f} auc {a['auc']:.3f} "
+                  f"| other split: offset {b['offset']:+.2f} S-A {b['s_minus_a']:+.3f} auc {b['auc']:.3f} | mean decision change A "
+                  f"{b['mean_astra'] - a['mean_astra']:+.2f} S {b['mean_sol'] - a['mean_sol']:+.2f}", flush=True)
+    for rs in ("deve", "test"):
+        q = [o for o in out if o["ref_split"] == rs]
+        do = np.array([o["other"]["offset"] - o["same"]["offset"] for o in q])
+        ds = np.array([o["other"]["s_minus_a"] - o["same"]["s_minus_a"] for o in q])
+        da = np.array([o["other"]["mean_astra"] - o["same"]["mean_astra"] for o in q])
+        dso = np.array([o["other"]["mean_sol"] - o["same"]["mean_sol"] for o in q])
+        s = {"offset other-same mean": round(float(do.mean()), 3), "sd": round(float(do.std()), 3), "halves other<same": int((do < 0).sum()),
+             "S-A other-same mean": round(float(ds.mean()), 3), "halves Sol relatively worse in other split": int((ds < 0).sum()),
+             "mean decision change Astra": round(float(da.mean()), 3), "Sol": round(float(dso.mean()), 3),
+             "auc same": round(float(np.mean([o["same"]["auc"] for o in q])), 3), "auc other": round(float(np.mean([o["other"]["auc"] for o in q])), 3)}
+        sv[f"summary refs {rs}"] = s
+        print(f"BATCH-SUMMARY {variant:14} refs {rs} {json.dumps(s)}", flush=True)
+
+
 def exp_curve(kind, n, draw, variant):
     """Reference-count curve of one fix variant (LOEO). kind env: the references are all rows of n
     random other environments; kind rep: n random rows per label from each of the 11 other
@@ -620,6 +673,8 @@ def run_one(spec):
         exp_why2()
     elif spec.startswith("tilt:"):  # tilt:<variant>, e.g. tilt:base or tilt:re:env:1:lw
         exp_tilt(spec[5:])
+    elif spec.startswith("batch:"):  # batch:<variant>
+        exp_batch(spec[6:])
     elif spec.startswith("fix:"):
         v = spec[4:]
         with_loeo = v.endswith(":loeo")

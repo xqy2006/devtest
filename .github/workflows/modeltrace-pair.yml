@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/sol_pair.py tilt:base", "python research/sol_pair.py tilt:re:env:1:lw"]
+        exp: ["python research/sol_pair.py batch:base", "python research/sol_pair.py batch:re:env:1:lw"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
