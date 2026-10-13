@@ -1,2 +1,3 @@
 run 1: 2026-10-12T13:29:16Z first full batch (smoke, then 12 experiments)
 run 2: 2026-10-12T14:35:36Z LLR (pilot/lib/frozen) + stacked sources with variance floor and clipping (14 folds)
+run 3: 2026-10-13T00:50:11Z curves of the best combination (dense + score + library window 0): reference count, prompts vs repeats, length; library window variants
