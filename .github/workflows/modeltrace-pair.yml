@@ -25,9 +25,7 @@ jobs:
         env:
           SMOKE: "1"
         run: |
-          for e in ref:3:0 rep:2:0 len:500 libwin; do
-            python research/curve_pair.py "$e"
-          done
+          python research/curve_pair.py diag len:990:clean len:990:cleanb ref:3:0:clean rep:2:0:clean
           python research/curve_pair.py merge results
   run:
     needs: smoke
@@ -36,10 +34,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["ref:3:0", "ref:3:1", "ref:3:2", "ref:5:0", "ref:5:1", "ref:5:2", "ref:7:0", "ref:7:1", "ref:7:2",
-              "ref:9:0", "ref:9:1", "ref:9:2", "rep:2:0", "rep:2:1", "rep:2:2", "rep:3:0", "rep:3:1", "rep:3:2",
-              "rep:4:0", "rep:4:1", "rep:4:2", "rep:5:0", "rep:5:1", "rep:5:2", "len:500", "len:600", "len:700",
-              "len:800", "len:900", "len:1000", "libwin"]
+        exp: ["diag len:990:clean len:990:cleanb len:990",
+              "ref:3:0:clean ref:6:0:clean ref:9:0:clean rep:2:0:clean rep:4:0:clean",
+              "ref:3:1:clean ref:6:1:clean ref:9:1:clean rep:2:1:clean rep:4:1:clean"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -51,14 +48,14 @@ jobs:
         shell: bash
         run: |
           mkdir -p results
-          tag=$(echo "${{ matrix.exp }}" | tr ':' '_')
+          tag=$(echo "${{ matrix.exp }}" | tr ': ' '_-')
           if [ "${{ matrix.exp }}" = prereg_adapt ]; then
             python research/pilot_long_eval.py data/pilot_4router_1000 --adapt 2>&1 | tee results/prereg_adapt.log
             cp research/out_pilot_long.json results/prereg_adapt.json
           elif [[ "${{ matrix.exp }}" == stack:* ]]; then
             python research/stack_pair.py fold "${tag#stack_}" 2>&1 | tee "results/$tag.log"
-          elif [[ "${{ matrix.exp }}" =~ ^(ref|rep|len|libwin) ]]; then
-            python research/curve_pair.py "${{ matrix.exp }}" 2>&1 | tee "results/curve_$tag.log"
+          elif [[ "${{ matrix.exp }}" =~ ^(ref|rep|len|libwin|diag) ]]; then
+            python research/curve_pair.py ${{ matrix.exp }} 2>&1 | tee "results/curve_$tag.log"
           else
             python research/runner_pair.py "${{ matrix.exp }}" 2>&1 | tee "results/$tag.log"
           fi
@@ -87,6 +84,7 @@ jobs:
       - name: merge curve results
         run: |
           mkdir -p results && cp all/curve_*.json results/ 2>/dev/null || true
+          cp data/run3/curve_*.json results/ 2>/dev/null || true
           python research/curve_pair.py merge results 2>&1 | tee all/curve.log || true
           cp results/curve.json all/ 2>/dev/null || true
           ls -la all
