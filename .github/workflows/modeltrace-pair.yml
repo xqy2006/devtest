@@ -1,6 +1,6 @@
 name: modeltrace-pair
-# One push of the RUN file = one run: a quick smoke pass, then one job per experiment in parallel
-# (a finished job's log can be read while the others still run), then one merged artifact.
+# One push of the RUN file = one run: one job per experiment in parallel (a finished job's log can be
+# read while the others still run), then one merged artifact.
 on:
   push:
     branches: [modeltrace-pair]
@@ -12,37 +12,23 @@ concurrency:
 env:
   PYTHONUNBUFFERED: "1"
 jobs:
-  smoke:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install -q -r requirements.txt
-      - name: smoke pass (one cluster fit)
-        run: python research/pair_v4_cov.py weighted outside
   run:
-    needs: smoke
     runs-on: ubuntu-latest
     timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
-        exp: ["auto lobo", "auto codex_env", "auto env", "auto outside",
-              "weighted lobo", "weighted codex_env", "weighted env", "weighted outside",
-              "weighted_score lobo", "weighted_score codex_env", "weighted_score env", "weighted_score outside"]
+        exp: ["python research/sol_pair.py why2"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install -q -r requirements.txt
-      - name: experiment ${{ matrix.exp }}
+      - name: ${{ matrix.exp }}
         run: |
           mkdir -p results
-          python research/pair_v4_cov.py ${{ matrix.exp }} 2>&1 | tee "results/v4cov_$(echo "${{ matrix.exp }}" | tr " " _).log"
+          ${{ matrix.exp }} 2>&1 | tee "results/job_${{ strategy.job-index }}.log"
       - name: upload
         if: always()
         uses: actions/upload-artifact@v4
@@ -50,18 +36,3 @@ jobs:
           name: res-${{ strategy.job-index }}
           path: results/
           if-no-files-found: warn
-  collect:
-    needs: run
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          path: all
-          pattern: res-*
-          merge-multiple: true
-      - run: ls -la all
-      - uses: actions/upload-artifact@v4
-        with:
-          name: all-results
-          path: all/

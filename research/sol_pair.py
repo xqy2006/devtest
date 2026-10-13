@@ -4,6 +4,10 @@ All features are the clean ones of run 4 (every response cut to CLEAN_T = 990 nu
 are constant in the references left out, query features clipped to the reference range).
 
 Experiments:
+  why2       (run 8) readable statistics of every response (value ranges, last digits, repeats, jumps,
+             first vs last 100): where the misjudged Sol responses sit between correct Sol and Astra,
+             how much the prompt decides it (same prompt in both splits), and a discriminant on these
+             statistics only.
   why        diagnosis, nothing here is used to score a query.
              (a) the frozen library cluster model (no pilot rows at all) on four 250-number windows:
                  does it see test-split Sol responses as more Astra-like than development-split Sol
@@ -413,6 +417,128 @@ def exp_fix(variant, with_loeo):
                       "summary": report(f"fix:{variant}", D, ctx, ("loeo",))}
 
 
+def interp_stats(x):
+    """Readable statistics of one response (numbers only), for explaining the decisions."""
+    x = np.asarray(x, int)
+    f, n = x.astype(float), len(x)
+    d = np.diff(f)
+    cnt = np.bincount(x, minlength=400)
+    last, gap = {}, np.full(n, n, float)
+    for t, v in enumerate(x):
+        if v in last:
+            gap[t] = t - last[v]
+        last[v] = t
+    s = {"mean": f.mean(), "sd": f.std(), "skew": float(((f - f.mean()) ** 3).mean() / f.std() ** 3)}
+    for k in range(10):
+        s[f"share {int(k * 35.5) + 1}-{int((k + 1) * 35.5)}"] = np.mean((f - 1) // 35.5 == k)
+    for lo, hi in ((1, 9), (10, 99), (100, 199), (200, 299), (300, 355)):
+        s[f"share {lo}-{hi}"] = np.mean((x >= lo) & (x <= hi))
+    for u in range(10):
+        s[f"last digit {u}"] = np.mean(x % 10 == u)
+    s["multiple of 5"] = np.mean(x % 5 == 0)
+    s["repdigit (11, 22, 111..)"] = np.mean(np.isin(x, [11, 22, 33, 44, 55, 66, 77, 88, 99, 111, 222, 333]))
+    s["distinct values / 355"] = np.count_nonzero(cnt[1:356]) / 355
+    s["top-10 values share"] = np.sort(cnt)[-10:].sum() / n
+    s["max count of one value"] = cnt.max()
+    for w in (5, 20, 100):
+        s[f"repeat within {w}"] = np.mean(gap[1:] <= w)
+    s["median gap to same value"] = float(np.median(gap[gap < n])) if (gap < n).any() else n
+    s["mean |jump|"] = np.abs(d).mean()
+    s["|jump| <= 10"] = np.mean(np.abs(d) <= 10)
+    s["|jump| >= 200"] = np.mean(np.abs(d) >= 200)
+    s["up-down alternation"] = np.mean(np.sign(d[1:]) * np.sign(d[:-1]) < 0)
+    s["lag-1 autocorrelation"] = float(np.corrcoef(f[:-1], f[1:])[0, 1])
+    s["same last digit as previous"] = np.mean(x[1:] % 10 == x[:-1] % 10)
+    s["same hundred as previous"] = np.mean(x[1:] // 100 == x[:-1] // 100)
+    s["mean of first 100"], s["mean of last 100"] = f[:100].mean(), f[-100:].mean()
+    s["sd of first 100"], s["sd of last 100"] = f[:100].std(), f[-100:].std()
+    return {k: float(v) for k, v in s.items()}
+
+
+def exp_why2():
+    """Which readable properties make the misjudged Sol responses look like Astra?"""
+    sv = Saver("sol_why2")
+    ctx = Context(CLEAN_T, True)
+    y, env, split = ctx.y, ctx.env, ctx.split
+    test = split == "test"
+    meta = row_meta(ctx.rows)
+    D = devtest(ctx)["dense+score+win0lib"]  # each row scored by a model fitted on the other split
+    seqs = [r["numbers"][:CLEAN_T] for r in ctx.rows]
+    st = [interp_stats(x) for x in seqs]
+    names = list(st[0])
+    T = np.array([[s[k] for k in names] for s in st])
+    bad = (y == 1) & (D <= 0)
+    grp = {"A dev": (y == 0) & ~test, "A test": (y == 0) & test, "S dev ok": (y == 1) & ~test & ~bad,
+           "S dev bad": (y == 1) & ~test & bad, "S test ok": (y == 1) & test & ~bad, "S test bad": (y == 1) & test & bad}
+    print(f"GROUPS {json.dumps({k: int(v.sum()) for k, v in grp.items()})}", flush=True)
+    # pooled within-(label, split) sd, label effect, environment consistency, prompt dependence
+    cell = [(y == c) & (split == s) for c in (0, 1) for s in ("development", "test")]
+    resid = np.vstack([T[m] - T[m].mean(0) for m in cell])
+    sd = resid.std(0) + 1e-12
+    envs = sorted(set(env))
+    pairs = []
+    for e in envs:
+        for h in sorted(set(meta["sha"][env == e])):
+            q = (y == 1) & (env == e) & (meta["sha"] == h)
+            if (q & ~test).sum() == 1 and (q & test).sum() == 1:
+                pairs.append((np.flatnonzero(q & ~test)[0], np.flatnonzero(q & test)[0]))
+    pairs = np.array(pairs)
+    rows_out = []
+    for j, k in enumerate(names):
+        m = {g: float(T[v, j].mean()) for g, v in grp.items() if v.any()}
+        label_d = (T[y == 1, j].mean() - T[y == 0, j].mean()) / sd[j]
+        env_agree = sum(np.sign(T[(y == 1) & (env == e), j].mean() - T[(y == 0) & (env == e), j].mean()) == np.sign(label_d) for e in envs)
+        # where do the misjudged Sol rows sit, inside their own split: 0 = like correct Sol, 1 = like Astra
+        tow = {}
+        for s_, a_ in (("test", "A test"), ("dev", "A dev")):
+            ok, bd = m.get(f"S {s_} ok"), m.get(f"S {s_} bad")
+            tow[s_] = round((bd - ok) / (m[a_] - ok), 2) if None not in (ok, bd) and abs(m[a_] - ok) > 1e-12 else None
+        bad_vs_ok_d = (T[bad, j].mean() - T[(y == 1) & ~bad, j].mean()) / sd[j]
+        prompt_r = float(np.corrcoef(T[pairs[:, 0], j], T[pairs[:, 1], j])[0, 1]) if len(pairs) > 2 else None
+        rows_out.append({"stat": k, "label_d (Sol-Astra)/sd": round(float(label_d), 3), "envs_agreeing": f"{env_agree}/{len(envs)}",
+                         "bad_vs_ok_Sol_d": round(float(bad_vs_ok_d), 3), "bad_Sol_towards_Astra (test, dev)": [tow["test"], tow["dev"]],
+                         "sol_prompt_pair_r": None if prompt_r is None else round(prompt_r, 2),
+                         "means": {g: round(v, 4) for g, v in m.items()}})
+    rows_out.sort(key=lambda r: -abs(r["label_d (Sol-Astra)/sd"]))
+    sv["stats"] = rows_out
+    for r in rows_out:
+        print(f"STAT {r['stat']:30} label d {r['label_d (Sol-Astra)/sd']:+.2f} ({r['envs_agreeing']} envs) | misjudged Sol vs correct Sol d "
+              f"{r['bad_vs_ok_Sol_d']:+.2f}, towards Astra (test, dev) {r['bad_Sol_towards_Astra (test, dev)']} | prompt-pair r "
+              f"{r['sol_prompt_pair_r']} | means {json.dumps(r['means'])}", flush=True)
+    # the decision itself: prompt dependence of Sol decisions (same prompt, other split)
+    r_dec = float(np.corrcoef(D[pairs[:, 0]], D[pairs[:, 1]])[0, 1])
+    both_bad = int(np.sum(bad[pairs[:, 0]] & bad[pairs[:, 1]]))
+    sv["decision_prompt_pairs"] = {"pairs": len(pairs), "r": round(r_dec, 3), "both_misjudged": both_bad,
+                                   "dev_bad": int(bad[pairs[:, 0]].sum()), "test_bad": int(bad[pairs[:, 1]].sum())}
+    print(f"PROMPT-PAIRS Sol decision dev vs test, same prompt: {json.dumps(sv.data['decision_prompt_pairs'])}", flush=True)
+    # a readable discriminant on these statistics only: does it make the same Sol errors, and why
+    yb = y
+    for ref, te in folds(env, split).get("devtest", []):
+        mu, s0 = T[ref].mean(0), T[ref].std(0) + 1e-12
+        lda = LDA(solver="lsqr", shrinkage="auto").fit((T[ref] - mu) / s0, yb[ref])
+        z = (T[te] - mu) / s0
+        dd = lda.decision_function(z)
+        mid = ((T[ref][yb[ref] == 0].mean(0) + T[ref][yb[ref] == 1].mean(0)) / 2 - mu) / s0
+        contrib = lda.coef_[0] * (z - mid)
+        tag = f"{split[ref[0]][:3]}->{split[te[0]][:4]}"
+        yt = yb[te]
+        badq = (yt == 1) & (dd <= 0)
+        print(f"READABLE-LDA {tag}: auc {auc(dd, yt):.3f} recall A {np.mean(dd[yt == 0] <= 0):.3f} S {np.mean(dd[yt == 1] > 0):.3f}; "
+              f"agreement with the main model on Sol: {np.mean((dd[yt == 1] > 0) == (D[te][yt == 1] > 0)):.3f}", flush=True)
+        if badq.any():
+            avg = contrib[badq].mean(0)
+            top = np.argsort(avg)[:10]
+            print(f"READABLE-LDA {tag} misjudged Sol, stats pushing towards Astra: " + "; ".join(
+                f"{names[i]} {avg[i]:+.2f}" for i in top), flush=True)
+    # raw beginnings of the misjudged test Sol responses and of their same-prompt development responses
+    for i in np.flatnonzero(grp["S test bad"]):
+        pr = pairs[pairs[:, 1] == i]
+        j = pr[0, 0] if len(pr) else None
+        print(f"SEQ test Sol row {i} env {env[i][-2:]} decision {D[i]:+.2f}: {seqs[i][:40]}", flush=True)
+        if j is not None:
+            print(f"SEQ   same prompt, dev Sol row {j} decision {D[j]:+.2f}: {seqs[j][:40]}", flush=True)
+
+
 def exp_curve(kind, n, draw, variant):
     """Reference-count curve of one fix variant (LOEO). kind env: the references are all rows of n
     random other environments; kind rep: n random rows per label from each of the 11 other
@@ -448,6 +574,8 @@ def run_one(spec):
     log(f"experiment {spec} (smoke={SMOKE})")
     if spec == "why":
         exp_why()
+    elif spec == "why2":
+        exp_why2()
     elif spec.startswith("fix:"):
         v = spec[4:]
         with_loeo = v.endswith(":loeo")
