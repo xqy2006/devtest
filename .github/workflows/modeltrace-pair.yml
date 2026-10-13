@@ -1,6 +1,7 @@
 name: modeltrace-pair
-# One push of the RUN file = one run: a quick smoke pass of every experiment, then all
-# experiments in parallel, then one merged artifact (all-results).
+# One push of the RUN file = one run: a quick smoke pass, then the experiments in parallel, then one
+# merged artifact (all-results). Every job edits one comment on issue LIVE_ISSUE with the tail of its
+# log every minute, because the API does not serve the logs of running jobs.
 on:
   push:
     branches: [modeltrace-pair]
@@ -9,8 +10,13 @@ on:
 concurrency:
   group: modeltrace-pair
   cancel-in-progress: false
+permissions:
+  contents: read
+  issues: write
 env:
   PYTHONUNBUFFERED: "1"
+  LIVE_ISSUE: "1"
+  GH_TOKEN: ${{ github.token }}
 jobs:
   smoke:
     runs-on: ubuntu-latest
@@ -24,9 +30,7 @@ jobs:
       - name: smoke pass (tiny sizes)
         env:
           SMOKE: "1"
-        run: |
-          python research/curve_pair.py diag len:990:clean len:990:cleanb ref:3:0:clean rep:2:0:clean
-          python research/curve_pair.py merge results
+        run: bash research/live.sh smoke python research/sol_pair.py why fix:base fix:re:envwave:4:loeo
   run:
     needs: smoke
     runs-on: ubuntu-latest
@@ -34,9 +38,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["diag len:990:clean len:990:cleanb len:990",
-              "ref:3:0:clean ref:6:0:clean ref:9:0:clean rep:2:0:clean rep:4:0:clean",
-              "ref:3:1:clean ref:6:1:clean ref:9:1:clean rep:2:1:clean rep:4:1:clean"]
+        exp: ["why",
+              "fix:base fix:rank:0 fix:rank:6",
+              "fix:re:env:1 fix:re:env:4 fix:re:envwave:1 fix:re:envwave:4 fix:re:envwave:16"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -45,20 +49,7 @@ jobs:
       - run: pip install -q -r requirements.txt
       - name: experiment ${{ matrix.exp }}
         timeout-minutes: 340
-        shell: bash
-        run: |
-          mkdir -p results
-          tag=$(echo "${{ matrix.exp }}" | tr ': ' '_-')
-          if [ "${{ matrix.exp }}" = prereg_adapt ]; then
-            python research/pilot_long_eval.py data/pilot_4router_1000 --adapt 2>&1 | tee results/prereg_adapt.log
-            cp research/out_pilot_long.json results/prereg_adapt.json
-          elif [[ "${{ matrix.exp }}" == stack:* ]]; then
-            python research/stack_pair.py fold "${tag#stack_}" 2>&1 | tee "results/$tag.log"
-          elif [[ "${{ matrix.exp }}" =~ ^(ref|rep|len|libwin|diag) ]]; then
-            python research/curve_pair.py ${{ matrix.exp }} 2>&1 | tee "results/curve_$tag.log"
-          else
-            python research/runner_pair.py "${{ matrix.exp }}" 2>&1 | tee "results/$tag.log"
-          fi
+        run: bash research/live.sh "${{ matrix.exp }}" python research/sol_pair.py ${{ matrix.exp }}
       - name: upload
         if: always()
         uses: actions/upload-artifact@v4
@@ -71,23 +62,12 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install -q -r requirements.txt
       - uses: actions/download-artifact@v4
         with:
           path: all
           pattern: res-*
           merge-multiple: true
-      - name: merge curve results
-        run: |
-          mkdir -p results && cp all/curve_*.json results/ 2>/dev/null || true
-          cp data/run3/curve_*.json results/ 2>/dev/null || true
-          python research/curve_pair.py merge results 2>&1 | tee all/curve.log || true
-          cp results/curve.json all/ 2>/dev/null || true
-          ls -la all
+      - run: ls -la all
       - uses: actions/upload-artifact@v4
         with:
           name: all-results

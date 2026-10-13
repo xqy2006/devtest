@@ -103,6 +103,8 @@ class Context:
             assert len({len(x) for x in seqs}) == 1, "clean mode needs t <= the shortest response"
         F = family_matrix(seqs, list(V3))
         self.Xd = np.hstack([F[f] for f in V3])
+        self.fam = [(f, F[f].shape[1]) for f in V3]  # column blocks of Xd, for diagnosis
+        self.fit_override = None  # optional fit(X, w, y, env, ref) -> dec, used by sol_pair.py
         self.wd = np.concatenate([np.full(F[f].shape[1], 1 / np.sqrt(F[f].shape[1])) for f in V3])
         self.st = FS.Steps(seqs)
         self.win0 = np.array([d["local"] for d in library_window()])
@@ -117,7 +119,9 @@ class Context:
         Us = np.hstack(cols)
         wu = np.concatenate([np.full(c.shape[1], 1 / np.sqrt(c.shape[1])) for c in cols])
 
-        if self.clean:
+        if self.fit_override is not None:
+            fit = self.fit_override
+        elif self.clean:
             fit = (lambda *a: lda_fit_clean(*a, batch=self.split)) if self.batch else lda_fit_clean
         else:
             fit = lambda *a: lda_fit(*a, 0.1)[0]  # noqa: E731
