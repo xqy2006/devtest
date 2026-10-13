@@ -400,7 +400,10 @@ def exp_fix(variant, with_loeo):
     sv = Saver(f"sol_fix:{variant}{':loeo' if with_loeo else ''}")
     ctx = Context(CLEAN_T, True)
     meta = row_meta(ctx.rows)
-    ctx.fit_override = make_fit(variant, ctx, meta["minute"])
+    fit, _, sg = variant.partition("@")  # optional @val.dg.pb.j1: Fisher-score groups of the score source
+    if sg:
+        ctx.sg = tuple(sg.split("."))
+    ctx.fit_override = make_fit(fit, ctx, meta["minute"])
     D = devtest(ctx)
     sv["devtest"] = {"decisions": {k: v.round(4).tolist() for k, v in D.items()},
                      "summary": report(f"fix:{variant}", D, ctx)}

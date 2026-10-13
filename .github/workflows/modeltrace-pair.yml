@@ -1,7 +1,6 @@
 name: modeltrace-pair
-# One push of the RUN file = one run: a quick smoke pass, then the experiments in parallel, then one
-# merged artifact (all-results). Every job edits one comment on issue LIVE_ISSUE with the tail of its
-# log every minute, because the API does not serve the logs of running jobs.
+# One push of the RUN file = one run: a quick smoke pass, then one job per experiment in parallel
+# (a finished job's log can be read while the others still run), then one merged artifact.
 on:
   push:
     branches: [modeltrace-pair]
@@ -10,13 +9,8 @@ on:
 concurrency:
   group: modeltrace-pair
   cancel-in-progress: false
-permissions:
-  contents: read
-  issues: write
 env:
   PYTHONUNBUFFERED: "1"
-  LIVE_ISSUE: "1"
-  GH_TOKEN: ${{ github.token }}
 jobs:
   smoke:
     runs-on: ubuntu-latest
@@ -30,19 +24,18 @@ jobs:
       - name: smoke pass (tiny sizes)
         env:
           SMOKE: "1"
-        run: bash research/live.sh smoke python research/sol_pair.py fix:re:env:1:cv:loeo fix:re:none:0:1
+        run: python research/sol_pair.py fix:re:env:1:cv:loeo "fix:re:none:0:1@val.dg.pb.bd.jj:loeo"
   run:
     needs: smoke
     runs-on: ubuntu-latest
-    timeout-minutes: 355
+    timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
-        exp: ["fix:re:none:0:lw:loeo fix:re:none:0:0.95:loeo",
-              "fix:re:none:0:1:loeo fix:re:env:1:1:loeo",
-              "fix:re:env:1:0.5:loeo fix:re:env:1:0.8:loeo",
-              "fix:re:env:1:0.95:loeo fix:re:env:1:cv:loeo",
-              "fix:re:env:1:lw:loeo fix:re:none:0:cv:loeo"]
+        exp: ["fix:re:none:0:lw:loeo", "fix:re:none:0:0.95:loeo", "fix:re:none:0:1:loeo", "fix:re:none:0:cv:loeo",
+              "fix:re:env:1:lw:loeo", "fix:re:env:1:0.5:loeo", "fix:re:env:1:0.8:loeo", "fix:re:env:1:0.95:loeo",
+              "fix:re:env:1:1:loeo", "fix:re:env:1:cv:loeo",
+              "fix:re:env:1:cv@val.dg.pb.bd.jj:loeo", "fix:re:env:1:cv@val.j1.j2.dg.bd.jj.pb.cv:loeo"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -50,8 +43,9 @@ jobs:
           python-version: "3.12"
       - run: pip install -q -r requirements.txt
       - name: experiment ${{ matrix.exp }}
-        timeout-minutes: 340
-        run: bash research/live.sh "${{ matrix.exp }}" python research/sol_pair.py ${{ matrix.exp }}
+        run: |
+          mkdir -p results
+          python research/sol_pair.py "${{ matrix.exp }}" 2>&1 | tee "results/sol_$(echo '${{ matrix.exp }}' | tr ':@' '_-').log"
       - name: upload
         if: always()
         uses: actions/upload-artifact@v4

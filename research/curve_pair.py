@@ -105,6 +105,7 @@ class Context:
         self.Xd = np.hstack([F[f] for f in V3])
         self.fam = [(f, F[f].shape[1]) for f in V3]  # column blocks of Xd, for diagnosis
         self.fit_override = None  # optional fit(X, w, y, env, ref) -> dec, used by sol_pair.py
+        self.sg = SG  # Fisher-score groups of the score source (sol_pair.py may change them)
         self.wd = np.concatenate([np.full(F[f].shape[1], 1 / np.sqrt(F[f].shape[1])) for f in V3])
         self.st = FS.Steps(seqs)
         self.win0 = np.array([d["local"] for d in library_window()])
@@ -115,7 +116,7 @@ class Context:
         y, env = self.y, self.env
         theta0 = FS.fit_base(self.st, np.isin(np.arange(len(y)), ref), lam=G.SCORE_LAMBDA, maxiter=G.SCORE_MAXITER)
         U = FS.score_vectors(self.st, theta0)
-        cols = [U[:, FS.OFF[g]:FS.OFF[g] + FS.GROUPS[g]] for g in SG]
+        cols = [U[:, FS.OFF[g]:FS.OFF[g] + FS.GROUPS[g]] for g in self.sg]
         Us = np.hstack(cols)
         wu = np.concatenate([np.full(c.shape[1], 1 / np.sqrt(c.shape[1])) for c in cols])
 
