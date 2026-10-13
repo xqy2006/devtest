@@ -23,7 +23,14 @@ Experiments:
                           the reference groups g: env (prompt) or envwave (prompt and collection wave).
                           Waves are runs of reference collection times with gaps under 8 minutes,
                           found from the reference rows only. Directions in which prompts or waves
-                          move the responses are down-weighted instead of removed.
+                          move the responses are down-weighted instead of removed. g = none: no
+                          nuisance term.
+             re:<g>:<k>:<a>  (run 6) the same with the within-label covariance shrunk towards its mean
+                          variance by a fixed a (a = 1: nearest-centroid direction in the family-weighted
+                          space), a = lw Ledoit-Wolf, a = cv chosen per source from (lw, 0.5, 0.8, 0.95, 1)
+                          by the AUC of an inner leave-one-environment-out inside the references.
+             Run 5 found that re:env beats base across the splits through the covariance estimate (rank:0,
+             no projection, does not), i.e. through stronger shrinkage in the family-weighted space.
 
 Every experiment prints per-label results as soon as it finishes (worse label first), so the live log
 shows them while the job runs.
@@ -94,28 +101,53 @@ def fit_rank(X, w, y, env, ref, rank=2):
     return dec
 
 
-def fit_re(X, w, y, ref, nuis, kappa):
-    """Random-effects LDA. nuis: list of label arrays over all rows (only reference entries are read)."""
-    z, _ = standardize(X, w, ref)
-    Z, yr = z(ref), y[ref]
+ALPHAS = (None, 0.5, 0.8, 0.95, 1.0)  # None = Ledoit-Wolf
+
+
+def _re_direction(Z, yr, nuis_r, kappa, alpha):
     m0, m1 = Z[yr == 0].mean(0), Z[yr == 1].mean(0)
     C = np.vstack([Z[yr == 0] - m0, Z[yr == 1] - m1])
-    Sw = ledoit_wolf(C, assume_centered=True)[0]
+    if alpha is None:
+        Sw = ledoit_wolf(C, assume_centered=True)[0]
+    else:  # fixed shrinkage towards the mean variance; alpha = 1 is the nearest-centroid direction
+        S = C.T @ C / len(C)
+        Sw = (1 - alpha) * S + alpha * np.trace(S) / len(S) * np.eye(len(S))
     Sn = np.zeros_like(Sw)
-    for g in nuis:
-        gr = g[ref]
+    for gr in nuis_r:
         for c, mc in ((0, m0), (1, m1)):
             for v in sorted(set(gr[yr == c])):
                 s = (yr == c) & (gr == v)
                 d = Z[s].mean(0) - mc
                 Sn += s.sum() * np.outer(d, d) / len(yr)
     wv = np.linalg.solve(Sw + kappa * Sn, m1 - m0)
-    b = -wv @ (m0 + m1) / 2
+    return wv, -wv @ (m0 + m1) / 2
+
+
+def fit_re(X, w, y, ref, nuis, kappa, alpha=None, env=None):
+    """Random-effects LDA. nuis: list of label arrays over all rows (only reference entries are read).
+    alpha: covariance shrinkage (None = Ledoit-Wolf, a number = fixed, "cv" = chosen from ALPHAS by
+    the AUC of an inner leave-one-environment-out inside the references)."""
+    z, _ = standardize(X, w, ref)
+    Z, yr, er = z(ref), y[ref], env[ref] if env is not None else None
+    nr = [g[ref] for g in nuis]
+    if alpha == "cv":
+        best = None
+        for a in ALPHAS:
+            o = np.zeros(len(yr))
+            for e in sorted(set(er)):
+                tr = er != e
+                wv, b = _re_direction(Z[tr], yr[tr], [g[tr] for g in nr], kappa, a)
+                o[~tr] = Z[~tr] @ wv + b
+            s = auc(o, yr)
+            if best is None or s >= best[0]:  # ties go to the stronger shrinkage
+                best = (s, a)
+        alpha = best[1]
+    wv, b = _re_direction(Z, yr, nr, kappa, alpha)
     return lambda idx: z(idx) @ wv + b
 
 
 def make_fit(variant, ctx, minute):
-    """variant: base | rank:<r> | re:env:<k> | re:envwave:<k>"""
+    """variant: base | rank:<r> | re:<env|envwave|none>:<kappa>[:<alpha|lw|cv>]"""
     p = variant.split(":")
     if p[0] == "base":
         return lda_fit_clean
@@ -123,14 +155,15 @@ def make_fit(variant, ctx, minute):
         return lambda X, w, y, env, ref: fit_rank(X, w, y, env, ref, int(p[1]))
     if p[0] == "re":
         kappa = float(p[2])
+        alpha = None if len(p) < 4 or p[3] == "lw" else "cv" if p[3] == "cv" else float(p[3])
 
         def fit(X, w, y, env, ref):
-            nuis = [env]
+            nuis = [] if p[1] == "none" else [env]
             if p[1] == "envwave":
                 wv = np.full(len(y), -1)
                 wv[ref] = waves(minute[ref])  # from the reference collection times only
                 nuis.append(wv)
-            return fit_re(X, w, y, ref, nuis, kappa)
+            return fit_re(X, w, y, ref, nuis, kappa, alpha, env)
         return fit
     raise ValueError(variant)
 

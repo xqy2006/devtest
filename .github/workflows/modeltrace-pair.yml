@@ -30,7 +30,7 @@ jobs:
       - name: smoke pass (tiny sizes)
         env:
           SMOKE: "1"
-        run: bash research/live.sh smoke python research/sol_pair.py why fix:base fix:re:envwave:4:loeo
+        run: bash research/live.sh smoke python research/sol_pair.py fix:re:env:1:cv:loeo fix:re:none:0:1
   run:
     needs: smoke
     runs-on: ubuntu-latest
@@ -38,9 +38,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["why",
-              "fix:base fix:rank:0 fix:rank:6",
-              "fix:re:env:1 fix:re:env:4 fix:re:envwave:1 fix:re:envwave:4 fix:re:envwave:16"]
+        exp: ["fix:re:none:0:lw:loeo fix:re:none:0:0.95:loeo",
+              "fix:re:none:0:1:loeo fix:re:env:1:1:loeo",
+              "fix:re:env:1:0.5:loeo fix:re:env:1:0.8:loeo",
+              "fix:re:env:1:0.95:loeo fix:re:env:1:cv:loeo",
+              "fix:re:env:1:lw:loeo fix:re:none:0:cv:loeo"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
