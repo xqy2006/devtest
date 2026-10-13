@@ -8,6 +8,8 @@ Experiments:
              first vs last 100): where the misjudged Sol responses sit between correct Sol and Astra,
              how much the prompt decides it (same prompt in both splits), and a discriminant on these
              statistics only.
+  tilt:<v>   (run 9) refit on 15 random 75% subsets of the reference split: does the one-sided error
+             flip with the reference subset (a random tilt of the boundary) or stay on Sol?
   why        diagnosis, nothing here is used to score a query.
              (a) the frozen library cluster model (no pilot rows at all) on four 250-number windows:
                  does it see test-split Sol responses as more Astra-like than development-split Sol
@@ -539,6 +541,46 @@ def exp_why2():
             print(f"SEQ   same prompt, dev Sol row {j} decision {D[j]:+.2f}: {seqs[j][:40]}", flush=True)
 
 
+def exp_tilt(variant, reps=15, frac=0.75):
+    """Is the one-sided error (Sol in development -> test, Astra in test -> development) a random tilt
+    of the decision boundary from fitting on 72 references? Refit on random 75% subsets of the
+    reference split (stratified by label) and look at how the per-label recall and the offset of the
+    query midpoint move between subsets."""
+    sv = Saver(f"sol_tilt:{variant}")
+    ctx = Context(CLEAN_T, True)
+    meta = row_meta(ctx.rows)
+    ctx.fit_override = make_fit(variant, ctx, meta["minute"])
+    y = ctx.y
+    rng = np.random.default_rng(7)
+    out = []
+    for ref, te in folds(ctx.env, ctx.split).get("devtest", []):
+        tag = f"{ctx.split[ref[0]][:3]}->{ctx.split[te[0]][:4]}"
+        for r in range(reps + 1):
+            sub = ref if r == 0 else np.sort(np.concatenate(
+                [rng.choice(ref[y[ref] == c], int(frac * np.sum(y[ref] == c)), replace=False) for c in (0, 1)]))
+            d = ctx.fold(sub, te)["dense+score+win0lib"]
+            yt = y[te]
+            ma, ms = float(np.median(d[yt == 0])), float(np.median(d[yt == 1]))
+            rec = {"direction": tag, "subset": r, "n_ref": len(sub),
+                   "recall_astra": round(float(np.mean(d[yt == 0] <= 0)), 3), "recall_sol": round(float(np.mean(d[yt == 1] > 0)), 3),
+                   "auc": round(auc(d, yt), 3),
+                   "midpoint_offset_over_half_gap": round(((ma + ms) / 2) / ((ms - ma) / 2 + 1e-9), 3)}
+            out.append(rec)
+            sv["subsets"] = out
+            print(f"TILT {variant:14} {tag} subset {r:2} n_ref {len(sub)} | recall A {rec['recall_astra']:.3f} S {rec['recall_sol']:.3f} "
+                  f"(S-A {rec['recall_sol'] - rec['recall_astra']:+.3f}) | auc {rec['auc']:.3f} | midpoint offset {rec['midpoint_offset_over_half_gap']:+.2f}", flush=True)
+    for tag in sorted({o["direction"] for o in out}):
+        q = [o for o in out if o["direction"] == tag and o["subset"] > 0]
+        diff = np.array([o["recall_sol"] - o["recall_astra"] for o in q])
+        off = np.array([o["midpoint_offset_over_half_gap"] for o in q])
+        s = {"S-A recall mean": round(float(diff.mean()), 3), "sd": round(float(diff.std()), 3),
+             "subsets with Sol worse": int((diff < 0).sum()), "subsets with Astra worse": int((diff > 0).sum()),
+             "midpoint offset mean": round(float(off.mean()), 3), "sd ": round(float(off.std()), 3),
+             "auc mean": round(float(np.mean([o["auc"] for o in q])), 3)}
+        sv[f"summary {tag}"] = s
+        print(f"TILT-SUMMARY {variant:14} {tag} {json.dumps(s)}", flush=True)
+
+
 def exp_curve(kind, n, draw, variant):
     """Reference-count curve of one fix variant (LOEO). kind env: the references are all rows of n
     random other environments; kind rep: n random rows per label from each of the 11 other
@@ -576,6 +618,8 @@ def run_one(spec):
         exp_why()
     elif spec == "why2":
         exp_why2()
+    elif spec.startswith("tilt:"):  # tilt:<variant>, e.g. tilt:base or tilt:re:env:1:lw
+        exp_tilt(spec[5:])
     elif spec.startswith("fix:"):
         v = spec[4:]
         with_loeo = v.endswith(":loeo")
