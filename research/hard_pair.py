@@ -32,7 +32,16 @@ Experiments (one job each):
           Per label: correlation of the two half decisions (raw and within environment), P(second half
           misjudged | first half misjudged) vs P(second half misjudged | first half correct).
 
-Usage: python research/hard_pair.py oof | halves
+Run 12 (after run 11 found that the evidence sits in the first half and that only the low-dimensional
+readable statistics carry information the model misses):
+  prefix              the model refitted on numbers [0,10), [0,20), [0,40), [0,80) and [40,125) only (LOEO and
+                      outside): how much of the evidence the opening carries.
+  readable:<mode>     a readable-statistics discriminant (interp_stats without the repeat-based statistics,
+                      standardized, environment projection, shrinkage LDA) either replacing the distribution
+                      component (mode replace) or as a fourth component (mode add); weights by the same inner
+                      leave-one-environment-out; v4 refitted in the same run for a paired comparison.
+
+Usage: python research/hard_pair.py oof | halves | prefix | readable:replace | readable:add
 """
 from __future__ import annotations
 
@@ -501,7 +510,123 @@ def exp_halves():
     save(name, "summary", out)
 
 
+# ----------------------------------------------------------------------------- run 12
+
+WINDOWS = ((0, 10), (0, 20), (0, 40), (0, 80), (40, 125))
+
+
+def exp_prefix():
+    """How much of the evidence sits in the opening: the model refitted on numbers [a, b) only."""
+    name = "prefix"
+    both = np.concatenate([TR, OUT_ROWS])
+    out = {}
+    for a, b in WINDOWS:
+        rows_w = {int(i): dict(p.rows[i], numbers=seq(i)[a:b]) for i in both}
+        v = np.full(len(p.rows), np.nan)
+        for fname, ref, te in [(e, TR[p.env[TR] != e], TR[p.env[TR] == e]) for e in ENVS] + [("outside", TR, OUT_ROWS)]:
+            cl = G.fit_cluster([rows_w[int(i)] for i in ref], p.classes, [A, S])
+            for i in te:
+                s = G.local_logits(cl, rows_w[int(i)]["numbers"])
+                v[i] = s[IS] - s[IA]
+        for tag, idx in (("train (LOEO)", TR), ("outside", OUT_ROWS)):
+            r = label_metrics(v, idx)
+            out[f"{tag} [{a},{b})"] = r
+            print(f"PREFIX {tag:12} numbers [{a:3},{b:3}) k1 A {r['recall_astra']:.3f} S {r['recall_sol']:.3f} worst {r['k1_worst']:.3f} | "
+                  f"k3_all A {r['k3_all_astra']:.3f} S {r['k3_all_sol']:.3f} worst {r['k3_all_worst']:.3f} | auc {r['auc']:.3f}", flush=True)
+        save(name, "summary", out)
+        save(name, f"decisions [{a},{b})", {str(i): round(float(v[i]), 4) for i in both})
+
+
+# readable statistics without the repeat-based ones (a repeat is a rare event in 218-300 numbers)
+REPEAT_BASED = ("distinct values / 355", "top-10 values share", "max count of one value", "repeat within 5",
+                "repeat within 20", "repeat within 100", "median gap to same value")
+
+
+def exp_readable(mode):
+    """The one candidate change suggested by run 11: a low-dimensional readable-statistics discriminant.
+    mode replace: it replaces the distribution component (high-dimensional histograms); mode add: it is a
+    fourth component. Everything else as fit_cluster; weights by the same inner leave-one-environment-out."""
+    name = f"readable_{mode}"
+    both = np.concatenate([TR, OUT_ROWS])
+    XR, nr = stat_matrix(interp_stats, both)
+    cols = [j for j, k in enumerate(nr) if k not in REPEAT_BASED]
+    XR = XR[:, cols]
+    wR = np.full(len(cols), 1 / np.sqrt(len(cols)))
+    log(f"readable statistics used: {[nr[j] for j in cols]}")
+    d = np.full(len(p.rows), np.nan)
+    base = np.full(len(p.rows), np.nan)
+    weights = []
+    for fname, ref, te in [(e, TR[p.env[TR] != e], TR[p.env[TR] == e]) for e in ENVS] + [("outside", TR, OUT_ROWS)]:
+        rows = [p.rows[i] for i in ref]
+        member_ids = [p.classes[k] for k in MEM]
+        y = np.array([member_ids.index(r["source"]) for r in rows])
+        env = np.array([r["condition_id"] for r in rows])
+        seqs = [seq(i) for i in ref]
+        steps = FS.Steps(seqs)
+        theta = FS.fit_base(steps, lam=G.SCORE_LAMBDA, maxiter=G.SCORE_MAXITER)
+        U = FS.score_vectors(steps, theta)[:, G._score_columns(G.SCORE_GROUPS)]
+        del steps
+        comp = np.zeros((len(ref), 4))  # distribution, branch, score, readable (Sol - Astra)
+        for e in sorted(set(env)):
+            keep = env != e
+            tr = [r for r, k in zip(rows, keep) if k]
+            loc = G.fit_local(tr, p.classes, [A, S])
+            br = G.fit_branch([r["numbers"] for r in tr], y[keep].tolist(), 2)
+            sloc = G.fit_score_local(U[keep], y[keep], env[keep])
+            rdec = lda_fit_clean(XR, wR, yb, p.env, ref[keep])
+            for i in np.flatnonzero(~keep):
+                x = rows[i]["numbers"]
+                Dv, Bv, Fv = G._dense_logits(loc, x), G.branch_scores(br, x, 2), G._score_logits_from_vector(sloc, U[i])
+                comp[i, :3] = Dv[IS] - Dv[IA], Bv[IS] - Bv[IA], Fv[IS] - Fv[IA]
+            comp[~keep, 3] = rdec(ref[~keep])
+        use = (3, 1, 2) if mode == "replace" else (0, 1, 2, 3)
+
+        def nll(w, use_=use):
+            s = comp[:, use_] @ w  # log-odds of Sol (two classes)
+            return -(np.where(y == IS, s, 0) - np.logaddexp(0, s)).sum() + 1e-3 * (w ** 2).sum()
+
+        def nll_base(w):
+            s = comp[:, :3] @ w
+            return -(np.where(y == IS, s, 0) - np.logaddexp(0, s)).sum() + 1e-3 * (w ** 2).sum()
+        w = minimize(nll, np.ones(len(use)), method="L-BFGS-B").x
+        wb = minimize(nll_base, np.ones(3), method="L-BFGS-B").x
+        weights.append({"fold": fname, "w": dict(zip([("distribution", "branch", "score", "readable")[k] for k in use], np.round(w, 3).tolist())),
+                        "w_base": np.round(wb, 3).tolist()})
+        cl = G.fit_local(rows, p.classes, [A, S])
+        brf = G.fit_branch([r["numbers"] for r in rows], y.tolist(), 2)
+        slocf = G.fit_score_local(U, y, env)
+        rdec = lda_fit_clean(XR, wR, yb, p.env, ref)
+        Ute = FS.score_vectors(FS.Steps([seq(i) for i in te]), theta)[:, G._score_columns(G.SCORE_GROUPS)]
+        qc = np.zeros((len(te), 4))
+        for k, i in enumerate(te):
+            x = seq(i)
+            Dv, Bv, Fv = G._dense_logits(cl, x), G.branch_scores(brf, x, 2), G._score_logits_from_vector(slocf, Ute[k])
+            qc[k, :3] = Dv[IS] - Dv[IA], Bv[IS] - Bv[IA], Fv[IS] - Fv[IA]
+        qc[:, 3] = rdec(te)
+        d[te] = qc[:, use] @ w
+        base[te] = qc[:, :3] @ wb
+        log(f"fold {fname}: weights {weights[-1]}, recall A/S new {np.round(recall(d, te), 3).tolist()} base {np.round(recall(base, te), 3).tolist()}")
+    save(name, "weights", weights)
+    out = {}
+    for tag, idx in (("train (LOEO)", TR), ("outside", OUT_ROWS)):
+        for lab, v in (("v4 (same run)", base), (f"readable {mode}", d)):
+            r = label_metrics(v, idx)
+            out[f"{tag} {lab}"] = r
+            print(f"READABLE {tag:12} {lab:18} k1 A {r['recall_astra']:.3f} S {r['recall_sol']:.3f} worst {r['k1_worst']:.3f} | "
+                  f"k3_all A {r['k3_all_astra']:.3f} S {r['k3_all_sol']:.3f} worst {r['k3_all_worst']:.3f} | auc {r['auc']:.3f}", flush=True)
+        # paired difference in worst-label k3 and AUC, environment bootstrap
+        ci, pneg = boot_ci(lambda ni: auc(d[ni], yb[ni]) - auc(base[ni], yb[ni]), idx)
+        out[f"{tag} auc gain"] = {"ci": ci, "boot_share<=0": pneg}
+        print(f"READABLE {tag:12} AUC gain over v4: {round(auc(d[idx], yb[idx]) - auc(base[idx], yb[idx]), 3):+.3f} {ci} (boot P<=0 {pneg})", flush=True)
+    save(name, "summary", out)
+    save(name, "decisions", {str(i): [round(float(base[i]), 4), round(float(d[i]), 4)] for i in both})
+
+
 if __name__ == "__main__":
     log(f"rows: train {len(TR)} ({len(ENVS)} environments), outside {len(OUT_ROWS)}")
-    {"oof": exp_oof, "halves": exp_halves}[sys.argv[1]]()
+    arg = sys.argv[1]
+    if arg.startswith("readable:"):
+        exp_readable(arg.split(":")[1])
+    else:
+        {"oof": exp_oof, "halves": exp_halves, "prefix": exp_prefix}[arg]()
     log("done")

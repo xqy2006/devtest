@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/hard_pair.py oof", "python research/hard_pair.py halves"]
+        exp: ["python research/hard_pair.py prefix", "python research/hard_pair.py readable:replace", "python research/hard_pair.py readable:add"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
