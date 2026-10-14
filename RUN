@@ -10,3 +10,4 @@ run 9: 2026-10-13T09:07:25Z tilt: 15 random 75% reference subsets per direction,
 run 10: 2026-10-13T09:33:01Z batch: same references (one split, 6 random environments), queries = the other 6 environments from the same split vs from the other split, 20 halves; base vs covariance fix; 2 jobs
 run 11: 2026-10-14T11:34:19Z hard_pair: worst case at the original length (original data, v4 cluster): evidence parts of misjudged rows, residual information among rows called Astra, readable statistics, half-response consistency; 2 jobs
 run 12: 2026-10-14T12:04:45Z hard_pair: evidence in the opening (model refitted on the first 10/20/40/80 numbers and on 40-125) + readable-statistics discriminant replacing the distribution component or as a fourth component; 3 jobs
+run 13: 2026-10-14T12:06:03Z rerun of run 12 prefix (NaN family values on 10 numbers set to 0 in this experiment); 1 job

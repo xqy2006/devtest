@@ -520,6 +520,10 @@ def exp_prefix():
     name = "prefix"
     both = np.concatenate([TR, OUT_ROWS])
     out = {}
+    # some family statistics are undefined on a few numbers (run 12: NaN -> SVD failure at [0, 10)); this
+    # experiment only, the deliverable is unchanged
+    rf = G.response_features
+    G.response_features = lambda numbers, families=G.LOCAL_FAMILIES: np.nan_to_num(rf(numbers, families), nan=0.0, posinf=0.0, neginf=0.0)
     for a, b in WINDOWS:
         rows_w = {int(i): dict(p.rows[i], numbers=seq(i)[a:b]) for i in both}
         v = np.full(len(p.rows), np.nan)
