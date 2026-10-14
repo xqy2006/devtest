@@ -1,0 +1,507 @@
+"""Run 11: the worst case at the original length: GPT-6.1 Sol responses that the model calls GPT-6 Astra.
+
+Question (2026-10-14): with the original responses (218-300 numbers) and at most three of them, is a detail
+left that separates the Sol responses the model calls Astra from Astra, or does one Astra-typical part of
+the evidence pull them over?
+
+Data: the original data (extended_panel): Astra / Sol rows of the three training batches (427 rows, leave
+one environment out) and the two outside panels (scored by the model fitted on all training batches).
+Model: the deliverable v4 cluster model (gated_fingerprint.fit_cluster), unchanged. d = Sol logit - Astra
+logit; "misjudged Sol" = Sol with d <= 0.
+
+Experiments (one job each):
+  oof     (a) where each row's evidence comes from: the three components (distribution, branch, score) with
+              the model's weights, the distribution split by feature family, the score by group, the branch
+              evidence by context (anchored opening prefix vs the previous two numbers). Means for correct /
+              misjudged Astra and Sol; per-label recall and all-combination k3 with one part left out (same
+              fit, no refit).
+          (b) residual information in the worst case: among the rows the model calls Astra (d <= 0), is
+              anything left that separates the misjudged Sol rows from Astra? For every held-out environment,
+              a second-stage shrinkage LDA is fitted on the training environments' own d <= 0 rows (their d
+              from the inner leave-one-environment-out inside fit_cluster, so the held-out environment is
+              never used), and a logistic combination of d and that score on inner out-of-fold scores.
+              Reported among the held-out d <= 0 rows (misjudged Sol vs Astra): AUC of d alone, of the
+              second-stage score, of the combination, and an environment-bootstrap interval of the gain.
+              Mirror: d > 0 (misjudged Astra vs Sol). Feature sets: readable statistics, new sequence
+              statistics (coverage, band periodicity, surprisal under the shared model), the distribution
+              features, all Fisher-score groups, the score groups the model does not use.
+          (c) readable and new statistics: misjudged Sol vs Astra among d <= 0 rows after adjusting for d,
+              per-environment consistency, and the same on the outside panels.
+  halves  is "looking like Astra" a property of the whole response? The model fitted on first halves only
+          and on second halves only (leave one environment out; outside panels from all training batches).
+          Per label: correlation of the two half decisions (raw and within environment), P(second half
+          misjudged | first half misjudged) vs P(second half misjudged | first half correct).
+
+Usage: python research/hard_pair.py oof | halves
+"""
+from __future__ import annotations
+
+import json
+import sys
+import time
+import warnings
+from pathlib import Path
+
+import numpy as np
+from scipy.optimize import minimize
+from scipy.special import logsumexp
+from scipy.stats import spearmanr
+from sklearn.linear_model import LogisticRegression
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+warnings.filterwarnings("ignore")
+import research.gated_fingerprint as G  # noqa: E402
+from research import fisher_score as FS  # noqa: E402
+from research.curve_pair import k3_all, lda_fit_clean  # noqa: E402
+from research.data import PAIR_ROLE, extended_panel  # noqa: E402
+from research.runner_pair import auc  # noqa: E402
+from research.seqfeatures import SEQ_FAMILIES  # noqa: E402
+from research.sol_pair import interp_stats  # noqa: E402
+
+p = extended_panel()
+A, S = p.classes.index("gpt-6-astra"), p.classes.index("gpt-6.1-sol")
+MEM = sorted([A, S])
+IA, IS = MEM.index(A), MEM.index(S)  # positions in the member logit vectors
+TRB = ("train_original", "train_supplemental", PAIR_ROLE)
+OUTS = ("old_outside", "fresh_outside")
+pair = np.isin(p.y, [A, S])
+TR = np.flatnonzero(pair & np.isin(p.role, TRB))
+OUT_ROWS = np.flatnonzero(pair & np.isin(p.role, OUTS))
+yb = (p.y == S).astype(int)
+ENVS = sorted(set(p.env[TR]))
+T0 = time.time()
+RES = Path("results")
+RES.mkdir(exist_ok=True)
+SAVED: dict = {}
+
+
+def log(msg):
+    print(f"[{time.time() - T0:6.0f}s] {msg}", flush=True)
+
+
+def save(name, key, value):
+    SAVED[key] = value
+    (RES / f"hard_{name}.json").write_text(json.dumps(SAVED, indent=1))
+
+
+def seq(i):
+    return list(map(int, p.rows[i]["numbers"]))
+
+
+# ----------------------------------------------------------------------------- model with its inner evidence
+
+def fit_cluster_oof(rows):
+    """gated_fingerprint.fit_cluster (same steps), also returning the inner leave-one-environment-out
+    evidence (Sol - Astra) of its own reference rows, the combination weights and the shared model."""
+    model_ids, members = p.classes, [A, S]
+    member_ids = [model_ids[k] for k in MEM]
+    y = np.array([member_ids.index(r["source"]) for r in rows])
+    env = np.array([r["condition_id"] for r in rows])
+    K = len(member_ids)
+    seqs = [list(map(int, r["numbers"])) for r in rows]
+    steps = FS.Steps(seqs)
+    theta = FS.fit_base(steps, lam=G.SCORE_LAMBDA, maxiter=G.SCORE_MAXITER)
+    U = FS.score_vectors(steps, theta)[:, G._score_columns(G.SCORE_GROUPS)]
+    del steps
+    D, B, F = np.zeros((len(rows), K)), np.zeros((len(rows), K)), np.zeros((len(rows), K))
+    for e in sorted(set(env)):
+        keep = env != e
+        tr = [r for r, k in zip(rows, keep) if k]
+        loc = G.fit_local(tr, model_ids, members)
+        br = G.fit_branch([r["numbers"] for r in tr], [member_ids.index(r["source"]) for r in tr], K)
+        sloc = G.fit_score_local(U[keep], y[keep], env[keep])
+        for i in np.flatnonzero(env == e):
+            D[i] = G._dense_logits(loc, rows[i]["numbers"])
+            B[i] = G.branch_scores(br, rows[i]["numbers"], K)
+            F[i] = G._score_logits_from_vector(sloc, U[i])
+
+    def nll(w):
+        s = w[0] * D + w[1] * B + w[2] * F
+        return -(s[np.arange(len(y)), y] - logsumexp(s, axis=1)).sum() + 1e-3 * (w ** 2).sum()
+    w = minimize(nll, np.array([1.0, 1.0, 1.0]), method="L-BFGS-B").x
+    cl = G.fit_local(rows, model_ids, members)
+    cl["branch"] = G.fit_branch([r["numbers"] for r in rows], y.tolist(), K)
+    cl["score"] = {"theta": theta.tolist(), "local": G.fit_score_local(U, y, env)}
+    cl["combine"] = {"w_distribution": float(w[0]), "w_branch": float(w[1]), "w_score": float(w[2])}
+    inner = w[0] * (D[:, IS] - D[:, IA]) + w[1] * (B[:, IS] - B[:, IA]) + w[2] * (F[:, IS] - F[:, IA])
+    return cl, inner, w, theta
+
+
+FAM_DIM = {f: len(SEQ_FAMILIES[f](np.arange(1, 251))) for f in G.LOCAL_FAMILIES}
+
+
+def dense_parts(cl, x):
+    z = (G.response_features(x, cl["families"]) - np.asarray(cl["feature_mean"])) \
+        / np.asarray(cl["feature_scale"]) * np.asarray(cl["family_weight"])
+    basis = np.asarray(cl["nuisance_basis"]).reshape(-1, len(z))
+    z = z - (z @ basis.T) @ basis
+    coef, icp = np.asarray(cl["coef"]), np.asarray(cl["intercept"])
+    c = (coef[IS] - coef[IA]) * z
+    out, o = {}, 0
+    for f in cl["families"]:
+        out[f] = float(c[o:o + FAM_DIM[f]].sum())
+        o += FAM_DIM[f]
+    assert o == len(c)
+    out["intercept"] = float(icp[IS] - icp[IA])
+    return out
+
+
+def score_parts(loc, u):
+    z = (u - np.asarray(loc["feature_mean"])) / np.asarray(loc["feature_scale"]) * np.asarray(loc["group_weight"])
+    basis = np.asarray(loc["nuisance_basis"]).reshape(-1, len(z))
+    z = z - (z @ basis.T) @ basis
+    coef, icp = np.asarray(loc["coef"]), np.asarray(loc["intercept"])
+    c = (coef[IS] - coef[IA]) * z
+    out, o = {}, 0
+    for g in loc["groups"]:
+        out[g] = float(c[o:o + FS.GROUPS[g]].sum())
+        o += FS.GROUPS[g]
+    out["intercept"] = float(icp[IS] - icp[IA])
+    return out
+
+
+def branch_parts(branch, numbers):
+    """gated_fingerprint.branch_scores (Sol - Astra), split by context: previous two numbers (depth 2) and
+    the anchored opening prefix (depth 3), with the number of decision points that carried evidence."""
+    idx = G._branch_index(branch)
+    lam, support = branch["lambda"], branch["min_support"]
+    x = list(map(int, numbers))
+    out = {"bigram": 0.0, "prefix": 0.0, "n_bigram": 0, "n_prefix": 0}
+    zero = np.zeros(2)
+    for t, v in enumerate(x):
+        p0 = 1.0 / G.V
+        for depth, ctx in enumerate(G._branch_chain(x, t)):
+            if ctx is None:
+                continue
+            entry = idx.get(G._key(ctx))
+            if entry is None:
+                continue
+            row = entry[0].get(v)
+            nv = entry[1][row] if row is not None else zero
+            tot = entry[2]
+            p0 = (nv.sum() + lam * p0) / (tot.sum() + lam)
+            if depth >= 2 and tot.sum() >= support:
+                e = np.log((nv + lam * p0) / (tot + lam)) - np.log(p0)
+                k = "bigram" if depth == 2 else "prefix"
+                out[k] += float(e[IS] - e[IA])
+                out["n_" + k] += 1
+    return out
+
+
+# ----------------------------------------------------------------------------- statistics
+
+def new_stats(x):
+    """Sequence statistics not in the model: coverage, quarter-band periodicity, longer-lag dependence."""
+    x = np.asarray(x, int)
+    n = len(x)
+    seen, new = np.zeros(400, bool), np.zeros(n, bool)
+    for t, v in enumerate(x):
+        new[t] = not seen[v]
+        seen[v] = True
+    s = {f"new-value share in first {m}": float(new[:m].mean()) for m in (50, 100, 150, 200)}
+    s["repeats per 100"] = float(100 * (~new).mean())
+    band = np.minimum((x - 1) * 4 // 355, 3)
+    for k in range(1, 7):
+        s[f"same quarter-band as {k} back"] = float(np.mean(band[k:] == band[:-k]))
+    f = x.astype(float) - x.mean()
+    for k in (2, 3, 4, 5):
+        s[f"lag-{k} autocorrelation"] = float((f[k:] @ f[:-k]) / (f @ f))
+    d = np.diff(x)
+    s["|jump| sd"] = float(np.abs(d).std())
+    sg = np.sign(d)
+    runs = np.diff(np.flatnonzero(np.concatenate([[True], sg[1:] != sg[:-1], [True]])))
+    s["mean run of same jump direction"] = float(runs.mean())
+    gaps = []
+    for t in range(1, n):  # distance of each new value to the nearest value used before it
+        if new[t]:
+            used = x[:t]
+            gaps.append(np.abs(used - x[t]).min())
+    gaps = np.array(gaps, float)
+    s["distance of new value to nearest used, first half"] = float(gaps[:len(gaps) // 2].mean())
+    s["distance of new value to nearest used, second half"] = float(gaps[len(gaps) // 2:].mean())
+    return s
+
+
+def stat_matrix(fn, idx):
+    st = [fn(seq(i)) for i in idx]
+    names = list(st[0])
+    X = np.full((len(p.rows), len(names)), np.nan)
+    X[idx] = np.array([[s[k] for k in names] for s in st])
+    return X, names
+
+
+def boot_ci(fn, idx, reps=300, seed=0):
+    """Environment-cluster bootstrap of fn(rows) -> float."""
+    rng = np.random.default_rng(seed)
+    envs = sorted(set(p.env[idx]))
+    vals = []
+    for _ in range(reps):
+        dr = rng.choice(envs, len(envs), replace=True)
+        ni = np.concatenate([idx[p.env[idx] == e] for e in dr])
+        try:
+            vals.append(fn(ni))
+        except (ValueError, ZeroDivisionError, IndexError):
+            continue
+    v = np.array([x for x in vals if np.isfinite(x)])
+    return [round(float(np.quantile(v, 0.025)), 3), round(float(np.quantile(v, 0.975)), 3)], round(float(np.mean(v <= 0)), 3)
+
+
+def recall(d, idx):
+    a, s = idx[yb[idx] == 0], idx[yb[idx] == 1]
+    return float(np.mean(d[a] <= 0)), float(np.mean(d[s] > 0))
+
+
+def label_metrics(d, idx):
+    ra, rs = recall(d, idx)
+    ok3 = all(len(set(p.env[idx][yb[idx] == c])) >= 3 for c in (0, 1))
+    k = k3_all(d, yb, p.env, idx) if ok3 else {"k3_all_astra": float("nan"), "k3_all_sol": float("nan")}
+    return {"recall_astra": round(ra, 3), "recall_sol": round(rs, 3), "k1_worst": round(min(ra, rs), 3),
+            "k3_all_astra": k["k3_all_astra"], "k3_all_sol": k["k3_all_sol"],
+            "k3_all_worst": min(k["k3_all_astra"], k["k3_all_sol"]), "auc": round(auc(d[idx], yb[idx]), 3)}
+
+
+# ----------------------------------------------------------------------------- second stage
+
+def stage2(X, w, ref, d_in, te, d_te, region):
+    """Second-stage LDA on the reference rows of one region (d <= 0: 'low', d > 0: 'high') and a logistic
+    combination with d, fitted on inner out-of-fold second-stage scores. Returns (s_te, comb_te, coef)."""
+    sel = d_in <= 0 if region == "low" else d_in > 0
+    rr, din = ref[sel], d_in[sel]
+    if min(np.bincount(yb[rr], minlength=2)) < 8:
+        return None
+    er = p.env[rr]
+    s_in = np.full(len(rr), np.nan)
+    for e in sorted(set(er)):
+        a, b = rr[er != e], rr[er == e]
+        if min(np.bincount(yb[a], minlength=2)) < 5:
+            continue
+        s_in[er == e] = lda_fit_clean(X, w, yb, p.env, a)(b)
+    ok = ~np.isnan(s_in)
+    Zin = np.c_[din[ok], s_in[ok]]
+    mu, sd = Zin.mean(0), Zin.std(0) + 1e-9
+    lr = LogisticRegression(C=1.0).fit((Zin - mu) / sd, yb[rr[ok]])
+    s_te = lda_fit_clean(X, w, yb, p.env, rr)(te)
+    comb = lr.decision_function((np.c_[d_te, s_te] - mu) / sd)
+    return s_te, comb, (lr.coef_[0] / sd).round(3).tolist()
+
+
+SETS = ("readable", "newseq", "dense", "score_all", "score_unused")
+UNUSED = tuple(g for g in FS.GROUPS if g not in G.SCORE_GROUPS)
+
+
+def exp_oof():
+    name = "oof"
+    both = np.concatenate([TR, OUT_ROWS])
+    XR, nr = stat_matrix(interp_stats, both)
+    XN0, nn0 = stat_matrix(new_stats, both)
+    XD = np.full((len(p.rows), sum(FAM_DIM.values())), np.nan)
+    XD[both] = np.array([G.response_features(seq(i)) for i in both])
+    wD = G._family_weights(seq(TR[0]), G.LOCAL_FAMILIES)
+    wS = np.concatenate([np.full(n, 1 / np.sqrt(n)) for n in FS.GROUPS.values()])
+    ucols = G._score_columns(UNUSED)
+    log(f"features ready: readable {XR.shape[1]}, new {XN0.shape[1]}, dense {XD.shape[1]}, score {FS.DIM}")
+
+    d = np.full(len(p.rows), np.nan)
+    comp = np.full((len(p.rows), 3), np.nan)  # weighted distribution, branch, score
+    parts = {}
+    s2 = {(s, r): np.full(len(p.rows), np.nan) for s in SETS for r in ("low", "high")}
+    c2 = {(s, r): np.full(len(p.rows), np.nan) for s in SETS for r in ("low", "high")}
+    lrcoef = {}
+    XN = np.full((len(p.rows), XN0.shape[1] + 3), np.nan)
+    XS = np.full((len(p.rows), FS.DIM), np.nan)
+    folds = [(e, TR[p.env[TR] != e], TR[p.env[TR] == e]) for e in ENVS] + [("outside", TR, OUT_ROWS)]
+    for fname, ref, te in folds:
+        cl, d_in, w, theta = fit_cluster_oof([p.rows[i] for i in ref])
+        allr = np.concatenate([ref, te])
+        seqs = [seq(i) for i in allr]
+        st = FS.Steps(seqs)
+        U = FS.score_vectors(st, theta)
+        ll, T = FS.row_loglik(st, theta), st.T
+        del st
+        st = FS.Steps([s[:40] for s in seqs])
+        ll40, T40 = FS.row_loglik(st, theta), st.T
+        del st
+        XS[allr] = U
+        XN[allr] = np.c_[XN0[allr], ll / T, ll40 / T40, (ll - ll40) / np.maximum(T - T40, 1)]
+        pos = {i: k for k, i in enumerate(allr)}
+        scols = G._score_columns(G.SCORE_GROUPS)
+        for i in te:
+            x = seq(i)
+            dp = dense_parts(cl, x)
+            bp = branch_parts(cl["branch"], x)
+            sp = score_parts(cl["score"]["local"], U[pos[i], scols])
+            Dd, Bd, Fd = sum(dp.values()), bp["bigram"] + bp["prefix"], sum(sp.values())
+            comp[i] = w[0] * Dd, w[1] * Bd, w[2] * Fd
+            d[i] = comp[i].sum()
+            parts[int(i)] = {**{f"dist:{k}": w[0] * v for k, v in dp.items()},
+                             "branch:bigram": w[1] * bp["bigram"], "branch:prefix": w[1] * bp["prefix"],
+                             "n_bigram": bp["n_bigram"], "n_prefix": bp["n_prefix"],
+                             **{f"score:{k}": w[2] * v for k, v in sp.items()}}
+        sets = {"readable": (XR, np.full(XR.shape[1], 1 / np.sqrt(XR.shape[1]))),
+                "newseq": (XN, np.full(XN.shape[1], 1 / np.sqrt(XN.shape[1]))),
+                "dense": (XD, wD), "score_all": (XS, wS),
+                "score_unused": (XS[:, ucols], wS[ucols])}
+        for sname, (X, wx) in sets.items():
+            for region in ("low", "high"):
+                r = stage2(X, wx, ref, d_in, te, d[te], region)
+                if r is None:
+                    continue
+                s2[(sname, region)][te], c2[(sname, region)][te] = r[0], r[1]
+                lrcoef.setdefault(f"{sname}:{region}", []).append(r[2])
+        mis_in = {"astra": int(np.sum((yb[ref] == 0) & (d_in > 0))), "sol": int(np.sum((yb[ref] == 1) & (d_in <= 0)))}
+        log(f"fold {fname}: {len(ref)} refs, weights {np.round(w, 3).tolist()}, inner misjudged {mis_in}, "
+            f"query recall A/S {np.round(recall(d, te), 3).tolist()}")
+    save(name, "rows", {str(i): {"role": p.role[i], "env": p.env[i], "sol": int(yb[i]), "d": round(float(d[i]), 4),
+                                 "components": np.round(comp[i], 4).tolist(),
+                                 **{k: round(float(v), 4) for k, v in parts[int(i)].items()}} for i in both})
+
+    for tag, idx in (("train (LOEO)", TR), ("outside", OUT_ROWS)):
+        # (a) where the evidence comes from
+        grp = {"Astra ok": idx[(yb[idx] == 0) & (d[idx] <= 0)], "Astra misjudged": idx[(yb[idx] == 0) & (d[idx] > 0)],
+               "Sol ok": idx[(yb[idx] == 1) & (d[idx] > 0)], "Sol misjudged": idx[(yb[idx] == 1) & (d[idx] <= 0)]}
+        keys = list(parts[int(idx[0])])
+        tab = {k: {g: round(float(np.mean([parts[int(i)][k] for i in v])), 3) if len(v) else None for g, v in grp.items()}
+               for k in keys}
+        tab["d"] = {g: round(float(d[v].mean()), 3) if len(v) else None for g, v in grp.items()}
+        save(name, f"a_parts {tag}", {"n": {g: len(v) for g, v in grp.items()}, "means": tab})
+        log(f"PARTS {tag} n {json.dumps({g: len(v) for g, v in grp.items()})}")
+        for k, r in tab.items():
+            gap = None if None in (r["Sol ok"], r["Sol misjudged"]) else r["Sol misjudged"] - r["Sol ok"]
+            print(f"PARTS {tag:12} {k:22} " + " | ".join(f"{g} {v:+.3f}" if v is not None else f"{g} -" for g, v in r.items())
+                  + (f" | Sol misjudged - ok {gap:+.3f}" if gap is not None else ""), flush=True)
+        # leave one part out (same fit, no refit)
+        base = label_metrics(d, idx)
+        loo = {"all": base}
+        for c, cn in enumerate(("distribution", "branch", "score")):
+            loo[f"without {cn}"] = label_metrics(d - comp[:, c], idx)
+            loo[f"only {cn}"] = label_metrics(np.nan_to_num(comp[:, c]), idx)
+        for k in keys:
+            if k.startswith("n_") or k.endswith("intercept"):
+                continue
+            v = np.zeros(len(p.rows))
+            v[idx] = [parts[int(i)][k] for i in idx]
+            loo[f"without {k}"] = label_metrics(d - v, idx)
+        save(name, f"a_leave_one_out {tag}", loo)
+        for k, r in loo.items():
+            print(f"LOO {tag:12} {k:26} k1 A {r['recall_astra']:.3f} S {r['recall_sol']:.3f} worst {r['k1_worst']:.3f} | "
+                  f"k3_all A {r['k3_all_astra']:.3f} S {r['k3_all_sol']:.3f} worst {r['k3_all_worst']:.3f} | auc {r['auc']:.3f}", flush=True)
+
+        # (b) residual information inside each region
+        res_b = {}
+        for region, lab_hard in (("low", 1), ("high", 0)):
+            reg0 = idx[(d[idx] <= 0) if region == "low" else (d[idx] > 0)]
+            sgn = 1 if region == "low" else -1  # the misjudged label scores high
+            for sname in SETS:
+                reg = reg0[~np.isnan(s2[(sname, region)][reg0])]  # folds without a second stage are left out
+                if len(reg) < 10:
+                    continue
+                s, c = s2[(sname, region)][reg], c2[(sname, region)][reg]
+                tgt = (yb[reg] == lab_hard).astype(int)
+                base_auc, a_s, a_c = auc(sgn * d[reg], tgt), auc(sgn * s, tgt), auc(sgn * c, tgt)
+
+                def gain(ni, region_=region, sname_=sname):
+                    t = (yb[ni] == lab_hard).astype(int)
+                    sg_ = 1 if region_ == "low" else -1
+                    return auc(sg_ * c2[(sname_, region_)][ni], t) - auc(sg_ * d[ni], t)
+                ci, pneg = boot_ci(gain, reg)
+                # what a two-stage call would do: flip a row when the region's logistic says the other label
+                flip = (c > 0) if region == "low" else (c < 0)
+                r = {"n_region": len(reg), "n_misjudged": int(tgt.sum()), "auc_d": round(base_auc, 3),
+                     "auc_stage2": round(a_s, 3), "auc_combined": round(a_c, 3), "gain": round(a_c - base_auc, 3),
+                     "gain_ci": ci, "boot_share_gain<=0": pneg,
+                     "flipped_misjudged": int(np.sum(flip & (tgt == 1))), "flipped_correct": int(np.sum(flip & (tgt == 0)))}
+                res_b[f"{region}:{sname}"] = r
+                print(f"RESIDUAL {tag:12} {'called Astra' if region == 'low' else 'called Sol':12} {sname:13} "
+                      f"n {r['n_region']} (misjudged {r['n_misjudged']}) | AUC misjudged vs correct: d {r['auc_d']:.3f}, "
+                      f"stage2 {r['auc_stage2']:.3f}, d+stage2 {r['auc_combined']:.3f}, gain {r['gain']:+.3f} {ci} "
+                      f"(boot P<=0 {pneg}) | flips: misjudged {r['flipped_misjudged']}, correct {r['flipped_correct']}", flush=True)
+        save(name, f"b_residual {tag}", res_b)
+
+        # (c) readable / new statistics, misjudged Sol vs Astra among d <= 0, adjusted for d
+        reg = idx[d[idx] <= 0]
+        hs, aa = reg[yb[reg] == 1], reg[yb[reg] == 0]
+        sol_ok = idx[(yb[idx] == 1) & (d[idx] > 0)]
+        Xc = np.c_[XR, XN0]
+        names = nr + nn0
+        rows_c = []
+        for j, k in enumerate(names):
+            v = Xc[reg, j]
+            M = np.c_[np.ones(len(reg)), d[reg]]
+            beta = np.linalg.lstsq(M, v, rcond=None)[0]
+            r_ = v - M @ beta
+            sd = r_.std() + 1e-12
+            eff = (r_[yb[reg] == 1].mean() - r_[yb[reg] == 0].mean()) / sd
+            envs = [e for e in sorted(set(p.env[reg])) if ((p.env[hs] == e).any() and (p.env[aa] == e).any())]
+            agree = sum(np.sign(r_[(p.env[reg] == e) & (yb[reg] == 1)].mean() - r_[(p.env[reg] == e) & (yb[reg] == 0)].mean())
+                        == np.sign(eff) for e in envs)
+            rows_c.append({"stat": k, "effect_adjusted": round(float(eff), 3), "envs_agree": f"{agree}/{len(envs)}",
+                           "mean Astra(d<=0)": round(float(Xc[aa, j].mean()), 4), "mean Sol misjudged": round(float(Xc[hs, j].mean()), 4),
+                           "mean Sol ok": round(float(Xc[sol_ok, j].mean()), 4)})
+        rows_c.sort(key=lambda r: -abs(r["effect_adjusted"]))
+        save(name, f"c_stats {tag}", rows_c)
+        for r in rows_c[:25]:
+            print(f"STAT {tag:12} {r['stat']:48} adj. effect {r['effect_adjusted']:+.2f} ({r['envs_agree']} envs) | "
+                  f"Astra(d<=0) {r['mean Astra(d<=0)']} Sol misjudged {r['mean Sol misjudged']} Sol ok {r['mean Sol ok']}", flush=True)
+    save(name, "logistic_coef (d, stage2)", lrcoef)
+
+
+def exp_halves():
+    name = "halves"
+    both = np.concatenate([TR, OUT_ROWS])
+    dh = {}
+    for half in ("first", "second"):
+        def cut(i, half_=half):
+            x = seq(i)
+            return x[:len(x) // 2] if half_ == "first" else x[len(x) // 2:]
+        rows_h = {int(i): dict(p.rows[i], numbers=cut(i)) for i in both}
+        v = np.full(len(p.rows), np.nan)
+        for fname, ref, te in [(e, TR[p.env[TR] != e], TR[p.env[TR] == e]) for e in ENVS] + [("outside", TR, OUT_ROWS)]:
+            cl = G.fit_cluster([rows_h[int(i)] for i in ref], p.classes, [A, S])
+            for i in te:
+                s = G.local_logits(cl, rows_h[int(i)]["numbers"])
+                v[i] = s[IS] - s[IA]
+            log(f"{half} half, fold {fname}: query recall A/S {np.round(recall(v, te), 3).tolist()}")
+        dh[half] = v
+    d1, d2 = dh["first"], dh["second"]
+    save(name, "rows", {str(i): {"role": p.role[i], "env": p.env[i], "sol": int(yb[i]),
+                                 "d_first": round(float(d1[i]), 4), "d_second": round(float(d2[i]), 4)} for i in both})
+    out = {}
+    for tag, idx in (("train (LOEO)", TR), ("outside", OUT_ROWS)):
+        for half, v in dh.items():
+            out[f"{tag} {half} half"] = label_metrics(v, idx)
+            r = out[f"{tag} {half} half"]
+            print(f"HALF {tag:12} {half:6} k1 A {r['recall_astra']:.3f} S {r['recall_sol']:.3f} | k3_all A {r['k3_all_astra']:.3f} "
+                  f"S {r['k3_all_sol']:.3f} | auc {r['auc']:.3f}", flush=True)
+        for c, lab in ((0, "Astra"), (1, "Sol")):
+            q = idx[yb[idx] == c]
+            w1 = (d1[q] > 0) if c == 0 else (d1[q] <= 0)  # first half misjudged
+            w2 = (d2[q] > 0) if c == 0 else (d2[q] <= 0)
+            # within environment: remove each environment's mean of this label
+            r1, r2 = d1[q].copy(), d2[q].copy()
+            for e in set(p.env[q]):
+                m = p.env[q] == e
+                r1[m] -= r1[m].mean()
+                r2[m] -= r2[m].mean()
+
+            def coupling(ni, c_=c):
+                qq = ni[yb[ni] == c_]
+                a1 = (d1[qq] > 0) if c_ == 0 else (d1[qq] <= 0)
+                a2 = (d2[qq] > 0) if c_ == 0 else (d2[qq] <= 0)
+                return float(a2[a1].mean() - a2[~a1].mean())
+            ci, pneg = boot_ci(coupling, idx)
+            res = {"n": len(q), "r_pearson": round(float(np.corrcoef(d1[q], d2[q])[0, 1]), 3),
+                   "r_spearman": round(float(spearmanr(d1[q], d2[q])[0]), 3),
+                   "r_within_env": round(float(np.corrcoef(r1, r2)[0, 1]), 3),
+                   "first misjudged": int(w1.sum()), "second misjudged": int(w2.sum()), "both": int((w1 & w2).sum()),
+                   "P(second misjudged | first misjudged)": round(float(w2[w1].mean()), 3) if w1.any() else None,
+                   "P(second misjudged | first correct)": round(float(w2[~w1].mean()), 3) if (~w1).any() else None,
+                   "difference_ci": ci, "boot_share<=0": pneg}
+            out[f"{tag} {lab}"] = res
+            print(f"STATE {tag:12} {lab:5} {json.dumps(res)}", flush=True)
+    save(name, "summary", out)
+
+
+if __name__ == "__main__":
+    log(f"rows: train {len(TR)} ({len(ENVS)} environments), outside {len(OUT_ROWS)}")
+    {"oof": exp_oof, "halves": exp_halves}[sys.argv[1]]()
+    log("done")
