@@ -12,3 +12,4 @@ run 11: 2026-10-14T11:34:19Z hard_pair: worst case at the original length (origi
 run 12: 2026-10-14T12:04:45Z hard_pair: evidence in the opening (model refitted on the first 10/20/40/80 numbers and on 40-125) + readable-statistics discriminant replacing the distribution component or as a fourth component; 3 jobs
 run 13: 2026-10-14T12:06:03Z rerun of run 12 prefix (NaN family values on 10 numbers set to 0 in this experiment); 1 job
 run 14: 2026-10-15T00:46:41Z neural_pair: GRU next-number model conditioned on the label, likelihood-ratio score on the original data (LOEO + outside), alone and combined with v4; widths 64/128, all labels vs pair only; 3 jobs
+run 15: 2026-10-15T01:36:28Z hard_pair refine: cheap refinements on the original data on top of the readable change (fork split weights, soft forks with banded opening prefix and smoothed outcomes, opening position x value density), v4 refitted as baseline; 1 job

@@ -41,7 +41,11 @@ readable statistics carry information the model misses):
                       component (mode replace) or as a fourth component (mode add); weights by the same inner
                       leave-one-environment-out; v4 refitted in the same run for a paired comparison.
 
-Usage: python research/hard_pair.py oof | halves | prefix | readable:replace | readable:add
+Run 15 (after the neural model of run 14 and a second opinion): refine = the cheap refinements left on the
+original data on top of the readable change: separate weights for the two fork contexts, soft forks (banded
+opening prefix, outcome counts smoothed over neighbouring values), an opening position x value density.
+
+Usage: python research/hard_pair.py oof | halves | prefix | readable:replace | readable:add | refine
 """
 from __future__ import annotations
 
@@ -626,11 +630,183 @@ def exp_readable(mode):
     save(name, "decisions", {str(i): [round(float(base[i]), 4), round(float(d[i]), 4)] for i in both})
 
 
+# ----------------------------------------------------------------------------- run 15
+
+# Soft forks: the branch contexts of gated_fingerprint plus a banded opening prefix; the outcome counts are
+# smoothed over neighbouring values (27/28/29 support each other; 22 vs 28 stay apart).
+SOFT_K = (1 / 9, 2 / 9, 3 / 9, 2 / 9, 1 / 9)  # triangular kernel over v-2..v+2
+QW = 30                                        # band width of the banded prefix (12 bands)
+LEVEL = {2: "B", 3: "Q", 4: "P"}
+
+
+def soft_chain(x, t):
+    """Shallow to deep: root, previous number, previous two numbers, banded opening prefix, exact opening
+    prefix (the last two only for t < BRANCH_PREFIX). Evidence is read at the last three."""
+    op = t < G.BRANCH_PREFIX
+    return [("R",), ("U", x[t - 1]) if t >= 1 else None, ("B", x[t - 2], x[t - 1]) if t >= 2 else None,
+            ("Q",) + tuple(v // QW for v in x[:t]) if op else None, ("P",) + tuple(x[:t]) if op else None]
+
+
+def fit_soft(seqs, labels):
+    """labels: 1 = Sol, 0 = Astra. Same support rule as fit_branch."""
+    counts = {}
+    for x, c in zip(seqs, labels):
+        for t, v in enumerate(x):
+            for ctx in soft_chain(x, t):
+                if ctx is not None:
+                    counts.setdefault(ctx, {}).setdefault(v, [0, 0])[c] += 1
+    model = {}
+    for ctx, dv in counts.items():
+        ta, ts = sum(c[0] for c in dv.values()), sum(c[1] for c in dv.values())
+        if ctx[0] in ("R", "U") or ta + ts >= G.BRANCH_SUPPORT:
+            model[ctx] = (dv, ta, ts)
+    return model
+
+
+def soft_parts(model, x):
+    """log P_Sol - log P_Astra summed per evidence level, with kernel-smoothed outcome counts."""
+    lam, sup = G.BRANCH_LAMBDA, G.BRANCH_SUPPORT
+    out = {"B": 0.0, "Q": 0.0, "P": 0.0}
+    for t, v in enumerate(x):
+        p0 = 1.0 / G.V
+        for lev, ctx in enumerate(soft_chain(x, t)):
+            if ctx is None:
+                continue
+            e = model.get(ctx)
+            if e is None:
+                continue
+            dv, ta, ts = e
+            na = ns = 0.0
+            for j, kw in zip(range(-2, 3), SOFT_K):
+                c = dv.get(v + j)
+                if c:
+                    na += kw * c[0]
+                    ns += kw * c[1]
+            p0 = (na + ns + lam * p0) / (ta + ts + lam)
+            if lev >= 2 and ta + ts >= sup:
+                out[LEVEL[lev]] += float(np.log((ns + lam * p0) / (ts + lam)) - np.log((na + lam * p0) / (ta + lam)))
+    return out
+
+
+# Opening density: per position t < 40, the label's value density from the references' numbers at positions
+# t-2..t+2, Gaussian-smoothed over values (bandwidth 4), mixed with 10% uniform.
+WT, WS, WH = 40, 2, 4.0
+
+
+def fit_density(seqs, labels):
+    C = np.zeros((2, WT + WS, 358))
+    for x, c in zip(seqs, labels):
+        for s, v in enumerate(x[:WT + WS]):
+            C[c, s, min(max(v, 0), 357)] += 1
+    u = np.arange(-12, 13)
+    g = np.exp(-u ** 2 / (2 * WH ** 2))
+    g /= g.sum()
+    Cv = np.apply_along_axis(lambda r: np.convolve(r, g, mode="same"), 2, C)
+    M = np.stack([Cv[:, max(0, t - WS):t + WS + 1].sum(1) for t in range(WT)], 1)
+    M /= M.sum(2, keepdims=True)
+    return 0.9 * M + 0.1 / 358
+
+
+def density_llr(M, x):
+    return float(sum(np.log(M[1, t, min(max(v, 0), 357)]) - np.log(M[0, t, min(max(v, 0), 357)]) for t, v in enumerate(x[:WT])))
+
+
+COLS = ("D", "B", "Bb", "Bp", "F", "R", "SB", "SQ", "SP", "W")
+VARIANTS = {  # D distribution, B fork (Bb previous two numbers, Bp opening prefix), F score, R readable,
+    "v4": ("D", "B", "F"),                                   # S* soft forks, W opening density
+    "readable (run 12)": ("R", "B", "F"),
+    "readable + fork split": ("R", "Bb", "Bp", "F"),
+    "readable + soft forks": ("R", "SB", "SQ", "SP", "F"),
+    "readable + fork split + density": ("R", "Bb", "Bp", "F", "W"),
+    "all (primary)": ("R", "SB", "SQ", "SP", "F", "W"),
+}
+
+
+def fit_weights(comp, yv, use):
+    Z = comp[:, [COLS.index(c) for c in use]]
+
+    def nll(w):
+        s = Z @ w
+        return -(np.where(yv == 1, s, 0) - np.logaddexp(0, s)).sum() + 1e-3 * (w ** 2).sum()
+    return minimize(nll, np.ones(len(use)), method="L-BFGS-B").x
+
+
+def exp_refine():
+    """Run 15: the cheap refinements left on the original data (after a second opinion), each on top of the
+    run 12 readable change, weights by the same inner leave-one-environment-out; v4 refitted in the same run.
+    Pre-specified primary variant: all (primary)."""
+    name = "refine"
+    both = np.concatenate([TR, OUT_ROWS])
+    XR, nr = stat_matrix(interp_stats, both)
+    cols = [j for j, k in enumerate(nr) if k not in REPEAT_BASED]
+    XR = XR[:, cols]
+    wR = np.full(len(cols), 1 / np.sqrt(len(cols)))
+    member_ids = [p.classes[k] for k in MEM]
+
+    def components(tr, U_tr, ev, U_ev):
+        rows_tr = [p.rows[i] for i in tr]
+        ym = np.array([member_ids.index(r["source"]) for r in rows_tr])
+        loc = G.fit_local(rows_tr, p.classes, [A, S])
+        br = G.fit_branch([seq(i) for i in tr], ym.tolist(), 2)
+        sloc = G.fit_score_local(U_tr, ym, p.env[tr])
+        r = lda_fit_clean(XR, wR, yb, p.env, tr)(ev)
+        soft = fit_soft([seq(i) for i in tr], yb[tr].tolist())
+        M = fit_density([seq(i) for i in tr], yb[tr].tolist())
+        out = np.zeros((len(ev), len(COLS)))
+        for k, i in enumerate(ev):
+            x = seq(i)
+            Dv, Fv = G._dense_logits(loc, x), G._score_logits_from_vector(sloc, U_ev[k])
+            bp, sp = branch_parts(br, x), soft_parts(soft, x)
+            out[k] = [Dv[IS] - Dv[IA], bp["bigram"] + bp["prefix"], bp["bigram"], bp["prefix"], Fv[IS] - Fv[IA],
+                      r[k], sp["B"], sp["Q"], sp["P"], density_llr(M, x)]
+        return out
+
+    d = {v: np.full(len(p.rows), np.nan) for v in VARIANTS}
+    comp_q = np.full((len(p.rows), len(COLS)), np.nan)
+    weights = []
+    for fname, ref, te in [(e, TR[p.env[TR] != e], TR[p.env[TR] == e]) for e in ENVS] + [("outside", TR, OUT_ROWS)]:
+        steps = FS.Steps([seq(i) for i in ref])
+        theta = FS.fit_base(steps, lam=G.SCORE_LAMBDA, maxiter=G.SCORE_MAXITER)
+        U = FS.score_vectors(steps, theta)[:, G._score_columns(G.SCORE_GROUPS)]
+        del steps
+        env = p.env[ref]
+        comp = np.zeros((len(ref), len(COLS)))
+        for e in sorted(set(env)):
+            keep = env != e
+            comp[~keep] = components(ref[keep], U[keep], ref[~keep], U[~keep])
+        W = {v: fit_weights(comp, yb[ref], use) for v, use in VARIANTS.items()}
+        Ute = FS.score_vectors(FS.Steps([seq(i) for i in te]), theta)[:, G._score_columns(G.SCORE_GROUPS)]
+        qc = components(ref, U, te, Ute)
+        comp_q[te] = qc
+        for v, use in VARIANTS.items():
+            d[v][te] = qc[:, [COLS.index(c) for c in use]] @ W[v]
+        weights.append({"fold": str(fname), **{v: dict(zip(use, np.round(W[v], 3).tolist())) for v, use in VARIANTS.items()}})
+        log(f"fold {fname}: primary weights {weights[-1]['all (primary)']}; recall A/S v4 {np.round(recall(d['v4'], te), 3).tolist()} "
+            f"primary {np.round(recall(d['all (primary)'], te), 3).tolist()}")
+        save(name, "weights", weights)
+    out = {}
+    for tag, idx in (("train (LOEO)", TR), ("outside", OUT_ROWS)):
+        for v in VARIANTS:
+            r = label_metrics(d[v], idx)
+            out[f"{tag} {v}"] = r
+            print(f"REFINE {tag:12} {v:32} k1 A {r['recall_astra']:.3f} S {r['recall_sol']:.3f} worst {r['k1_worst']:.3f} | "
+                  f"k3_all A {r['k3_all_astra']:.3f} S {r['k3_all_sol']:.3f} worst {r['k3_all_worst']:.3f} | auc {r['auc']:.3f}", flush=True)
+        for v in list(VARIANTS)[1:]:
+            ci, pneg = boot_ci(lambda ni, v_=v: auc(d[v_][ni], yb[ni]) - auc(d["v4"][ni], yb[ni]), idx)
+            g = auc(d[v][idx], yb[idx]) - auc(d["v4"][idx], yb[idx])
+            out[f"{tag} {v} auc gain"] = {"gain": round(g, 3), "ci": ci, "boot_share<=0": pneg}
+            print(f"REFINE {tag:12} {v:32} AUC gain over v4 {g:+.3f} {ci} (boot P<=0 {pneg})", flush=True)
+        for c in COLS:  # each component alone (held-out values)
+            print(f"REFINE {tag:12} component {c:3} auc {auc(comp_q[idx, COLS.index(c)], yb[idx]):.3f}", flush=True)
+    save(name, "summary", out)
+    save(name, "decisions", {str(i): {v: round(float(d[v][i]), 4) for v in VARIANTS} for i in both})
+
+
 if __name__ == "__main__":
     log(f"rows: train {len(TR)} ({len(ENVS)} environments), outside {len(OUT_ROWS)}")
     arg = sys.argv[1]
     if arg.startswith("readable:"):
         exp_readable(arg.split(":")[1])
     else:
-        {"oof": exp_oof, "halves": exp_halves, "prefix": exp_prefix}[arg]()
+        {"oof": exp_oof, "halves": exp_halves, "prefix": exp_prefix, "refine": exp_refine}[arg]()
     log("done")

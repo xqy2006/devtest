@@ -18,13 +18,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/neural_pair.py H64", "python research/neural_pair.py H128", "python research/neural_pair.py H64pair"]
+        exp: ["python research/hard_pair.py refine"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -q -r requirements.txt && pip install -q torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -q -r requirements.txt
       - name: ${{ matrix.exp }}
         run: |
           set -o pipefail
