@@ -45,7 +45,10 @@ Run 15 (after the neural model of run 14 and a second opinion): refine = the che
 original data on top of the readable change: separate weights for the two fork contexts, soft forks (banded
 opening prefix, outcome counts smoothed over neighbouring values), an opening position x value density.
 
-Usage: python research/hard_pair.py oof | halves | prefix | readable:replace | readable:add | refine
+Run 16: universal = only the feature vectors every response yields (no fork evidence, which only applies to
+responses that pass a well-supported opening node).
+
+Usage: python research/hard_pair.py oof | halves | prefix | readable:replace | readable:add | refine | universal
 """
 from __future__ import annotations
 
@@ -712,13 +715,22 @@ def density_llr(M, x):
 
 
 COLS = ("D", "B", "Bb", "Bp", "F", "R", "SB", "SQ", "SP", "W")
-VARIANTS = {  # D distribution, B fork (Bb previous two numbers, Bp opening prefix), F score, R readable,
+REFINE_VARIANTS = {  # D distribution, B fork (Bb previous two numbers, Bp opening prefix), F score, R readable,
     "v4": ("D", "B", "F"),                                   # S* soft forks, W opening density
     "readable (run 12)": ("R", "B", "F"),
     "readable + fork split": ("R", "Bb", "Bp", "F"),
     "readable + soft forks": ("R", "SB", "SQ", "SP", "F"),
     "readable + fork split + density": ("R", "Bb", "Bp", "F", "W"),
     "all (primary)": ("R", "SB", "SQ", "SP", "F", "W"),
+}
+
+# run 16: only components every response yields (feature vectors), no fork evidence; primary = v4 without forks
+UNIVERSAL = {
+    "v4": ("D", "B", "F"),
+    "universal: distribution + score (primary)": ("D", "F"),
+    "universal: readable + score": ("R", "F"),
+    "universal: distribution + readable + score": ("D", "R", "F"),
+    "universal: score only": ("F",),
 }
 
 
@@ -731,11 +743,15 @@ def fit_weights(comp, yv, use):
     return minimize(nll, np.ones(len(use)), method="L-BFGS-B").x
 
 
-def exp_refine():
+def exp_refine(mode="refine"):
     """Run 15: the cheap refinements left on the original data (after a second opinion), each on top of the
     run 12 readable change, weights by the same inner leave-one-environment-out; v4 refitted in the same run.
-    Pre-specified primary variant: all (primary)."""
-    name = "refine"
+    Pre-specified primary variant: all (primary).
+    Run 16 (mode universal): only components every response yields (distribution, readable, score vectors),
+    no fork evidence; pre-specified primary: v4 without its fork component (distribution + score)."""
+    name = mode
+    VARIANTS = UNIVERSAL if mode == "universal" else REFINE_VARIANTS
+    prim = next(v for v in VARIANTS if "primary" in v)
     both = np.concatenate([TR, OUT_ROWS])
     XR, nr = stat_matrix(interp_stats, both)
     cols = [j for j, k in enumerate(nr) if k not in REPEAT_BASED]
@@ -781,8 +797,8 @@ def exp_refine():
         for v, use in VARIANTS.items():
             d[v][te] = qc[:, [COLS.index(c) for c in use]] @ W[v]
         weights.append({"fold": str(fname), **{v: dict(zip(use, np.round(W[v], 3).tolist())) for v, use in VARIANTS.items()}})
-        log(f"fold {fname}: primary weights {weights[-1]['all (primary)']}; recall A/S v4 {np.round(recall(d['v4'], te), 3).tolist()} "
-            f"primary {np.round(recall(d['all (primary)'], te), 3).tolist()}")
+        log(f"fold {fname}: primary weights {weights[-1][prim]}; recall A/S v4 {np.round(recall(d['v4'], te), 3).tolist()} "
+            f"primary {np.round(recall(d[prim], te), 3).tolist()}")
         save(name, "weights", weights)
     out = {}
     for tag, idx in (("train (LOEO)", TR), ("outside", OUT_ROWS)):
@@ -800,6 +816,7 @@ def exp_refine():
             print(f"REFINE {tag:12} component {c:3} auc {auc(comp_q[idx, COLS.index(c)], yb[idx]):.3f}", flush=True)
     save(name, "summary", out)
     save(name, "decisions", {str(i): {v: round(float(d[v][i]), 4) for v in VARIANTS} for i in both})
+    save(name, "components (held-out)", {str(i): dict(zip(COLS, np.round(comp_q[i], 4).tolist())) for i in both})
 
 
 if __name__ == "__main__":
@@ -808,5 +825,6 @@ if __name__ == "__main__":
     if arg.startswith("readable:"):
         exp_readable(arg.split(":")[1])
     else:
-        {"oof": exp_oof, "halves": exp_halves, "prefix": exp_prefix, "refine": exp_refine}[arg]()
+        {"oof": exp_oof, "halves": exp_halves, "prefix": exp_prefix, "refine": exp_refine,
+         "universal": lambda: exp_refine("universal")}[arg]()
     log("done")
