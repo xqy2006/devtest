@@ -14,19 +14,20 @@ env:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 330
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/hard_pair.py prefix"]
+        exp: ["python research/neural_pair.py H64", "python research/neural_pair.py H128", "python research/neural_pair.py H64pair"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -q -r requirements.txt
+      - run: pip install -q -r requirements.txt && pip install -q torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
       - name: ${{ matrix.exp }}
         run: |
+          set -o pipefail
           mkdir -p results
           ${{ matrix.exp }} 2>&1 | tee "results/job_${{ strategy.job-index }}.log"
       - name: upload
