@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/hard_pair.py universal"]
+        exp: ["python share/astra_sol_package/eval_harness.py && python share/astra_sol_package/eval_harness.py gpt-6-sol gpt-6.1-sol && python share/astra_sol_package/eval_harness.py gpt-6-astra gpt-6-sol && python share/astra_sol_package/eval_harness.py gpt-6-astra gpt-6-luna && python share/astra_sol_package/eval_harness.py gpt-5.6-sol gpt-6-sol"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
