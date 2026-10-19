@@ -118,15 +118,22 @@ def run_fold(j):
     return j
 
 
-def run_folds(shard):
+def run_parallel(fn, n_folds, shard):
+    """Folds j with j % n == i, one process each. ProcessPoolExecutor, so a worker that dies (e.g. out of memory)
+    fails the job instead of hanging it (run 24: one shard of multiprocessing.Pool hung for 20 minutes)."""
     import multiprocessing as mp
+    from concurrent.futures import ProcessPoolExecutor
     i, n = map(int, shard.split("/"))
-    J = [j for j in range(len(fold_list())) if j % n == i]
+    J = [j for j in range(n_folds) if j % n == i]
     procs = min(len(J), int(os.environ.get("PROCS", os.cpu_count() or 1)))
     log(f"shard {shard}: folds {J} on {procs} processes")
-    with mp.get_context("fork").Pool(procs) as pool:
-        for _ in pool.imap_unordered(run_fold, J):
+    with ProcessPoolExecutor(procs, mp_context=mp.get_context("fork")) as ex:
+        for _ in ex.map(fn, J):
             pass
+
+
+def run_folds(shard):
+    run_parallel(run_fold, len(fold_list()), shard)
 
 
 # ----------------------------------------------------------------------------- aggregate

@@ -41,7 +41,8 @@ from scipy.special import logsumexp  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import research.gated_fingerprint as G  # noqa: E402
 from research.calib_pair import RES, log  # noqa: E402
-from research.effort_pair import BATCH, EFF, EFFORTS, ENV, ENVS, ME, OUT_ROWS, ROWS, TR, Y, cells  # noqa: E402
+from research.effort_pair import (BATCH, EFF, EFFORTS, ENV, ENVS, ME, OUT_ROWS, ROWS, TR, Y, cells,  # noqa: E402
+                                  run_parallel)
 from research.hard_pair import A, S, p  # noqa: E402
 
 EFF_SUB = np.where(EFF == "unrecorded", "low", EFF)  # Astra's train_original rows have no recorded effort
@@ -95,14 +96,7 @@ def run_fold(j):
 
 
 def run_folds(shard):
-    import multiprocessing as mp
-    i, n = map(int, shard.split("/"))
-    J = [j for j in range(len(fold_list())) if j % n == i]
-    procs = min(len(J), int(os.environ.get("PROCS", os.cpu_count() or 1)))
-    log(f"shard {shard}: folds {J} on {procs} processes")
-    with mp.get_context("fork").Pool(procs) as pool:
-        for _ in pool.imap_unordered(run_fold, J):
-            pass
+    run_parallel(run_fold, len(fold_list()), shard)
 
 
 # ----------------------------------------------------------------------------- aggregate

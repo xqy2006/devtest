@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import research.gated_fingerprint as G  # noqa: E402
 from research.calib_pair import RES, log  # noqa: E402
 from research.effort_pair import (BATCH, EFF, EFFORTS, ENV, ENVS, ME, OUT_ROWS, ROWS, TR, load,  # noqa: E402
-                                  report_set)
+                                  report_set, run_parallel)
 from research.hard_pair import A, IA, IS, S, p  # noqa: E402
 
 VARIANTS = {"low+e1": (False, 1), "low+e2": (False, 2), "low+e4": (False, 4), "all+e2": (True, 2)}
@@ -84,14 +84,7 @@ def run_fold(j):
 
 
 def run_folds(shard):
-    import multiprocessing as mp
-    i, n = map(int, shard.split("/"))
-    J = [j for j in range(len(fold_list())) if j % n == i]
-    procs = min(len(J), int(os.environ.get("PROCS", os.cpu_count() or 1)))
-    log(f"shard {shard}: folds {J} on {procs} processes")
-    with mp.get_context("fork").Pool(procs) as pool:
-        for _ in pool.imap_unordered(run_fold, J):
-            pass
+    run_parallel(run_fold, len(fold_list()), shard)
 
 
 def aggregate():
