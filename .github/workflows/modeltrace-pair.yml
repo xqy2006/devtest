@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/effort_probe.py"]
+        exp: ["python research/resid_late.py"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

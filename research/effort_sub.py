@@ -116,14 +116,22 @@ def load(proto):
     return R
 
 
-def sol_logodds(R, rows, clip, shrink):
-    """rows: (n, m) row indices scored together -> log p(Sol) / p(Astra) per group (map for min(m, 3))."""
+def sol_logodds(R, rows, clip, shrink, effort=None):
+    """rows: (n, m) row indices scored together -> log p(Sol) / p(Astra) per group (map for min(m, 3)). effort:
+    the query's declared reasoning effort; only the two models' subclasses at that effort compete."""
     k = min(rows.shape[1], 3)
     c = R["s"][rows] - R["s"][rows].mean(-1, keepdims=True)
     if clip:
         c = np.clip(c, -clip / 2, clip / 2)
     loc = shrink * (R[f"a{k}"][rows].mean(1)[:, None] * c.sum(1) + R[f"b{k}"][rows].mean(1))
+    if effort is not None:
+        loc = np.where([sub.endswith("@" + effort) for sub in SUB], loc, -np.inf)
     return logsumexp(loc[:, SOLSUB], axis=1) - logsumexp(loc[:, ~SOLSUB], axis=1)
+
+
+def declarable(effort):
+    """Both models have a subclass at this effort."""
+    return all(any(sub == f"{m}@{effort}" for sub in SUB) for m in (p.classes[A], p.classes[S]))
 
 
 def sample_rows(idx, c, rng, n, m):
@@ -137,7 +145,8 @@ def sample_rows(idx, c, rng, n, m):
     return M[perm, (rng.random(perm.shape) * lens[perm]).astype(int)]
 
 
-def report_set(tag, R, idx, labels, rng, n=40000):
+def report_set(tag, R, idx, labels, rng, n=40000, effort=None):
+    """effort: declared-effort mode (only that effort's subclasses compete), else the mixture over efforts."""
     for c in labels:
         lab = "Sol" if c == 1 else "Astra"
         rows_c = idx[Y[idx] == c]
@@ -147,8 +156,8 @@ def report_set(tag, R, idx, labels, rng, n=40000):
         tries = rows.shape[1] // 3
         sign = 1 if c == 1 else -1
         for disp, (clip, shrink) in DISPLAYS.items():
-            L1 = sign * sol_logodds(R, rows_c[:, None], clip, shrink)
-            Lt = [sign * sol_logodds(R, rows[:, :3 * t], clip, shrink) for t in range(1, tries + 1)]
+            L1 = sign * sol_logodds(R, rows_c[:, None], clip, shrink, effort)
+            Lt = [sign * sol_logodds(R, rows[:, :3 * t], clip, shrink, effort) for t in range(1, tries + 1)]
             for thr in (THRESHOLDS if disp.startswith("platt") else (0.75,)):
                 th = np.log(thr / (1 - thr))
                 state, when = np.zeros(n, int), np.full(n, tries)
@@ -173,6 +182,8 @@ def aggregate():
         report_set(f"loeo|{v}: training", R, TR, (0, 1), rng)
         for e in EFFORTS:
             report_set(f"loeo|{v}: new {e}", R, ME[EFF[ME] == e], (0, 1), rng)
+            if declarable(e):
+                report_set(f"loeo|{v}: new {e} (declared)", R, ME[EFF[ME] == e], (0, 1), rng, effort=e)
         report_set(f"loeo|{v}: new all efforts", R, ME, (0, 1), rng)
         report_set(f"lobo|{v}: training", load(f"lobo|{v}"), TR, (0, 1), rng)
         R = load(f"full|{v}")
