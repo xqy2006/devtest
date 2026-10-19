@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 env:
   PYTHONUNBUFFERED: "1"
-  AGGREGATE: ""
+  AGGREGATE: "python research/token_proj.py aggregate"
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/range355_check.py"]
+        exp: ["python research/token_proj.py folds 0/8", "python research/token_proj.py folds 1/8", "python research/token_proj.py folds 2/8", "python research/token_proj.py folds 3/8", "python research/token_proj.py folds 4/8", "python research/token_proj.py folds 5/8", "python research/token_proj.py folds 6/8", "python research/token_proj.py folds 7/8"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
