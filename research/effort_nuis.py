@@ -102,8 +102,8 @@ def aggregate():
         R = load(f"loeo|{v}", PREFIX)
         report_set(f"loeo|{v}: training", R, TR, (0, 1), rng)
         for e in EFFORTS:
-            report_set(f"loeo|{v}: new Sol {e}", R, ME[EFF[ME] == e], (1,), rng)
-        report_set(f"loeo|{v}: new Sol all efforts", R, ME, (1,), rng)
+            report_set(f"loeo|{v}: new {e}", R, ME[EFF[ME] == e], (0, 1), rng)
+        report_set(f"loeo|{v}: new all efforts", R, ME, (0, 1), rng)
         report_set(f"lobo|{v}: training", load(f"lobo|{v}", PREFIX), TR, (0, 1), rng)
         R = load(f"full|{v}", PREFIX)
         report_set(f"full|{v}: outside", R, OUT_ROWS, (0, 1), rng)

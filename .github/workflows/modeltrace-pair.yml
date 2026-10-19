@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/effort_sub.py folds 0/4", "python research/effort_sub.py folds 1/4", "python research/effort_sub.py folds 2/4", "python research/effort_sub.py folds 3/4"]
+        exp: ["python research/effort_sub.py folds 0/12", "python research/effort_sub.py folds 1/12", "python research/effort_sub.py folds 2/12", "python research/effort_sub.py folds 3/12", "python research/effort_sub.py folds 4/12", "python research/effort_sub.py folds 5/12", "python research/effort_sub.py folds 6/12", "python research/effort_sub.py folds 7/12", "python research/effort_sub.py folds 8/12", "python research/effort_sub.py folds 9/12", "python research/effort_sub.py folds 10/12", "python research/effort_sub.py folds 11/12"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

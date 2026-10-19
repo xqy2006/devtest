@@ -52,14 +52,16 @@ from research.calib_pair import RES, lda05, log  # noqa: E402
 from research.hard_pair import A, IA, IS, OUT_ROWS, S, TR, p, yb  # noqa: E402
 from research.runner_pair import auc  # noqa: E402
 
-ME_ROWS = [json.loads(line) for line in
-           (ROOT / "data/sol_multieffort_20261019/sol_multieffort_references.jsonl").read_text().splitlines() if line]
+# every multi-effort collection of the pair (data/<model>_multieffort_<date>/<model>_multieffort_references.jsonl)
+ME_ROWS = [json.loads(line) for f in sorted((ROOT / "data").glob("*multieffort*/*multieffort_references.jsonl"))
+           for line in f.read_text().splitlines() if line]
+assert all(r["source"] in (p.classes[A], p.classes[S]) for r in ME_ROWS)
 ROWS = p.rows + ME_ROWS
 N0 = len(p.rows)
 ME = np.arange(N0, N0 + len(ME_ROWS))
 ENV = np.concatenate([p.env, [r["condition_id"] for r in ME_ROWS]])
-Y = np.concatenate([yb, np.ones(len(ME_ROWS), int)])
-BATCH = np.concatenate([p.role, ["multieffort_20261019"] * len(ME_ROWS)])
+Y = np.concatenate([yb, [int(r["source"] == p.classes[S]) for r in ME_ROWS]])
+BATCH = np.concatenate([p.role, [r["role"] for r in ME_ROWS]])
 EFF = np.array([r.get("reasoning_effort") or "unrecorded" for r in ROWS])
 
 
@@ -250,20 +252,20 @@ def effort_diagnostics():
             if te.any() and len(set(lab[tr])) == 2:
                 sc[te] = lda05(X[rows[tr]], lab[tr], X[rows[te]])
         return auc(sc, lab)
-    me = {e: ME[EFF[ME] == e] for e in EFFORTS}
+    me = {e: ME[(EFF[ME] == e) & (Y[ME] == 1)] for e in EFFORTS}
     old_sol, astra = TR[Y[TR] == 1], TR[Y[TR] == 0]
     pairs = [(f"Sol {e} vs Sol low (new, same prompts)", me[e], me["low"]) for e in EFFORTS[1:]]
     pairs += [("Sol high+xhigh vs Sol low+medium (new)", np.concatenate([me["high"], me["xhigh"]]),
                np.concatenate([me["low"], me["medium"]])),
               ("Sol low new vs Sol low training", me["low"], old_sol),
-              ("Sol all new vs Sol training", ME, old_sol)]
+              ("Sol all new vs Sol training", ME[Y[ME] == 1], old_sol)]
     pairs += [(f"Sol {e} new vs Astra training", me[e], astra) for e in EFFORTS]
     pairs += [("Sol training vs Astra training (reference)", old_sol, astra)]
     for name, pos, neg in pairs:
         print(f"EFFDET {name:44} n {len(pos)} / {len(neg)} | LOEO AUC {loeo_auc(pos, neg):.3f}", flush=True)
     R = load("loeo_low")
     for tag, rows in [("training Astra", astra), ("training Sol", old_sol)] + [(f"new Sol {e}", me[e]) for e in EFFORTS] \
-            + [("new Sol all", ME)]:
+            + [("new Sol all", ME[Y[ME] == 1])]:
         ok = ~np.isnan(TOK[rows]) & ~np.isnan(R["d"][rows])
         if ok.sum() > 5:
             r = spearmanr(R["d"][rows][ok], TOK[rows][ok]).correlation
@@ -285,8 +287,8 @@ def aggregate():
             report_set(f"{proto}: training", R, TR, (0, 1), rng)
         if proto in ("loeo_low", "loeo_all", "full_low"):
             for e in EFFORTS:
-                report_set(f"{proto}: new Sol {e}", R, ME[EFF[ME] == e], (1,), rng)
-            report_set(f"{proto}: new Sol all efforts", R, ME, (1,), rng)
+                report_set(f"{proto}: new {e}", R, ME[EFF[ME] == e], (0, 1), rng)
+            report_set(f"{proto}: new all efforts", R, ME, (0, 1), rng)
     effort_diagnostics()
     log("done")
 

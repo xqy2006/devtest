@@ -8,9 +8,13 @@ Astra@low (all Astra rows: low or unrecorded), Sol@low (training rows + new low)
 A query's model probability sums its subclasses after the calibrated map. Run 22b (first version) used sklearn's
 default LDA priors (reference proportions): the small subclasses then carried a per-response prior of about -3.6
 that the Platt intercept had to undo, and clipping / summing over 6-9 responses broke that balance (everything
-became Sol). Run 23: equal LDA priors (G.LDA_EQUAL_PRIORS), and the combination weights and the Platt maps maximize
-the likelihood of the true model (sum over its subclasses; member_groups), with weight 1/2 per model split evenly
-over its subclasses, so the map's output already has class prior 1/2.
+became Sol). Run 23: equal LDA priors, and the combination weights and the Platt maps maximize the likelihood of
+the true model (sum over its subclasses; member_groups), with weight 1/2 per model split evenly over its
+subclasses, so the map's output already has class prior 1/2. Still Sol-low recall fell (0.86 -> 0.70): sklearn
+weights each class covariance by its prior and the ~12-row subclasses got extreme logits. Run 24: subclass LDA of
+the deliverable (G._sub_lda): covariance pooled over all rows, subclass means shrunk towards the model mean with
+weight n / (n + lambda), lambda in 0 / 12 / 48; environment offsets per model; no clip (the clip is for two
+members).
 
 Caveat: there are no Astra references above low effort, so Astra at medium / high / xhigh is untested here.
 
@@ -40,11 +44,14 @@ from research.calib_pair import RES, log  # noqa: E402
 from research.effort_pair import BATCH, EFF, EFFORTS, ENV, ENVS, ME, OUT_ROWS, ROWS, TR, Y, cells  # noqa: E402
 from research.hard_pair import A, S, p  # noqa: E402
 
-SUB = [f"{p.classes[A]}@low"] + [f"{p.classes[S]}@{e}" for e in EFFORTS]
-SOLSUB = np.array([False, True, True, True, True])
+EFF_SUB = np.where(EFF == "unrecorded", "low", EFF)  # Astra's train_original rows have no recorded effort
+SUB = [f"{p.classes[m]}@{e}" for c, m in ((0, A), (1, S)) for e in EFFORTS
+       if np.any((Y[np.concatenate([TR, ME])] == c) & (EFF_SUB[np.concatenate([TR, ME])] == e))]
+SOLSUB = np.array([s.startswith(p.classes[S] + "@") for s in SUB])
 GROUPS = SOLSUB.astype(int).tolist()
 PREFIX = "sub_fold_"
-DISPLAYS = {"v5 display (clip 2, x0.65)": (2.0, 0.65), "platt (no clip, x1)": (None, 1.0)}
+DISPLAYS = {"platt x0.65 (no clip)": (None, 0.65), "platt (no clip, x1)": (None, 1.0)}  # clip is for 2 members
+VARIANTS = {"lam12": 12.0, "lam48": 48.0, "lam0": 0.0}  # G.SUB_MEAN_LAMBDA
 THRESHOLDS = (0.75, 0.85, 0.9, 0.95)
 
 
@@ -52,24 +59,27 @@ def sub_rows(idx):
     out = []
     for i in idx:
         r = dict(ROWS[i])
-        r["source"] = SUB[0] if Y[i] == 0 else f"{p.classes[S]}@{EFF[i]}"
+        r["source"] = f"{p.classes[S if Y[i] else A]}@{EFF_SUB[i]}"
         assert r["source"] in SUB
         out.append(r)
     return out
 
 
 def fold_list():
-    F = [("loeo", e, np.concatenate([TR[ENV[TR] != e], ME[ENV[ME] != e]]),
-          np.concatenate([TR[ENV[TR] == e], ME[ENV[ME] == e]])) for e in ENVS]
-    F += [("lobo", b, np.concatenate([TR[BATCH[TR] != b], ME]), TR[BATCH[TR] == b]) for b in sorted(set(BATCH[TR]))]
-    F.append(("full", "outside", np.concatenate([TR, ME]), OUT_ROWS))
+    F = []
+    for v in VARIANTS:
+        F += [(f"loeo|{v}", e, np.concatenate([TR[ENV[TR] != e], ME[ENV[ME] != e]]),
+               np.concatenate([TR[ENV[TR] == e], ME[ENV[ME] == e]])) for e in ENVS]
+        F += [(f"lobo|{v}", b, np.concatenate([TR[BATCH[TR] != b], ME]), TR[BATCH[TR] == b])
+              for b in sorted(set(BATCH[TR]))]
+        F.append((f"full|{v}", "outside", np.concatenate([TR, ME]), OUT_ROWS))
     return F
 
 
 def run_fold(j):
     proto, fname, ref, te = fold_list()[j]
     t = time.time()
-    G.LDA_EQUAL_PRIORS = True
+    G.SUB_MEAN_LAMBDA = VARIANTS[proto.split("|")[1]]
     cl = G.fit_cluster(sub_rows(ref), SUB, list(range(len(SUB))), member_groups=GROUPS)
     assert cl["members"] == SUB
     s = np.array([G.local_logits(cl, ROWS[i]["numbers"]) for i in te])
@@ -164,16 +174,17 @@ def aggregate():
     files = sorted(RES.glob(f"{PREFIX}*.json"))
     assert len(files) == len(fold_list()), f"{len(files)} fold files"
     rng = np.random.default_rng(0)
-    R = load("loeo")
-    report_set("sub loeo: training", R, TR, (0, 1), rng)
-    for e in EFFORTS:
-        report_set(f"sub loeo: new Sol {e}", R, ME[EFF[ME] == e], (1,), rng)
-    report_set("sub loeo: new Sol all efforts", R, ME, (1,), rng)
-    report_set("sub lobo: training", load("lobo"), TR, (0, 1), rng)
-    R = load("full")
-    report_set("sub full: outside", R, OUT_ROWS, (0, 1), rng)
-    for b in ("old_outside", "fresh_outside"):
-        report_set(f"sub full: {b}", R, OUT_ROWS[BATCH[OUT_ROWS] == b], (0, 1), rng)
+    for v in VARIANTS:
+        R = load(f"loeo|{v}")
+        report_set(f"loeo|{v}: training", R, TR, (0, 1), rng)
+        for e in EFFORTS:
+            report_set(f"loeo|{v}: new {e}", R, ME[EFF[ME] == e], (0, 1), rng)
+        report_set(f"loeo|{v}: new all efforts", R, ME, (0, 1), rng)
+        report_set(f"lobo|{v}: training", load(f"lobo|{v}"), TR, (0, 1), rng)
+        R = load(f"full|{v}")
+        report_set(f"full|{v}: outside", R, OUT_ROWS, (0, 1), rng)
+        for b in ("old_outside", "fresh_outside"):
+            report_set(f"full|{v}: {b}", R, OUT_ROWS[BATCH[OUT_ROWS] == b], (0, 1), rng)
     log("done")
 
 
