@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 env:
   PYTHONUNBUFFERED: "1"
-  AGGREGATE: "python research/calib_pair.py aggregate"
+  AGGREGATE: "python research/deliverable_v5_check.py aggregate"
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -20,8 +20,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/calib_pair.py folds 0/4", "python research/calib_pair.py folds 1/4",
-              "python research/calib_pair.py folds 2/4", "python research/calib_pair.py folds 3/4"]
+        exp: ["python research/deliverable_v5_check.py folds 0/4", "python research/deliverable_v5_check.py folds 1/4",
+              "python research/deliverable_v5_check.py folds 2/4", "python research/deliverable_v5_check.py folds 3/4",
+              "python research/final_eval.py && cp research/final_results_v5.json results/"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

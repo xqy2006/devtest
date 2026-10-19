@@ -11,9 +11,12 @@ elif "--v2" in sys.argv:
     from research.gated_fingerprint_v2 import GatedDeliverable
 elif "--v3" in sys.argv:
     from research.gated_fingerprint_v3 import GatedDeliverable
+elif "--v4" in sys.argv:
+    from research.gated_fingerprint_v4 import GatedDeliverable
 else:
     from research.gated_fingerprint import GatedDeliverable
-TAG = "" if "--v1" in sys.argv else "_v2" if "--v2" in sys.argv else "_v3" if "--v3" in sys.argv else "_v4"
+TAG = ("" if "--v1" in sys.argv else "_v2" if "--v2" in sys.argv else "_v3" if "--v3" in sys.argv
+       else "_v4" if "--v4" in sys.argv else "_v5")
 from research.methods_baseline import ProductionBaseline
 calibrate = "--calibrate" in sys.argv
 p = Panel()
