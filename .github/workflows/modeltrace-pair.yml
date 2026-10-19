@@ -12,7 +12,8 @@ concurrency:
   cancel-in-progress: false
 env:
   PYTHONUNBUFFERED: "1"
-  AGGREGATE: "python research/union_pair.py aggregate"
+  GH_TOKEN: ${{ github.token }}  # lets a job read an earlier run's artifacts (gh run download)
+  AGGREGATE: ""
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -20,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/union_pair.py folds 0/5", "python research/union_pair.py folds 1/5", "python research/union_pair.py folds 2/5", "python research/union_pair.py folds 3/5", "python research/union_pair.py folds 4/5"]
+        exp: ["gh run download 39302071318 -R xqy2006/devtest -n res-aggregate -D results && python research/kneeded.py"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
