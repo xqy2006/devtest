@@ -93,6 +93,9 @@ LDA_COV_PARTS = ("dense", "score")
 # quantile stayed <= 0.85, single responses never above 0.8. Chosen on training rows only.
 LOCAL_CLIP = 2.0
 LOCAL_SHRINK = 0.65
+# Reasoning-effort nuisance (research/effort_pair*.py): rank of the within-prompt effort directions removed from the
+# distribution, score and residual evidence when effort rows are given; 0 = off.
+EFFORT_RANK = 0
 
 
 def _lda(part):
@@ -156,7 +159,32 @@ def discover_clusters(conf, tau=TAU):
     return [sorted(g) for g in groups.values() if len(g) > 1]
 
 
-def fit_local(rows, model_ids, members, families=LOCAL_FAMILIES, nuisance_rank=NUISANCE_RANK):
+def _effort_cells(rows):
+    """Keys (member, environment, prompt, collection) and reasoning efforts of effort-nuisance rows."""
+    keys = np.array([f'{r["source"]}|{r["condition_id"]}|{r.get("challenge_id", "")}|{r.get("role", r.get("cohort", ""))}'
+                     for r in rows])
+    return keys, np.array([str(r.get("reasoning_effort") or "") for r in rows])
+
+
+def _effort_basis(Zn, keys, effort, rank):
+    """Top directions of within-prompt reasoning-effort offsets: rows sharing a key (same member, environment,
+    prompt and collection) answered at different efforts; each effort cell's mean minus the mean of the cells."""
+    offs = []
+    for k in sorted(set(keys)):
+        m = keys == k
+        effs = sorted(set(effort[m]))
+        if len(effs) < 2:
+            continue
+        cells = np.array([Zn[m & (effort == f)].mean(0) for f in effs])
+        offs.extend(cells - cells.mean(0))
+    if not rank or len(offs) < 2:
+        return np.zeros((0, Zn.shape[1]))
+    _, singular, right = np.linalg.svd(np.array(offs), full_matrices=False)
+    return right[:min(rank, int(np.sum(singular > singular[0] * 1e-8)))]
+
+
+def fit_local(rows, model_ids, members, families=LOCAL_FAMILIES, nuisance_rank=NUISANCE_RANK, effort_rows=None,
+              effort_rank=0):
     sel = [r for r in rows if r["source"] in {model_ids[k] for k in members}]
     X = np.stack([response_features(r["numbers"], families) for r in sel])
     y = np.array([model_ids.index(r["source"]) for r in sel])
@@ -172,6 +200,12 @@ def fit_local(rows, model_ids, members, families=LOCAL_FAMILIES, nuisance_rank=N
         _, singular, right = np.linalg.svd(np.array(offsets), full_matrices=False)
         basis = right[:min(nuisance_rank, int(np.sum(singular > singular[0] * 1e-8)))]
         Z = Z - (Z @ basis.T) @ basis
+    if effort_rank and effort_rows:
+        Zn = sc.transform(np.stack([response_features(r["numbers"], families) for r in effort_rows])) * w
+        Zn = Zn - (Zn @ basis.T) @ basis  # effort directions orthogonal to the environment directions
+        eb = _effort_basis(Zn, *_effort_cells(effort_rows), effort_rank)
+        Z = Z - (Z @ eb.T) @ eb
+        basis = np.vstack([basis, eb])
     lda = _lda("dense").fit(Z, y)
     coef = np.atleast_2d(lda.coef_)
     intercept = np.atleast_1d(lda.intercept_)
@@ -272,7 +306,8 @@ def score_vectors(theta, seqs, groups=SCORE_GROUPS):
     return U[:, _score_columns(groups)]
 
 
-def fit_score_local(U, y, env, groups=SCORE_GROUPS, nuisance_rank=NUISANCE_RANK):
+def fit_score_local(U, y, env, groups=SCORE_GROUPS, nuisance_rank=NUISANCE_RANK, Un=None, effort_cells=None,
+                    effort_rank=0):
     """Standardize -> group weights -> environment-offset projection -> shrinkage LDA on score vectors."""
     w = np.concatenate([np.full(FS.GROUPS[g], 1 / np.sqrt(FS.GROUPS[g])) for g in groups])
     sc = StandardScaler().fit(U)
@@ -284,6 +319,12 @@ def fit_score_local(U, y, env, groups=SCORE_GROUPS, nuisance_rank=NUISANCE_RANK)
         _, singular, right = np.linalg.svd(np.array(offsets), full_matrices=False)
         basis = right[:min(nuisance_rank, int(np.sum(singular > singular[0] * 1e-8)))]
         Z = Z - (Z @ basis.T) @ basis
+    if effort_rank and Un is not None and len(Un):
+        Zn = sc.transform(Un) * w
+        Zn = Zn - (Zn @ basis.T) @ basis
+        eb = _effort_basis(Zn, *effort_cells, effort_rank)
+        Z = Z - (Z @ eb.T) @ eb
+        basis = np.vstack([basis, eb])
     lda = _lda("score").fit(Z, y)
     coef = np.atleast_2d(lda.coef_)
     intercept = np.atleast_1d(lda.intercept_)
@@ -388,20 +429,27 @@ def resid_vectors(pi, seqs):
     return np.array([np.concatenate([pl_residual(x, pi), time_stats(x)]) for x in seqs])
 
 
-def fit_resid_local(X, y, shrink=RESID_SHRINK):
+def fit_resid_local(X, y, shrink=RESID_SHRINK, Xn=None, effort_cells=None, effort_rank=0):
     mu, sd = X.mean(0), X.std(0) + 1e-9
-    lda = LinearDiscriminantAnalysis(solver="lsqr", shrinkage=shrink).fit((X - mu) / sd, y)
+    Z = (X - mu) / sd
+    basis = np.zeros((0, X.shape[1]))
+    if effort_rank and Xn is not None and len(Xn):
+        basis = _effort_basis((Xn - mu) / sd, *effort_cells, effort_rank)
+        Z = Z - (Z @ basis.T) @ basis
+    lda = LinearDiscriminantAnalysis(solver="lsqr", shrinkage=shrink).fit(Z, y)
     coef = np.atleast_2d(lda.coef_)
     intercept = np.atleast_1d(lda.intercept_)
     if len(lda.classes_) == 2:
         coef = np.vstack([np.zeros_like(coef[0]), coef[0]])
         intercept = np.array([0.0, intercept[0]])
-    return {"feature_mean": mu.tolist(), "feature_scale": sd.tolist(), "coef": coef.tolist(),
-            "intercept": intercept.tolist()}
+    return {"feature_mean": mu.tolist(), "feature_scale": sd.tolist(), "nuisance_basis": basis.tolist(),
+            "coef": coef.tolist(), "intercept": intercept.tolist()}
 
 
 def _resid_logits_from_vector(loc, u):
     z = (u - np.asarray(loc["feature_mean"])) / np.asarray(loc["feature_scale"])
+    basis = np.asarray(loc.get("nuisance_basis", [])).reshape(-1, len(z))
+    z = z - (z @ basis.T) @ basis
     s = np.asarray(loc["coef"]) @ z + np.asarray(loc["intercept"])
     return s - logsumexp(s)
 
@@ -410,8 +458,9 @@ def _resid_logits(resid, numbers):
     return _resid_logits_from_vector(resid["local"], resid_vectors(np.asarray(resid["pi"]), [numbers])[0])
 
 
-def fit_cluster(rows, model_ids, members):
-    """Distribution, branch, score and residual evidence + combination weights for one cluster."""
+def fit_cluster(rows, model_ids, members, effort_rows=None, effort_rank=EFFORT_RANK):
+    """Distribution, branch, score and residual evidence + combination weights for one cluster. effort_rows:
+    rows of the members answered at several reasoning efforts (same prompt), used only for nuisance directions."""
     from scipy.optimize import minimize
     sel = [r for r in rows if r["source"] in {model_ids[k] for k in members}]
     member_ids = [model_ids[k] for k in sorted(members)]
@@ -427,14 +476,22 @@ def fit_cluster(rows, model_ids, members):
     # shared Plackett-Luce weights: label-free, fit once on all of the cluster's reference rows
     pi = fit_pl(seqs)
     X = resid_vectors(pi, seqs)
+    erows = [r for r in (effort_rows or []) if r["source"] in member_ids] if effort_rank else []
+    ecells, Un, Xn = None, None, None
+    if erows:
+        ecells = _effort_cells(erows)
+        nseqs = [list(map(int, r["numbers"])) for r in erows]
+        Un = FS.score_vectors(FS.Steps(nseqs), theta)[:, _score_columns(SCORE_GROUPS)]
+        Xn = resid_vectors(pi, nseqs)
+    eff = {"effort_rows": erows, "effort_rank": effort_rank}
     parts = np.zeros((4, len(sel), K))  # distribution, branch, score, residual
     for e in sorted(set(env)):  # out-of-fold evidence for the combination weights
         keep = env != e
         tr = [r for r, k in zip(sel, keep) if k]
-        loc = fit_local(tr, model_ids, members)
+        loc = fit_local(tr, model_ids, members, **eff)
         br = fit_branch([r["numbers"] for r in tr], [member_ids.index(r["source"]) for r in tr], K)
-        sloc = fit_score_local(U[keep], y[keep], env[keep])
-        rloc = fit_resid_local(X[keep], y[keep])
+        sloc = fit_score_local(U[keep], y[keep], env[keep], Un=Un, effort_cells=ecells, effort_rank=effort_rank)
+        rloc = fit_resid_local(X[keep], y[keep], Xn=Xn, effort_cells=ecells, effort_rank=effort_rank)
         for i in np.flatnonzero(env == e):
             parts[:, i] = [_dense_logits(loc, sel[i]["numbers"]), branch_scores(br, sel[i]["numbers"], K),
                            _score_logits_from_vector(sloc, U[i]), _resid_logits_from_vector(rloc, X[i])]
@@ -446,11 +503,12 @@ def fit_cluster(rows, model_ids, members):
     S = np.tensordot(w, parts, 1)
     S = S - logsumexp(S, axis=1, keepdims=True)  # inner out-of-fold local logits, as local_logits returns them
     maps = {str(k): _fit_group_map(S, y, env, k) for k in (1, 2, 3)}
-    local = fit_local(sel, model_ids, members)
+    local = fit_local(sel, model_ids, members, **eff)
     assert local["members"] == member_ids
     local["branch"] = fit_branch([r["numbers"] for r in sel], y.tolist(), K)
-    local["score"] = {"theta": theta.tolist(), "local": fit_score_local(U, y, env)}
-    local["resid"] = {"pi": pi.tolist(), "local": fit_resid_local(X, y)}
+    local["score"] = {"theta": theta.tolist(),
+                      "local": fit_score_local(U, y, env, Un=Un, effort_cells=ecells, effort_rank=effort_rank)}
+    local["resid"] = {"pi": pi.tolist(), "local": fit_resid_local(X, y, Xn=Xn, effort_cells=ecells, effort_rank=effort_rank)}
     local["combine"] = {"w_distribution": float(w[0]), "w_branch": float(w[1]), "w_score": float(w[2]),
                         "w_resid": float(w[3]),
                         "fitted_on": "inner leave-one-environment-out scores of the cluster's reference rows",

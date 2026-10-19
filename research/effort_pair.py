@@ -133,12 +133,12 @@ THRESHOLDS = (0.75, 0.85, 0.9, 0.95)
 DISPLAYS = {"v5 display (clip 2, x0.65)": (2.0, 0.65), "platt (no clip, x1)": (None, 1.0)}
 
 
-def load(proto):
+def load(proto, prefix="effort_fold_"):
     """Per-row arrays (NaN outside the protocol's test rows): d, components, a_k, b_k."""
     n = len(ROWS)
     R = {"d": np.full(n, np.nan), "comp": np.full((n, 4), np.nan),
          **{f"a{k}": np.full(n, np.nan) for k in (1, 2, 3)}, **{f"b{k}": np.full(n, np.nan) for k in (1, 2, 3)}}
-    for fp_ in sorted(RES.glob("effort_fold_*.json")):
+    for fp_ in sorted(RES.glob(f"{prefix}*.json")):
         r = json.loads(fp_.read_text())
         if r["protocol"] != proto:
             continue
