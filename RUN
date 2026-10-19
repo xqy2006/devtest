@@ -1,17 +1,1 @@
-run 1: 2026-10-12T13:29:16Z first full batch (smoke, then 12 experiments)
-run 2: 2026-10-12T14:35:36Z LLR (pilot/lib/frozen) + stacked sources with variance floor and clipping (14 folds)
-run 3: 2026-10-13T00:50:11Z curves of the best combination (dense + score + library window 0): reference count, prompts vs repeats, length; library window variants
-run 4: 2026-10-13T01:29:54Z clean features (t=990, constant columns dropped, query features clipped to the reference range), batch nuisance variant, time drift and parser diagnosis, clean reference curves; 3 jobs
-run 5: 2026-10-13T02:41:16Z why Sol is scored as Astra (frozen library model by split, prompt-paired differences, out-of-range 356s, feature-shift decomposition, split detectability) + reference-only fixes (nuisance rank, random-effects LDA over prompts and collection waves); live log on issue #1
-run 6: 2026-10-13T03:08:23Z covariance shrinkage sweep of the random-effects LDA (lw, 0.5, 0.8, 0.95, 1, inner-CV choice), with and without the prompt nuisance term, and two wider Fisher-score group sets; dev<->test and LOEO; one job per variant (12). First attempt 38339400705 was cancelled after the smoke pass.
-run 7: 2026-10-13T03:42:16Z original method (deliverable v4 cluster model) on the original data with one change, the LDA covariance (Ledoit-Wolf in the family-weighted space) for distribution+score or score only, vs v4 as delivered; per-label results; LOBO / 10-11 env / env / outside; 12 jobs
-run 8: 2026-10-13T09:02:32Z why2: readable statistics of the misjudged Sol responses (where they sit between correct Sol and Astra, prompt dependence, readable discriminant); 1 job
-run 9: 2026-10-13T09:07:25Z tilt: 15 random 75% reference subsets per direction, base vs covariance fix; does the one-sided error follow the reference subset; 2 jobs
-run 10: 2026-10-13T09:33:01Z batch: same references (one split, 6 random environments), queries = the other 6 environments from the same split vs from the other split, 20 halves; base vs covariance fix; 2 jobs
-run 11: 2026-10-14T11:34:19Z hard_pair: worst case at the original length (original data, v4 cluster): evidence parts of misjudged rows, residual information among rows called Astra, readable statistics, half-response consistency; 2 jobs
-run 12: 2026-10-14T12:04:45Z hard_pair: evidence in the opening (model refitted on the first 10/20/40/80 numbers and on 40-125) + readable-statistics discriminant replacing the distribution component or as a fourth component; 3 jobs
-run 13: 2026-10-14T12:06:03Z rerun of run 12 prefix (NaN family values on 10 numbers set to 0 in this experiment); 1 job
-run 14: 2026-10-15T00:46:41Z neural_pair: GRU next-number model conditioned on the label, likelihood-ratio score on the original data (LOEO + outside), alone and combined with v4; widths 64/128, all labels vs pair only; 3 jobs
-run 15: 2026-10-15T01:36:28Z hard_pair refine: cheap refinements on the original data on top of the readable change (fork split weights, soft forks with banded opening prefix and smoothed outcomes, opening position x value density), v4 refitted as baseline; 1 job
-run 16: 2026-10-15T02:31:17Z hard_pair universal: only the feature vectors every response yields (distribution, readable, score), no fork evidence; primary = v4 without forks; 1 job
-run 17: 2026-10-16T02:13:49Z share package: test of the standalone evaluation harness (example baseline on Astra/Sol and four other pairs); 1 job
+run 18 2026-10-19T13:15:47Z: calib_pair

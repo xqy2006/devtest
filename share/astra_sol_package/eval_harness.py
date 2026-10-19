@@ -82,7 +82,7 @@ def evaluate(fit, rows, model_a="gpt-6-astra", model_b="gpt-6.1-sol"):
         score = fit([r for r in train if r["environment"] != e], [r for r in others if r["environment"] != e])
         d[held] = score([train[i] for i in held])
     out = {"train (leave one environment out)": metrics(d, train, model_b)}
-    if outside:
+    if len(set(r["model"] for r in outside)) == 2:  # the outside panels only have Astra and 6.1 Sol
         out["outside (other dates)"] = metrics(fit(train, others)(outside), outside, model_b)
     return out
 
