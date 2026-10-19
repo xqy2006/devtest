@@ -1,1 +1,1 @@
-run 34 2026-10-19T18:42:59Z: effort subclasses as a mixture with a two-class Platt map, per-model fork evidence (effort_mix.py)
+run 35 2026-10-19T18:50:21Z: regression check of the deliverable default path after the subclass-mode rewrite (compare run 20 / 28)
