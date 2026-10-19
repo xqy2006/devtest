@@ -35,21 +35,28 @@ median / 90% quantile of p(wrong); confident errors over all groups (p(wrong) >=
 coverage and accuracy of decisions with confidence >= 0.8 / 0.9; label-balanced ECE (10 bins), log loss, Brier;
 and a reliability table.
 
-Usage: python research/calib_pair.py
+Usage: python research/calib_pair.py                    all folds (one process per fold) + aggregate
+       python research/calib_pair.py folds <i>/<n>      outer folds j with j % n == i (GitHub matrix shard)
+       python research/calib_pair.py aggregate          metrics from results/calib_fold_*.json
 """
 from __future__ import annotations
 
-import itertools
-import json
-import sys
-import time
-import warnings
-from pathlib import Path
+import os
 
-import numpy as np
-from numpy.polynomial.legendre import legvander
-from scipy.special import expit
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
+for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ.setdefault(_v, "1")
+
+import itertools  # noqa: E402
+import json  # noqa: E402
+import sys  # noqa: E402
+import time  # noqa: E402
+import warnings  # noqa: E402
+from pathlib import Path  # noqa: E402
+
+import numpy as np  # noqa: E402
+from numpy.polynomial.legendre import legvander  # noqa: E402
+from scipy.special import expit  # noqa: E402
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 warnings.filterwarnings("ignore")
@@ -237,7 +244,7 @@ def fit_maps(d_in, idx_in, rng):
         g, lab = sample_groups(idx_in, k, rng)
         s = d_in[g].sum(1)
         w = np.where(lab == 1, 0.5 / max(1, (lab == 1).sum()), 0.5 / max(1, (lab == 0).sum())) * len(lab)
-        maps[k] = {"temp": logistic1(s, lab, w, intercept=False), "platt": logistic1(s, lab, w)}
+        maps[str(k)] = {"temp": logistic1(s, lab, w, intercept=False), "platt": logistic1(s, lab, w)}
     return maps
 
 
@@ -363,38 +370,67 @@ def contributions(d, fold_of, maps_of, v, cal, k):
         if cal == "raw":
             a, b = 1.0, 0.0
         else:
-            a, b = maps_of[f][v]["lobo" if cal == "lobo" else "loeo"][k]["temp" if cal == "temp" else "platt"]
+            a, b = maps_of[f][v]["lobo" if cal == "lobo" else "loeo"][str(k)]["temp" if cal == "temp" else "platt"]
         c[idx] = a * d[idx] + b / k
     return c
 
 
-# ----------------------------------------------------------------------------- main
+# ----------------------------------------------------------------------------- folds in parallel
 
-def main():
-    log(f"rows: train {len(TR)} ({len(ENVS)} environments, batches {sorted(set(BATCH[TR]))}), outside {len(OUT_ROWS)}")
-    protocols = {
-        "loeo": [(e, TR[p.env[TR] != e], TR[p.env[TR] == e]) for e in ENVS],
-        "lobo": [(b, TR[BATCH[TR] != b], TR[BATCH[TR] == b]) for b in sorted(set(BATCH[TR]))],
-        "outside": [("all training", TR, OUT_ROWS)],
-    }
-    saved = {"weights": {}, "maps": {}, "d": {}}
+def fold_list():
+    """All outer folds in a fixed order: (protocol, fold name, references, test rows)."""
+    return ([("loeo", e, TR[p.env[TR] != e], TR[p.env[TR] == e]) for e in ENVS]
+            + [("lobo", b, TR[BATCH[TR] != b], TR[BATCH[TR] == b]) for b in sorted(set(BATCH[TR]))]
+            + [("outside", "all training", TR, OUT_ROWS)])
+
+
+def run_fold(j):
+    proto, fname, ref, te = fold_list()[j]
+    t = time.time()
+    comp_te, W, maps = fold_run(ref, te)
+    out = {"protocol": proto, "fold": str(fname), "test": te.tolist(), "components": comp_te.tolist(),
+           "weights": {v: W[v].tolist() for v in VARIANTS}, "maps": maps}
+    (RES / f"calib_fold_{j:02d}.json").write_text(json.dumps(out, default=float))
+    m3 = {v: [round(x, 3) for x in list(maps[v]["loeo"]["3"]["platt"]) + list(maps[v]["lobo"]["3"]["platt"])] for v in VARIANTS}
+    log(f"fold {j} {proto}/{fname}: refs {len(ref)} test {len(te)} ({time.time() - t:.0f}s); k3 platt (a, b) loeo / lobo {m3}")
+    return j
+
+
+def run_folds(shard="0/1"):
+    """Outer folds j with j % n == i, one process per fold (BLAS limited to one thread per process)."""
+    import multiprocessing as mp
+    i, n = map(int, shard.split("/"))
+    J = [j for j in range(len(fold_list())) if j % n == i]
+    procs = min(len(J), int(os.environ.get("PROCS", os.cpu_count() or 1)))
+    log(f"shard {shard}: folds {J} on {procs} processes")
+    with mp.get_context("fork").Pool(procs) as pool:
+        for j in pool.imap_unordered(run_fold, J):
+            pass
+
+
+# ----------------------------------------------------------------------------- aggregate
+
+def aggregate():
+    folds = fold_list()
+    files = sorted(RES.glob("calib_fold_*.json"))
+    assert len(files) == len(folds), f"{len(files)} fold files, expected {len(folds)}"
     D, FOLD, MAPS, COMP = {}, {}, {}, {}
-    for proto, folds in protocols.items():
-        D[proto] = {v: np.full(len(p.rows), np.nan) for v in VARIANTS}
-        COMP[proto] = np.full((len(p.rows), len(COLS)), np.nan)
-        FOLD[proto], MAPS[proto] = {}, {}
-        for fname, ref, te in folds:
-            comp_te, W, maps = fold_run(ref, te)
-            COMP[proto][te] = comp_te
-            for v, use in VARIANTS.items():
-                D[proto][v][te] = comp_te[:, [COLS.index(c) for c in use]] @ W[v]
-            FOLD[proto][str(fname)], MAPS[proto][str(fname)] = te, maps
-            saved["weights"][f"{proto}/{fname}"] = {v: np.round(W[v], 4).tolist() for v in VARIANTS}
-            saved["maps"][f"{proto}/{fname}"] = maps
-            m3 = {v: [round(x, 3) for x in maps[v]["loeo"][3]["platt"] + maps[v]["lobo"][3]["platt"]] for v in VARIANTS}
-            log(f"{proto} fold {fname}: refs {len(ref)} test {len(te)}; k3 platt (a, b) loeo / lobo {m3}")
-        (RES / "calib_pair.json").write_text(json.dumps(saved, indent=1, default=float))
-
+    saved = {"weights": {}, "maps": {}}
+    for fp_ in files:
+        r = json.loads(fp_.read_text())
+        proto, te = r["protocol"], np.array(r["test"], dtype=int)
+        if proto not in D:
+            D[proto] = {v: np.full(len(p.rows), np.nan) for v in VARIANTS}
+            COMP[proto] = np.full((len(p.rows), len(COLS)), np.nan)
+            FOLD[proto], MAPS[proto] = {}, {}
+        comp_te = np.array(r["components"])
+        COMP[proto][te] = comp_te
+        for v, use in VARIANTS.items():
+            D[proto][v][te] = comp_te[:, [COLS.index(c) for c in use]] @ np.array(r["weights"][v])
+        FOLD[proto][r["fold"]], MAPS[proto][r["fold"]] = te, r["maps"]
+        saved["weights"][f"{proto}/{r['fold']}"] = {v: np.round(r["weights"][v], 4).tolist() for v in VARIANTS}
+        saved["maps"][f"{proto}/{r['fold']}"] = r["maps"]
+    log(f"rows: train {len(TR)} ({len(ENVS)} environments, batches {sorted(set(BATCH[TR]))}), outside {len(OUT_ROWS)}")
     sets = {"loeo": ("loeo", TR), "lobo": ("lobo", TR), "outside": ("outside", OUT_ROWS),
             "old_outside": ("outside", OUT_ROWS[BATCH[OUT_ROWS] == "old_outside"]),
             "fresh_outside": ("outside", OUT_ROWS[BATCH[OUT_ROWS] == "fresh_outside"])}
@@ -436,4 +472,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    arg = sys.argv[1] if len(sys.argv) > 1 else "all"
+    if arg == "folds":
+        run_folds(sys.argv[2] if len(sys.argv) > 2 else "0/1")
+    elif arg == "aggregate":
+        aggregate()
+    else:
+        run_folds("0/1")
+        aggregate()

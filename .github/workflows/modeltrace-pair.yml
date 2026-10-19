@@ -1,6 +1,7 @@
 name: modeltrace-pair
-# One push of the RUN file = one run: one job per experiment in parallel (a finished job's log can be
-# read while the others still run), then one merged artifact.
+# One push of the RUN file = one run: one job per matrix entry in parallel (each job's log can be read once
+# that job finishes), then an optional aggregate job that sees every job's results/ (env AGGREGATE).
+# A runner has 4 cores: scripts run their folds in one process each (BLAS limited to one thread).
 on:
   push:
     branches: [modeltrace-pair]
@@ -11,6 +12,7 @@ concurrency:
   cancel-in-progress: false
 env:
   PYTHONUNBUFFERED: "1"
+  AGGREGATE: "python research/calib_pair.py aggregate"
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -18,7 +20,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/calib_pair.py"]
+        exp: ["python research/calib_pair.py folds 0/4", "python research/calib_pair.py folds 1/4",
+              "python research/calib_pair.py folds 2/4", "python research/calib_pair.py folds 3/4"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -35,5 +38,33 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: res-${{ strategy.job-index }}
+          path: results/
+          if-no-files-found: warn
+  aggregate:
+    needs: run
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: res-*
+          merge-multiple: true
+          path: results
+      - name: aggregate
+        run: |
+          set -o pipefail
+          if [ -z "$AGGREGATE" ]; then echo "no aggregate step"; exit 0; fi
+          pip install -q -r requirements.txt
+          $AGGREGATE 2>&1 | tee results/aggregate.log
+      - name: upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: res-aggregate
           path: results/
           if-no-files-found: warn
