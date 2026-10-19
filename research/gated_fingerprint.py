@@ -96,12 +96,21 @@ LOCAL_SHRINK = 0.65
 # Reasoning-effort nuisance (research/effort_pair*.py): rank of the within-prompt effort directions removed from the
 # distribution, score and residual evidence when effort rows are given; 0 = off.
 EFFORT_RANK = 0
+# Members with very different reference counts (e.g. model x reasoning-effort subclasses, research/effort_sub.py):
+# equal LDA priors, so a response's local logits carry no per-response prior that would add up over responses.
+LDA_EQUAL_PRIORS = False
 
 
-def _lda(part):
+def _priors(y):
+    """Equal member priors when LDA_EQUAL_PRIORS (members with very different reference counts), else sklearn's
+    reference proportions."""
+    return np.full(len(set(y)), 1.0 / len(set(y))) if LDA_EQUAL_PRIORS else None
+
+
+def _lda(part, y):
     if LDA_COV == "weighted" and part in LDA_COV_PARTS:
-        return LinearDiscriminantAnalysis(solver="lsqr", covariance_estimator=LedoitWolf())
-    return LinearDiscriminantAnalysis(solver="lsqr", shrinkage="auto")
+        return LinearDiscriminantAnalysis(solver="lsqr", covariance_estimator=LedoitWolf(), priors=_priors(y))
+    return LinearDiscriminantAnalysis(solver="lsqr", shrinkage="auto", priors=_priors(y))
 
 
 def response_features(numbers, families=LOCAL_FAMILIES):
@@ -206,7 +215,7 @@ def fit_local(rows, model_ids, members, families=LOCAL_FAMILIES, nuisance_rank=N
         eb = _effort_basis(Zn, *_effort_cells(effort_rows), effort_rank)
         Z = Z - (Z @ eb.T) @ eb
         basis = np.vstack([basis, eb])
-    lda = _lda("dense").fit(Z, y)
+    lda = _lda("dense", y).fit(Z, y)
     coef = np.atleast_2d(lda.coef_)
     intercept = np.atleast_1d(lda.intercept_)
     if len(lda.classes_) == 2:  # sklearn binary form: log-odds of the second class
@@ -325,7 +334,7 @@ def fit_score_local(U, y, env, groups=SCORE_GROUPS, nuisance_rank=NUISANCE_RANK,
         eb = _effort_basis(Zn, *effort_cells, effort_rank)
         Z = Z - (Z @ eb.T) @ eb
         basis = np.vstack([basis, eb])
-    lda = _lda("score").fit(Z, y)
+    lda = _lda("score", y).fit(Z, y)
     coef = np.atleast_2d(lda.coef_)
     intercept = np.atleast_1d(lda.intercept_)
     if len(lda.classes_) == 2:
@@ -436,7 +445,7 @@ def fit_resid_local(X, y, shrink=RESID_SHRINK, Xn=None, effort_cells=None, effor
     if effort_rank and Xn is not None and len(Xn):
         basis = _effort_basis((Xn - mu) / sd, *effort_cells, effort_rank)
         Z = Z - (Z @ basis.T) @ basis
-    lda = LinearDiscriminantAnalysis(solver="lsqr", shrinkage=shrink).fit(Z, y)
+    lda = LinearDiscriminantAnalysis(solver="lsqr", shrinkage=shrink, priors=_priors(y)).fit(Z, y)
     coef = np.atleast_2d(lda.coef_)
     intercept = np.atleast_1d(lda.intercept_)
     if len(lda.classes_) == 2:
@@ -458,9 +467,11 @@ def _resid_logits(resid, numbers):
     return _resid_logits_from_vector(resid["local"], resid_vectors(np.asarray(resid["pi"]), [numbers])[0])
 
 
-def fit_cluster(rows, model_ids, members, effort_rows=None, effort_rank=EFFORT_RANK):
+def fit_cluster(rows, model_ids, members, effort_rows=None, effort_rank=EFFORT_RANK, member_groups=None):
     """Distribution, branch, score and residual evidence + combination weights for one cluster. effort_rows:
-    rows of the members answered at several reasoning efforts (same prompt), used only for nuisance directions."""
+    rows of the members answered at several reasoning efforts (same prompt), used only for nuisance directions.
+    member_groups: group index per member (subclasses of one model); the combination weights then maximize the
+    likelihood of the true group (sum over its members) instead of the true member."""
     from scipy.optimize import minimize
     sel = [r for r in rows if r["source"] in {model_ids[k] for k in members}]
     member_ids = [model_ids[k] for k in sorted(members)]
@@ -496,13 +507,16 @@ def fit_cluster(rows, model_ids, members, effort_rows=None, effort_rank=EFFORT_R
             parts[:, i] = [_dense_logits(loc, sel[i]["numbers"]), branch_scores(br, sel[i]["numbers"], K),
                            _score_logits_from_vector(sloc, U[i]), _resid_logits_from_vector(rloc, X[i])]
 
+    g = np.arange(K) if member_groups is None else np.asarray(member_groups)
+    same = np.equal.outer(g, g)[y]  # rows x members of the true group
+
     def nll(w):
         s = np.tensordot(w, parts, 1)
-        return -(s[np.arange(len(y)), y] - logsumexp(s, axis=1)).sum() + 1e-3 * (w ** 2).sum()
+        return -(logsumexp(np.where(same, s, -np.inf), axis=1) - logsumexp(s, axis=1)).sum() + 1e-3 * (w ** 2).sum()
     w = minimize(nll, np.ones(len(parts)), method="L-BFGS-B").x
     S = np.tensordot(w, parts, 1)
     S = S - logsumexp(S, axis=1, keepdims=True)  # inner out-of-fold local logits, as local_logits returns them
-    maps = {str(k): _fit_group_map(S, y, env, k) for k in (1, 2, 3)}
+    maps = {str(k): _fit_group_map(S, y, env, k, member_groups=member_groups) for k in (1, 2, 3)}
     local = fit_local(sel, model_ids, members, **eff)
     assert local["members"] == member_ids
     local["branch"] = fit_branch([r["numbers"] for r in sel], y.tolist(), K)
@@ -518,9 +532,10 @@ def fit_cluster(rows, model_ids, members, effort_rows=None, effort_rank=EFFORT_R
     return local
 
 
-def _fit_group_map(S, y, env, k, n=30000, seed=0):
+def _fit_group_map(S, y, env, k, n=30000, seed=0, member_groups=None):
     """Platt map for k responses: softmax(a * summed logits + b), b[0] = 0, fitted with equal weight per member on
-    random same-member groups of k rows from k different environments."""
+    random same-member groups of k rows from k different environments. With member_groups: likelihood of the true
+    group (sum over its members), equal weight per group and per member within a group."""
     from scipy.optimize import minimize
     rng = np.random.default_rng(seed)
     K = S.shape[1]
@@ -538,11 +553,16 @@ def _fit_group_map(S, y, env, k, n=30000, seed=0):
         G.append(S[g].sum(1))
         lab.append(np.full(len(g), c))
     G, lab = np.vstack(G), np.concatenate(lab)
-    wt = (1.0 / np.bincount(lab, minlength=K))[lab]
+    grp = np.arange(K) if member_groups is None else np.asarray(member_groups)
+    present = np.unique(lab)
+    nsub = np.array([np.sum(grp[present] == grp[c]) for c in range(K)])
+    wt = (1.0 / np.bincount(lab, minlength=K))[lab] / nsub[lab]
+    same = np.equal.outer(grp, grp)[lab]
 
     def nll(p):
         z = p[0] * G + np.concatenate([[0.0], p[1:]])
-        return -(wt * (z[np.arange(len(lab)), lab] - logsumexp(z, axis=1))).sum() / wt.sum()
+        ridge = 1e-4 * (p[1:] ** 2).sum() if member_groups is not None else 0.0  # within-group b otherwise drifts
+        return -(wt * (logsumexp(np.where(same, z, -np.inf), axis=1) - logsumexp(z, axis=1))).sum() / wt.sum() + ridge
     p = minimize(nll, np.concatenate([[1.0], np.zeros(K - 1)]), method="L-BFGS-B").x
     return {"a": float(p[0]), "b": [0.0] + [float(v) for v in p[1:]]}
 

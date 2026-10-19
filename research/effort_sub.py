@@ -5,8 +5,12 @@ triple misjudged), and adding the new Sol rows as plain Sol references did not f
 hold four effort clusters), while within the 195-dim vector Sol xhigh and Astra (low) are well apart (AUC 0.92).
 Here each (model, effort) with references is its own member of the deliverable's fit_cluster:
 Astra@low (all Astra rows: low or unrecorded), Sol@low (training rows + new low), Sol@medium, Sol@high, Sol@xhigh.
-A query's model probability sums its subclasses after the calibrated map, with class prior 1/2 per model split
-evenly over the model's subclasses (the map was fitted with equal subclass weights).
+A query's model probability sums its subclasses after the calibrated map. Run 22b (first version) used sklearn's
+default LDA priors (reference proportions): the small subclasses then carried a per-response prior of about -3.6
+that the Platt intercept had to undo, and clipping / summing over 6-9 responses broke that balance (everything
+became Sol). Run 23: equal LDA priors (G.LDA_EQUAL_PRIORS), and the combination weights and the Platt maps maximize
+the likelihood of the true model (sum over its subclasses; member_groups), with weight 1/2 per model split evenly
+over its subclasses, so the map's output already has class prior 1/2.
 
 Caveat: there are no Astra references above low effort, so Astra at medium / high / xhigh is untested here.
 
@@ -38,7 +42,7 @@ from research.hard_pair import A, S, p  # noqa: E402
 
 SUB = [f"{p.classes[A]}@low"] + [f"{p.classes[S]}@{e}" for e in EFFORTS]
 SOLSUB = np.array([False, True, True, True, True])
-PRIOR = np.log(np.where(SOLSUB, 0.5 / SOLSUB.sum(), 0.5 / (~SOLSUB).sum()) * len(SUB))
+GROUPS = SOLSUB.astype(int).tolist()
 PREFIX = "sub_fold_"
 DISPLAYS = {"v5 display (clip 2, x0.65)": (2.0, 0.65), "platt (no clip, x1)": (None, 1.0)}
 THRESHOLDS = (0.75, 0.85, 0.9, 0.95)
@@ -65,7 +69,8 @@ def fold_list():
 def run_fold(j):
     proto, fname, ref, te = fold_list()[j]
     t = time.time()
-    cl = G.fit_cluster(sub_rows(ref), SUB, list(range(len(SUB))))
+    G.LDA_EQUAL_PRIORS = True
+    cl = G.fit_cluster(sub_rows(ref), SUB, list(range(len(SUB))), member_groups=GROUPS)
     assert cl["members"] == SUB
     s = np.array([G.local_logits(cl, ROWS[i]["numbers"]) for i in te])
     cal = cl["combine"]["calibration"]
@@ -113,7 +118,7 @@ def sol_logodds(R, rows, clip, shrink):
     c = R["s"][rows] - R["s"][rows].mean(-1, keepdims=True)
     if clip:
         c = np.clip(c, -clip / 2, clip / 2)
-    loc = shrink * (R[f"a{k}"][rows].mean(1)[:, None] * c.sum(1) + R[f"b{k}"][rows].mean(1)) + PRIOR
+    loc = shrink * (R[f"a{k}"][rows].mean(1)[:, None] * c.sum(1) + R[f"b{k}"][rows].mean(1))
     return logsumexp(loc[:, SOLSUB], axis=1) - logsumexp(loc[:, ~SOLSUB], axis=1)
 
 

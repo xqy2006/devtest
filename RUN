@@ -1,1 +1,1 @@
-run 22 2026-10-19T16:56:12Z: effort nuisance projection (effort_nuis.py) + model x effort subclasses (effort_sub.py)
+run 23 2026-10-19T17:05:12Z: model x effort subclasses with equal LDA priors and model-level weights / maps (effort_sub.py)

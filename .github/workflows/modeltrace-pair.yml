@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 env:
   PYTHONUNBUFFERED: "1"
-  AGGREGATE: "python research/effort_nuis.py aggregate && python research/effort_sub.py aggregate"
+  AGGREGATE: "python research/effort_sub.py aggregate"
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/effort_nuis.py folds 0/16", "python research/effort_nuis.py folds 1/16", "python research/effort_nuis.py folds 2/16", "python research/effort_nuis.py folds 3/16", "python research/effort_nuis.py folds 4/16", "python research/effort_nuis.py folds 5/16", "python research/effort_nuis.py folds 6/16", "python research/effort_nuis.py folds 7/16", "python research/effort_nuis.py folds 8/16", "python research/effort_nuis.py folds 9/16", "python research/effort_nuis.py folds 10/16", "python research/effort_nuis.py folds 11/16", "python research/effort_nuis.py folds 12/16", "python research/effort_nuis.py folds 13/16", "python research/effort_nuis.py folds 14/16", "python research/effort_nuis.py folds 15/16", "python research/effort_sub.py folds 0/4", "python research/effort_sub.py folds 1/4", "python research/effort_sub.py folds 2/4", "python research/effort_sub.py folds 3/4"]
+        exp: ["python research/effort_sub.py folds 0/4", "python research/effort_sub.py folds 1/4", "python research/effort_sub.py folds 2/4", "python research/effort_sub.py folds 3/4"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
