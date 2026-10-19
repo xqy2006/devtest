@@ -173,6 +173,8 @@ VARIANTS = {
     "new195 + v4": ("D", "B", "F", "N"),
     "new195 + score": ("F", "N"),
     "new195 + distribution + score": ("D", "F", "N"),
+    "new195 + distribution": ("D", "N"),   # run 19: which v4 part brings the confident errors across dates
+    "new195 + fork": ("B", "N"),
 }
 
 
@@ -311,7 +313,10 @@ def fit_weights(comp, yv, cols):
 
 # maps; "platt*x" = the platt logit multiplied by x (a fixed extra shrinkage towards 0.5, for the trade-off
 # between fewer confident errors and less confident correct decisions)
-CALS = ("raw", "temp", "platt", "lobo", "platt*0.8", "platt*0.65", "platt*0.5")
+# run 19: "lobotemp" = temperature only, fitted on inner leave-one-batch-out d (no intercept, so decisions do
+# not move); "|c" = each response's d clipped to [-c, c] before the map
+CALS = ("raw", "temp", "platt", "lobo", "lobotemp", "platt*0.8", "platt*0.65", "platt*0.5",
+        "raw|2", "lobotemp|2", "platt*0.65|2", "platt*0.5|2")
 BINS = np.linspace(0.5, 1.0, 6)
 
 
@@ -380,12 +385,15 @@ def contributions(d, fold_of, maps_of, v, cal, k):
     """Per-row additive contribution to the group logit: a_k d + b_k / k with the row's own fold map."""
     c = np.full(len(d), np.nan)
     for f, idx in fold_of.items():
-        base, _, x = cal.partition("*")
+        cal_, _, clip = cal.partition("|")
+        base, _, x = cal_.partition("*")
         if base == "raw":
             a, b = 1.0, 0.0
         else:
-            a, b = maps_of[f][v]["lobo" if base == "lobo" else "loeo"][str(k)]["temp" if base == "temp" else "platt"]
-        c[idx] = (a * d[idx] + b / k) * (float(x) if x else 1.0)
+            a, b = maps_of[f][v]["lobo" if base.startswith("lobo") else "loeo"][str(k)][
+                "temp" if base in ("temp", "lobotemp") else "platt"]
+        dd = np.clip(d[idx], -float(clip), float(clip)) if clip else d[idx]
+        c[idx] = (a * dd + b / k) * (float(x) if x else 1.0)
     return c
 
 
@@ -447,7 +455,8 @@ def aggregate():
     log(f"rows: train {len(TR)} ({len(ENVS)} environments, batches {sorted(set(BATCH[TR]))}), outside {len(OUT_ROWS)}")
     sets = {"loeo": ("loeo", TR), "lobo": ("lobo", TR), "outside": ("outside", OUT_ROWS),
             "old_outside": ("outside", OUT_ROWS[BATCH[OUT_ROWS] == "old_outside"]),
-            "fresh_outside": ("outside", OUT_ROWS[BATCH[OUT_ROWS] == "fresh_outside"])}
+            "fresh_outside": ("outside", OUT_ROWS[BATCH[OUT_ROWS] == "fresh_outside"]),
+            **{f"lobo:{b.replace('train_', '')}": ("lobo", TR[BATCH[TR] == b]) for b in sorted(set(BATCH[TR]))}}
     summary = {}
     for tag, (proto, idx) in sets.items():
         for c in COLS:

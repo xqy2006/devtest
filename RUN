@@ -1,1 +1,1 @@
-run 18b 2026-10-19T13:35:04Z: calib_pair with the logistic fix + shrinkage sweep (parallel)
+run 19 2026-10-19T13:42:15Z: calib_pair lobotemp, clipping, per-batch lobo, N+D / N+B (parallel)
