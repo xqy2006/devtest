@@ -584,31 +584,37 @@ def fit_cluster(rows, model_ids, members, effort_rows=None, effort_rank=EFFORT_R
     eff = {"effort_rows": erows, "effort_rank": effort_rank, "member_groups": member_groups, "token_rank": token_rank}
     sub = {"member_groups": member_groups, "token_rank": token_rank}
     parts = np.zeros((4, len(sel), K))  # distribution, branch, score, residual
+    # subclass mode: the fork evidence is fit per group (model) and shared by the group's subclasses
+    g = np.arange(K) if member_groups is None else np.asarray(member_groups)
+    NG = int(g.max()) + 1
     for e in sorted(set(env)):  # out-of-fold evidence for the combination weights
         keep = env != e
         tr = [r for r, k in zip(sel, keep) if k]
         loc = fit_local(tr, model_ids, members, **eff)
-        br = fit_branch([r["numbers"] for r in tr], [member_ids.index(r["source"]) for r in tr], K)
+        br = fit_branch([r["numbers"] for r in tr], [int(g[member_ids.index(r["source"])]) for r in tr], NG)
         sloc = fit_score_local(U[keep], y[keep], env[keep], Un=Un, effort_cells=ecells, effort_rank=effort_rank,
                                tok=tok[keep], **sub)
         rloc = fit_resid_local(X[keep], y[keep], Xn=Xn, effort_cells=ecells, effort_rank=effort_rank, tok=tok[keep], **sub)
         for i in np.flatnonzero(env == e):
-            parts[:, i] = [_dense_logits(loc, sel[i]["numbers"]), branch_scores(br, sel[i]["numbers"], K),
+            parts[:, i] = [_dense_logits(loc, sel[i]["numbers"]), branch_scores(br, sel[i]["numbers"], NG)[g],
                            _score_logits_from_vector(sloc, U[i]), _resid_logits_from_vector(rloc, X[i])]
 
-    g = np.arange(K) if member_groups is None else np.asarray(member_groups)
-    same = np.equal.outer(g, g)[y]  # rows x members of the true group
+    logn = np.log(np.bincount(g, minlength=NG))  # equal weight per group, split evenly over its members
 
     def nll(w):
         s = np.tensordot(w, parts, 1)
-        return -(logsumexp(np.where(same, s, -np.inf), axis=1) - logsumexp(s, axis=1)).sum() + 1e-3 * (w ** 2).sum()
+        lg = np.stack([logsumexp(s[:, g == c], axis=1) - logn[c] for c in range(NG)], axis=1)
+        return -(lg[np.arange(len(y)), g[y]] - logsumexp(lg, axis=1)).sum() + 1e-3 * (w ** 2).sum()
     w = minimize(nll, np.ones(len(parts)), method="L-BFGS-B").x
     S = np.tensordot(w, parts, 1)
     S = S - logsumexp(S, axis=1, keepdims=True)  # inner out-of-fold local logits, as local_logits returns them
-    maps = {str(k): _fit_group_map(S, y, env, k, member_groups=member_groups) for k in (1, 2, 3)}
+    maps = {str(k): (_fit_group_map(S, y, env, k) if member_groups is None else _fit_mixture_map(S, y, env, k, g))
+            for k in (1, 2, 3)}
     local = fit_local(sel, model_ids, members, **eff)
     assert local["members"] == member_ids
-    local["branch"] = fit_branch([r["numbers"] for r in sel], y.tolist(), K)
+    local["branch"] = fit_branch([r["numbers"] for r in sel], g[y].tolist(), NG)
+    if member_groups is not None:
+        local["member_groups"] = g.tolist()
     local["score"] = {"theta": theta.tolist(),
                       "local": fit_score_local(U, y, env, Un=Un, effort_cells=ecells, effort_rank=effort_rank, tok=tok,
                                                **sub)}
@@ -621,6 +627,44 @@ def fit_cluster(rows, model_ids, members, effort_rows=None, effort_rank=EFFORT_R
                                         "fitted_on": "inner leave-one-environment-out groups of k responses "
                                                      "from k different environments"}}
     return local
+
+
+def mixture_logodds(G, groups):
+    """Two groups: log-likelihood ratio (group 1 vs 0) of summed member logits G (rows x members) when the k
+    responses share one member (e.g. one reasoning effort) and each group's members are equally likely."""
+    g = np.asarray(groups)
+    return (logsumexp(G[:, g == 1], axis=1) - np.log(np.sum(g == 1))
+            - logsumexp(G[:, g == 0], axis=1) + np.log(np.sum(g == 0)))
+
+
+def _fit_mixture_map(S, y, env, k, groups, n=30000, seed=0):
+    """Subclass mode: Platt map a * mixture log-odds + b for k responses, fitted on random groups of k rows of one
+    member from k different environments, equal weight per group and per member within a group."""
+    from scipy.optimize import minimize
+    rng = np.random.default_rng(seed)
+    g = np.asarray(groups)
+    M, lab, wt = [], [], []
+    present = [c for c in range(S.shape[1]) if np.any(y == c)]
+    for c in present:
+        rows = np.flatnonzero(y == c)
+        if k > 1 and len(set(env[rows])) < k:
+            continue
+        idx = rows[:, None] if k == 1 else rows[rng.integers(0, len(rows), size=(4 * n, k))]
+        ok = np.ones(len(idx), bool)
+        for i in range(k):
+            for j in range(i + 1, k):
+                ok &= env[idx[:, i]] != env[idx[:, j]]
+        idx = idx[ok][:n]
+        M.append(mixture_logodds(S[idx].sum(1), g))
+        lab.append(np.full(len(idx), g[c]))
+        wt.append(np.full(len(idx), 1.0 / len(idx) / sum(g[q] == g[c] for q in present)))
+    M, lab, wt = np.concatenate(M), np.concatenate(lab), np.concatenate(wt)
+
+    def nll(p):
+        z = p[0] * M + p[1]
+        return float(np.sum(wt * (np.logaddexp(0, z) - lab * z)) / wt.sum())
+    p = minimize(nll, np.array([1.0, 0.0]), method="L-BFGS-B").x
+    return {"a": float(p[0]), "b": float(p[1]), "mixture": True}
 
 
 def _fit_group_map(S, y, env, k, n=30000, seed=0, member_groups=None):
@@ -700,7 +744,11 @@ def local_logits(cluster, numbers):
     w = cluster.get("combine", {"w_distribution": 1.0, "w_branch": 0.0})
     s = w["w_distribution"] * _dense_logits(cluster, numbers)
     if w["w_branch"]:
-        s = s + w["w_branch"] * branch_scores(cluster["branch"], numbers, len(cluster["members"]))
+        if cluster.get("member_groups") is not None:  # subclass mode: per-group fork evidence
+            g = np.asarray(cluster["member_groups"])
+            s = s + w["w_branch"] * branch_scores(cluster["branch"], numbers, int(g.max()) + 1)[g]
+        else:
+            s = s + w["w_branch"] * branch_scores(cluster["branch"], numbers, len(cluster["members"]))
     if w.get("w_score"):
         s = s + w["w_score"] * _score_logits(cluster["score"], numbers)
     if w.get("w_resid"):

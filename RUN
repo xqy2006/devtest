@@ -1,1 +1,1 @@
-run 33 2026-10-19T18:33:38Z: model x effort subclasses on the full library (effort_union.py)
+run 34 2026-10-19T18:42:59Z: effort subclasses as a mixture with a two-class Platt map, per-model fork evidence (effort_mix.py)
