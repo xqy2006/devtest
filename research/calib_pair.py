@@ -201,18 +201,27 @@ def components(tr, ev, U, R, T):
 # ----------------------------------------------------------------------------- calibration
 
 def logistic1(s, y, w, intercept=True):
-    """Weighted logistic regression of y on one score (Newton)."""
+    """Weighted logistic regression of y on one score: Newton from zero with step halving (plain Newton from
+    a = 1 diverged on the weaker leave-one-batch-out scores of run 18)."""
     X = np.column_stack([s, np.ones_like(s)]) if intercept else s[:, None]
+
+    def nll(b):
+        z = X @ b
+        return float(np.sum(w * (np.logaddexp(0, z) - y * z)) + 0.5e-6 * b @ b)
     beta = np.zeros(X.shape[1])
-    beta[0] = 1.0
+    f = nll(beta)
     for _ in range(100):
         pz = expit(X @ beta)
         g = X.T @ ((y - pz) * w) - 1e-6 * beta
         H = (X * (pz * (1 - pz) * w)[:, None]).T @ X + 1e-6 * np.eye(X.shape[1])
-        step = np.linalg.solve(H, g)
-        beta += step
-        if np.abs(step).max() < 1e-9:
+        step, t = np.linalg.solve(H, g), 1.0
+        while nll(beta + t * step) > f and t > 1e-8:
+            t /= 2
+        beta = beta + t * step
+        f_new = nll(beta)
+        if f - f_new < 1e-10:
             break
+        f = f_new
     return (float(beta[0]), float(beta[1]) if intercept else 0.0)
 
 
@@ -300,7 +309,9 @@ def fit_weights(comp, yv, cols):
 
 # ----------------------------------------------------------------------------- metrics
 
-CALS = ("raw", "temp", "platt", "lobo")
+# maps; "platt*x" = the platt logit multiplied by x (a fixed extra shrinkage towards 0.5, for the trade-off
+# between fewer confident errors and less confident correct decisions)
+CALS = ("raw", "temp", "platt", "lobo", "platt*0.8", "platt*0.65", "platt*0.5")
 BINS = np.linspace(0.5, 1.0, 6)
 
 
@@ -335,7 +346,9 @@ def prob_metrics(L):
                   "err_q90": float(np.quantile(pw, 0.9)) if len(pw) else float("nan"),
                   "conf_err": {t: float(np.mean((~corr) & (1 - p_true >= t))) for t in (0.8, 0.9)},
                   "logloss": float(np.mean(-np.log(np.clip(p_true, 1e-12, 1)))),
-                  "brier": float(np.mean((1 - p_true) ** 2))}
+                  "brier": float(np.mean((1 - p_true) ** 2)),
+                  "ok_med": float(np.median(p_true[corr])) if corr.any() else float("nan"),
+                  "ok_ge": {t: float(np.mean(p_true[corr] >= t)) if corr.any() else 0.0 for t in (0.8, 0.9)}}
     conf = {c: np.maximum(pt[c], 1 - pt[c]) for c in (0, 1)}
     ok = {c: pt[c] > 0.5 for c in (0, 1)}
     wts = {c: np.full(len(pt[c]), 0.5 / len(pt[c])) for c in (0, 1)}
@@ -367,11 +380,12 @@ def contributions(d, fold_of, maps_of, v, cal, k):
     """Per-row additive contribution to the group logit: a_k d + b_k / k with the row's own fold map."""
     c = np.full(len(d), np.nan)
     for f, idx in fold_of.items():
-        if cal == "raw":
+        base, _, x = cal.partition("*")
+        if base == "raw":
             a, b = 1.0, 0.0
         else:
-            a, b = maps_of[f][v]["lobo" if cal == "lobo" else "loeo"][str(k)]["temp" if cal == "temp" else "platt"]
-        c[idx] = a * d[idx] + b / k
+            a, b = maps_of[f][v]["lobo" if base == "lobo" else "loeo"][str(k)]["temp" if base == "temp" else "platt"]
+        c[idx] = (a * d[idx] + b / k) * (float(x) if x else 1.0)
     return c
 
 
@@ -459,7 +473,10 @@ def aggregate():
                           f"S {m['sol']['conf_err'][0.8]:.3f}/{m['sol']['conf_err'][0.9]:.3f} "
                           f"| conf>=.8 cov {m['confident'][0.8]['coverage']:.2f} acc {m['confident'][0.8]['accuracy']:.3f} "
                           f"conf>=.9 cov {m['confident'][0.9]['coverage']:.2f} acc {m['confident'][0.9]['accuracy']:.3f} "
-                          f"| ece {m['ece']:.3f} ll {m['logloss']:.3f} brier {m['brier']:.3f}", flush=True)
+                          f"| ece {m['ece']:.3f} ll {m['logloss']:.3f} brier {m['brier']:.3f} "
+                          f"| correct med A {m['astra']['ok_med']:.2f} S {m['sol']['ok_med']:.2f} "
+                          f"p>=.8/.9 A {m['astra']['ok_ge'][0.8]:.2f}/{m['astra']['ok_ge'][0.9]:.2f} "
+                          f"S {m['sol']['ok_ge'][0.8]:.2f}/{m['sol']['ok_ge'][0.9]:.2f}", flush=True)
                     if k in (1, 3):
                         print(f"REL {tag:13} {v:30} {cal:5} k{k} [bin_lo, share, mean conf, accuracy] {m['reliability']}", flush=True)
         (RES / "calib_pair_summary.json").write_text(json.dumps(summary, indent=1, default=float))

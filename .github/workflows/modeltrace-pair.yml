@@ -8,7 +8,7 @@ on:
     paths: [RUN]
   workflow_dispatch:
 concurrency:
-  group: modeltrace-pair-par  # separate group so this run races the serial run 39258676784
+  group: modeltrace-pair
   cancel-in-progress: false
 env:
   PYTHONUNBUFFERED: "1"
