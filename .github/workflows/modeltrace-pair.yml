@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 env:
   PYTHONUNBUFFERED: "1"
-  AGGREGATE: "python research/deliverable_v5_check.py aggregate"
+  AGGREGATE: "python research/effort_pair.py aggregate"
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -20,9 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/deliverable_v5_check.py folds 0/4", "python research/deliverable_v5_check.py folds 1/4",
-              "python research/deliverable_v5_check.py folds 2/4", "python research/deliverable_v5_check.py folds 3/4",
-              "python research/final_eval.py && cp research/final_results_v5.json results/"]
+        exp: ["python research/effort_pair.py folds 0/8", "python research/effort_pair.py folds 1/8", "python research/effort_pair.py folds 2/8", "python research/effort_pair.py folds 3/8", "python research/effort_pair.py folds 4/8", "python research/effort_pair.py folds 5/8", "python research/effort_pair.py folds 6/8", "python research/effort_pair.py folds 7/8"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
