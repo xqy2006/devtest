@@ -1,1 +1,1 @@
-run 37 2026-10-20T02:17:26Z: deliverable v5 on same-length N=1000 pilot responses (pilot_v5.py)
+run 38 2026-10-20T02:28:43Z: v5 reference learning curves at 300 and 1000 numbers on the pilot (pilot_curve.py)
