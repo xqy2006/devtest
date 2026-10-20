@@ -13,7 +13,7 @@ concurrency:
 env:
   PYTHONUNBUFFERED: "1"
   GH_TOKEN: ${{ github.token }}  # lets a job read an earlier run's artifacts (gh run download)
-  AGGREGATE: "python research/pilot_curve.py aggregate"
+  AGGREGATE: ""
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exp: ["python research/pilot_curve.py folds 0/6", "python research/pilot_curve.py folds 1/6", "python research/pilot_curve.py folds 2/6", "python research/pilot_curve.py folds 3/6", "python research/pilot_curve.py folds 4/6", "python research/pilot_curve.py folds 5/6"]
+        exp: ["gh run download 39304856603 -R xqy2006/devtest -n res-aggregate -D results && python research/mix_m.py"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

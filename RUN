@@ -1,1 +1,1 @@
-run 38 2026-10-20T02:28:43Z: v5 reference learning curves at 300 and 1000 numbers on the pilot (pilot_curve.py)
+run 39 2026-10-20T02:46:15Z: run 34 mixture library with m responses per try (mix_m.py)
